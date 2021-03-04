@@ -323,10 +323,19 @@ function parseText(text: string) {
 
   // Loop
   for (let line of lines) {
-    if (line.trim().indexOf("//") === 0) continue;
+    if (line.trim().indexOf("//") === 0) {
+      lineNumber++;
+      continue;
+    }
     line = removeInlineComment(line);
-    if (insideComment) continue;
-    if (line.trim() === "") continue;
+    if (insideComment) {
+      lineNumber++;
+      continue;
+    }
+    if (line.trim() === "") {
+      lineNumber++;
+      continue;
+    }
     let indentMatch = line.match(matchIndent);
     let linkMatch: RegExpMatchArray | null | string = getNodeLabel(line).match(
       /^\((.+)\)$/
@@ -354,9 +363,17 @@ function parseText(text: string) {
       if (parent) {
         const source = getNodeId(lines[checkLine - 1], checkLine);
         const target = linkMatch ? linkMatch : getNodeId(line, lineNumber);
+
+        // Find a unique id
+        let id = `${source}_${target}:0`;
+        while (elements.map(({ data: { id } }) => id).includes(id)) {
+          let [, count] = id.split(":");
+          count = (parseInt(count, 10) + 1).toString();
+          id = `${source}_${target}:${count}`;
+        }
         elements.push({
           data: {
-            id: [source, target].join("_"),
+            id,
             source,
             target,
             label: getEdgeLabel(line),
