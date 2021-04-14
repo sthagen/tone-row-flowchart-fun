@@ -2,14 +2,16 @@ import strip from "@tone-row/strip-comments";
 import { CytoscapeOptions } from "cytoscape";
 import { useLocation } from "react-router-dom";
 
-export function parseText(text: string) {
+export function stripComments(t: string) {
+  return strip(t, { preserveNewlines: true });
+}
+
+export function parseText(text: string, startingLineNumber = 0) {
   let elements: CytoscapeOptions["elements"] = [];
   let lineNumber = 1;
 
-  // break into lines, removing comments but
-  // leaving newlines created in comments to
-  // preserve line numbers
-  const lines = strip(text, { preserveNewlines: true }).split("\n");
+  // break into lines
+  const lines = text.split("\n");
 
   // Loop over lines
   for (let line of lines) {
@@ -62,7 +64,7 @@ export function parseText(text: string) {
             source,
             target,
             label: edgeLabel,
-            lineNumber,
+            lineNumber: lineNumber + startingLineNumber,
           },
         });
       }
@@ -73,7 +75,7 @@ export function parseText(text: string) {
         data: {
           id,
           label: nodeLabel,
-          lineNumber,
+          lineNumber: lineNumber + startingLineNumber,
           ...getSize(nodeLabel),
         },
       });
@@ -106,7 +108,7 @@ export function parseText(text: string) {
   return elements;
 }
 
-export function getLineData(text: string, lineNumber: number) {
+function getLineData(text: string, lineNumber: number) {
   // Whole line description in one regex with named capture groups
   // 1) Indent ^(?<indent>\s*) -- store the indent which is 0 or more whitespace at the start
   // 2) ID (\[(?<id>.*)\])? -- store the ID if it exists after the indent in square brackets
@@ -120,11 +122,12 @@ export function getLineData(text: string, lineNumber: number) {
     nodeLabel.match(/^\((?<linkedId>.+)\)\s*$/) || {};
   const { linkedId } = labelGroups || {};
   return {
-    nodeLabel: nodeLabel.trim(),
-    edgeLabel: edgeLabel.trim(),
+    nodeLabel: decodeURIComponent(nodeLabel.trim()),
+    edgeLabel: decodeURIComponent(edgeLabel.trim()),
     indent,
     id,
-    linkedId,
+    linkedId:
+      typeof linkedId !== "undefined" ? decodeURIComponent(linkedId) : linkedId,
   };
 }
 
