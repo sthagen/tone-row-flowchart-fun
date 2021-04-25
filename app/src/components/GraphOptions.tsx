@@ -36,7 +36,14 @@ const GraphOptions = memo(() => {
 
   useEffect(() => {
     if (isDirty) {
-      updateGraphOptionsText(JSON.parse(valuesString));
+      const options = JSON.parse(valuesString);
+      window.plausible("Update Graph Options", {
+        props: {
+          layoutName: options.layout.name,
+          rankDir: options.layout.rankDir,
+        },
+      });
+      updateGraphOptionsText(options);
     }
   }, [updateGraphOptionsText, isDirty, valuesString]);
 
