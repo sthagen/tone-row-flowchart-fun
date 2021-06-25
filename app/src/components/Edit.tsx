@@ -1,4 +1,4 @@
-import React, {
+import {
   useCallback,
   useContext,
   useEffect,
@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import { useThrottleCallback } from "@react-hook/throttle";
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor, { OnMount, useMonaco } from "@monaco-editor/react";
 import { delimiters, editorOptions, GraphOptionsObject } from "../constants";
 import { AppContext } from "./AppContext";
 import Loading from "./Loading";
@@ -23,9 +23,9 @@ import { t } from "@lingui/macro";
 import {
   defineThemes,
   languageId,
-  registerLanguage,
   themeNameDark,
   themeNameLight,
+  useMonacoLanguage,
 } from "../registerLanguage";
 
 declare global {
@@ -43,29 +43,17 @@ function Edit() {
   );
   const setTextToParseThrottle = useThrottleCallback(setTextToParse, 2);
   const [hoverLineNumber, setHoverLineNumber] = useState<undefined | number>();
-  const editorRef = useRef(null);
+  const editorRef = useRef<null | Parameters<OnMount>[0]>(null);
   const decorations = useRef<any[]>([]);
   const { mode } = useContext(AppContext);
 
   // Add language
-  useEffect(() => {
-    if (monaco) {
-      const isRegistered = monaco.languages
-        .getLanguages()
-        .map(({ id }: { id: string }) => id)
-        .includes("flowchartfun");
-
-      if (!isRegistered) {
-        registerLanguage(monaco);
-      }
-    }
-  }, [monaco]);
+  useMonacoLanguage(monaco);
 
   useEffect(() => {
     if (editorRef.current) {
       const editor = editorRef.current;
       if (typeof hoverLineNumber === "number") {
-        //@ts-ignore
         decorations.current = editor.deltaDecorations(
           [],
           [
@@ -84,7 +72,6 @@ function Edit() {
           ]
         );
       } else {
-        // @ts-ignore
         decorations.current = editor.deltaDecorations(decorations.current, []);
       }
     }
