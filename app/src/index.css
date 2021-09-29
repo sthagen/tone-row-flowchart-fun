@@ -28,11 +28,10 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  overflow: hidden;
 }
 
 .node-hover {
-  background: var(--color-uiAccent);
+  background: var(--color-lineColor);
 }
 
 .view-line {
@@ -94,6 +93,7 @@ button {
   appearance: none;
   border: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 button:active {
@@ -126,14 +126,31 @@ div[data-reach-dialog-content] {
   color: var(--color-foreground);
   width: 90vw;
   overflow: auto;
+  margin: 5vh auto;
 }
 
 @media (min-width: 800px) {
   div[data-reach-dialog-content] {
     width: 60vw;
+    margin: 10vh auto;
   }
 }
 
 div[data-reach-dialog-overlay] {
   background: hsla(var(--color-overlayColor), 0.5);
+  z-index: 1;
+}
+
+div[data-reach-tooltip] {
+  background-color: var(--color-nodeHover);
+  border-color: var(--color-nodeHover);
+  box-shadow: none;
+  border-radius: 2px;
+  color: var(--color-foreground);
+}
+
+@media (max-width: 799px) {
+  div[data-reach-tooltip] {
+    display: none !important;
+  }
 }

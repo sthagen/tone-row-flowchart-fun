@@ -10,7 +10,12 @@
 
 @media (max-width: 799px) {
   .GraphWrapper {
-    border-top: solid 1px var(--color-uiAccent);
+    grid-area: main;
+    background-color: var(--color-background);
+    z-index: -1;
+  }
+  [data-mobile-tab="graph"] .GraphWrapper {
+    z-index: 1;
   }
 }
 @media (min-width: 800px) {
@@ -18,9 +23,13 @@
     display: block !important;
     padding-left: 4px; /* This is for the resize handle */
   }
+
+  .GraphWrapperInner {
+    border: 1px solid var(--color-uiAccent);
+  }
 }
 
 .GraphWrapperInner {
-  border: 1px solid var(--color-uiAccent);
   height: 100%;
+  border-top: 1px solid var(--color-uiAccent);
 }

@@ -1,41 +1,68 @@
-import { memo, ReactNode, useContext } from "react";
+import { memo, ReactNode, Suspense, useContext } from "react";
 import { Box } from "../slang";
-import Menu from "./Menu";
 import styles from "./Layout.module.css";
 import ColorMode from "./ColorMode";
 import { AppContext } from "./AppContext";
-import { useLocation } from "react-router-dom";
-import { useFeature } from "flagged";
+import CurrentTab from "./CurrentTab";
 import MenuNext from "./MenuNext";
+import Loading from "./Loading";
+import Share from "./Share";
+import ShareDialog from "./ShareDialog";
+import { useFullscreen } from "../hooks";
 
 const Layout = memo(({ children }: { children: ReactNode }) => {
-  const { showing } = useContext(AppContext);
-  const { pathname } = useLocation();
-  const isFullscreen = pathname === "/f";
-  const isNext = useFeature("next");
+  const isFullscreen = useFullscreen();
+
   return (
-    <Box
-      root
-      overflow="hidden"
-      className={styles.Layout}
-      template={
-        isFullscreen ? "minmax(0, 1fr) / none" : "auto minmax(0, 1fr) / none"
-      }
-    >
-      {isFullscreen ? null : isNext ? <MenuNext /> : <Menu />}
-      <Box
-        as="main"
-        className={isFullscreen ? undefined : styles.TabletWrapper}
-        at={{ tablet: { display: "flex", template: "none / none" } }}
-        data-showing={showing}
-      >
-        {children}
-      </Box>
+    <LayoutWrapper isFullscreen={isFullscreen}>
+      {isFullscreen ? null : <MenuNext />}
+      <EditorWrapper>
+        <CurrentTab>{children}</CurrentTab>
+      </EditorWrapper>
       <ColorMode />
-    </Box>
+      <ShareDialog />
+    </LayoutWrapper>
   );
 });
 
 Layout.displayName = "Layout";
 
 export default Layout;
+
+function LayoutWrapper({
+  children,
+  isFullscreen,
+}: {
+  children: ReactNode;
+  isFullscreen: boolean;
+}) {
+  const { showing, shareModal } = useContext(AppContext);
+  return (
+    <>
+      <Box
+        root
+        className={styles.LayoutWrapperNext}
+        data-showing={showing}
+        data-fullscreen={isFullscreen}
+      >
+        {children}
+      </Box>
+      {shareModal && <Share />}
+    </>
+  );
+}
+
+function EditorWrapper({ children }: { children: ReactNode }) {
+  const { showing, mobileEditorTab } = useContext(AppContext);
+  return (
+    <Box
+      as="main"
+      className={styles.EditorWrapperNext}
+      data-showing={showing}
+      data-mobile-tab={mobileEditorTab}
+      template="[main] minmax(0, 1fr) auto / [main] minmax(0, 1fr)"
+    >
+      <Suspense fallback={<Loading />}>{children}</Suspense>
+    </Box>
+  );
+}

@@ -1,27 +1,38 @@
 import { useParams } from "react-router-dom";
 import { ReactComponent as BrandSvg } from "./brand.svg";
-import { Box, Type } from "../slang";
+import { Box, BoxProps, Type } from "../slang";
 import {
   TreeStructure,
-  Folder,
   Laptop,
   Chat,
   IconProps,
   Gear,
   Share,
+  FolderOpen,
 } from "phosphor-react";
 import { AppContext, Showing } from "./AppContext";
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import styles from "./MenuNext.module.css";
-import { Trans } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
+import { smallBtnTypeSize, smallIconSize, Tooltip } from "./Shared";
+import VisuallyHidden from "@reach/visually-hidden";
+
+const chartSpecific: Showing[] = ["editor", "share"];
 
 export default function MenuNext() {
+  const { showing } = useContext(AppContext);
   return (
     <Box
       as="header"
       template="auto auto / auto [main] auto"
       at={{
-        tablet: { template: "[main] auto / 1fr [main] auto 1fr", p: 3, pl: 5 },
+        tablet: {
+          template: "[main] auto / 1fr [main] auto 1fr",
+          p: 2,
+          pl: 5,
+          pr: 3,
+          gap: 4,
+        },
       }}
       flow="column"
       items="center normal"
@@ -31,26 +42,32 @@ export default function MenuNext() {
         flow="column"
         items="center"
         content="stretch start"
-        p={1}
-        gap={1}
         pl={2}
         at={{ tablet: { p: 0, gap: 2, pl: 0 } }}
+        className={styles.Side}
       >
-        <BrandSvg width={40} className={styles.Brand} />
-        <MenuTabButton icon={TreeStructure} tab="editor" />
-        <MenuTabButton icon={Folder} tab="navigation" />
+        <Box pr={2} at={{ tablet: { pr: 0 } }}>
+          <BrandSvg width={40} className={styles.Brand} />
+        </Box>
+        <MenuTabButton icon={TreeStructure} tab="editor" label={t`Editor`} />
+        <MenuTabButton icon={FolderOpen} tab="navigation" label={t`Charts`} />
       </Box>
-      <WorkspaceSection />
+      {chartSpecific.includes(showing) ? (
+        <WorkspaceSection />
+      ) : (
+        <Box className={styles.PageTitle} pt={5} at={{ tablet: { pt: 0 } }}>
+          <Type>{translatedTitle(showing)}</Type>
+        </Box>
+      )}
       <Box
         content="stretch end"
         flow="column"
         items="center"
-        p={1}
-        gap={1}
-        at={{ tablet: { p: 0 } }}
+        at={{ tablet: { gap: 2, pr: 2 } }}
+        className={styles.Side}
       >
-        <MenuTabButton icon={Gear} tab="settings" />
-        <MenuTabButton icon={Chat} tab="feedback" />
+        <MenuTabButton icon={Gear} tab="settings" label={t`User Preferences`} />
+        <MenuTabButton icon={Chat} tab="feedback" label={t`Feedback`} />
       </Box>
     </Box>
   );
@@ -60,77 +77,112 @@ type Icon = React.ForwardRefExoticComponent<
   IconProps & React.RefAttributes<SVGSVGElement>
 >;
 
-function MenuTabButton({ icon: Icon, tab }: { icon: Icon; tab: Showing }) {
+const MenuTabButton = ({
+  icon: Icon,
+  tab,
+  label,
+  ...props
+}: { icon: Icon; tab: Showing; label: string } & BoxProps) => {
   const { showing, setShowing } = useContext(AppContext);
   return (
-    <Box
-      as="button"
-      p={2}
-      rad={1}
-      role="tab"
-      aria-selected={tab === showing}
-      onClick={() => setShowing(tab)}
-      className={styles.MenuTabButton}
+    <Tooltip
+      label={label}
+      aria-label={label}
+      className={`slang-type size-${smallBtnTypeSize}`}
     >
-      <Icon height={33} width={33} />
-    </Box>
+      <Box
+        as="button"
+        p={2}
+        rad={1}
+        role="tab"
+        aria-selected={tab === showing}
+        onClick={() => setShowing(tab)}
+        className={styles.MenuTabButton}
+        {...props}
+      >
+        <Icon height={33} width={33} />
+        <VisuallyHidden>{label}</VisuallyHidden>
+      </Box>
+    </Tooltip>
   );
-}
+};
 
 function WorkspaceSection() {
   const { workspace = "" } = useParams<{ workspace?: string }>();
-  const { setShowing } = useContext(AppContext);
-  const toggle = useCallback(
-    () => setShowing((s) => (s === "editor" ? "navigation" : "editor")),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
 
   return (
     <Box
       flow="column"
-      template="auto / 1fr auto"
-      gap={2}
       className={styles.WorkspaceSection}
-      px={2}
-      at={{ tablet: { px: 0 } }}
+      px={1}
+      py={5}
+      gap={3}
+      items="center"
+      content="normal center"
+      at={{ tablet: { px: 0, gap: 6, py: 0 } }}
     >
       <Box
-        as="button"
         className={styles.WorkspaceButton}
-        onClick={toggle}
         flow="column"
         items="center normal"
         template="auto / auto 1fr"
         rad={1}
       >
-        <Box p={2} className={styles.WorkspaceButtonIcon}>
-          <Laptop width={33} height={33} />
-        </Box>
-        <Box px={3}>
-          <Type as="h1">/{workspace}</Type>
-        </Box>
-      </Box>
-      <Box
-        as="button"
-        rad={1}
-        className={styles.WorkspaceButton}
-        items="center normal"
-        at={{ tablet: { template: "auto / auto 1fr" } }}
-      >
-        <Box p={2}>
-          <Share width={33} height={33} />
-        </Box>
         <Box
-          display="none"
-          px={3}
-          at={{ tablet: { display: "grid" } }}
-          className={styles.IconButtonText}
+          className={styles.WorkspaceButtonIcon}
+          pr={2}
+          at={{ tablet: { px: 1, pr: 3 } }}
         >
-          <Type size={-1}>
-            <Trans>Export</Trans>
+          <Laptop size={smallIconSize} />
+        </Box>
+        <Box>
+          <Type as="h1" weight="400" className={styles.WorkspaceTitle}>
+            {workspace || "(-)"}
           </Type>
         </Box>
+      </Box>
+      <ExportButton />
+    </Box>
+  );
+}
+
+function translatedTitle(current: Showing) {
+  switch (current) {
+    case "feedback":
+      return t`Feedback`;
+    case "settings":
+      return t`User Preferences`;
+    case "navigation":
+      return t`Charts`;
+    default:
+      return current;
+  }
+}
+
+function ExportButton() {
+  const { setShareModal } = useContext(AppContext);
+
+  return (
+    <Box
+      as="button"
+      rad={1}
+      className={styles.ExportButton}
+      items="center normal"
+      at={{ tablet: { template: "auto / auto 1fr", px: 0 } }}
+      onClick={() => setShareModal(true)}
+    >
+      <Box p={1} at={{ tablet: { p: 3 } }}>
+        <Share size={smallIconSize} />
+      </Box>
+      <Box
+        display="none"
+        pr={3}
+        at={{ tablet: { display: "grid" } }}
+        className={styles.IconButtonText}
+      >
+        <Type size={smallBtnTypeSize}>
+          <Trans>Export</Trans>
+        </Type>
       </Box>
     </Box>
   );
