@@ -1,17 +1,23 @@
+import { Session } from "@supabase/gotrue-js";
+import { FlagsProvider } from "flagged";
 import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useState,
 } from "react";
 import useLocalStorage from "react-use-localstorage";
+import Stripe from "stripe";
+
+import { useCustomerInfo, useUserFeatures } from "../lib/queries";
+import { supabase } from "../lib/supabaseClient";
 import { languages } from "../locales/i18n";
 import { colors, darkTheme } from "../slang/config";
-import { FlagsProvider } from "flagged";
 
 type Theme = typeof colors;
 
@@ -19,8 +25,8 @@ export type Showing =
   | "navigation"
   | "editor"
   | "settings"
-  | "share"
-  | "feedback";
+  | "feedback"
+  | "sponsor";
 
 // Stored in localStorage
 export type UserSettings = {
@@ -36,7 +42,7 @@ const defaultLanguage = Object.keys(languages).includes(browserLanguage)
 
 type mobileEditorTab = "text" | "graph";
 
-type TAppContext = {
+export type TAppContext = {
   updateUserSettings: (newSettings: Partial<UserSettings>) => void;
   theme: Theme;
   shareLink: string;
@@ -44,13 +50,23 @@ type TAppContext = {
   language: string;
   showing: Showing;
   setShowing: Dispatch<SetStateAction<Showing>>;
-  hasError: boolean;
-  setHasError: Dispatch<SetStateAction<boolean>>;
+  hasError: false | string;
+  setHasError: Dispatch<SetStateAction<false | string>>;
+  hasStyleError: false | string;
+  setHasStyleError: Dispatch<SetStateAction<false | string>>;
   shareModal: boolean;
   setShareModal: Dispatch<SetStateAction<boolean>>;
   mobileEditorTab: mobileEditorTab;
   toggleMobileEditorTab: () => void;
+  session: Session | null;
+  customer?: CustomerInfo;
+  customerIsLoading: boolean;
 } & UserSettings;
+
+type CustomerInfo = {
+  customerId: string;
+  subscription?: Stripe.Subscription;
+};
 
 export const AppContext = createContext({} as TAppContext);
 
@@ -71,6 +87,7 @@ const Provider = ({ children }: { children?: ReactNode }) => {
       ),
     []
   );
+
   const { settings, theme } = useMemo<{
     settings: UserSettings;
     theme: Theme;
@@ -100,27 +117,33 @@ const Provider = ({ children }: { children?: ReactNode }) => {
     [setUserSettings, settings]
   );
 
-  const [flags, setFeatures] = useState([]);
-
   useEffect(() => {
     // Remove chart that may have been stored, so
     // two indexes aren't shown on charts page
     window.localStorage.removeItem("flowcharts.fun:");
   }, []);
 
-  const [hasError, setHasError] = useState(false);
+  const [hasError, setHasError] = useState<TAppContext["hasError"]>(false);
+  const [hasStyleError, setHasStyleError] =
+    useState<TAppContext["hasStyleError"]>(false);
+
+  const { data: flags } = useUserFeatures();
+
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
-    (async function () {
-      const response = await fetch("/api/feature", {
-        mode: "cors",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json" },
+    if (supabase) {
+      const session = supabase.auth.session();
+      setSession(session);
+      supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session);
       });
-      const features = await response.json();
-      setFeatures(features);
-    })();
+    }
   }, []);
+
+  const { data: customer, isFetching: customerIsLoading } = useCustomerInfo(
+    session?.user?.email
+  );
 
   return (
     <AppContext.Provider
@@ -137,6 +160,11 @@ const Provider = ({ children }: { children?: ReactNode }) => {
         shareModal,
         mobileEditorTab,
         toggleMobileEditorTab,
+        session,
+        customer,
+        customerIsLoading,
+        hasStyleError,
+        setHasStyleError,
         ...settings,
         language: settings.language ?? defaultLanguage,
       }}
@@ -147,3 +175,7 @@ const Provider = ({ children }: { children?: ReactNode }) => {
 };
 
 export default Provider;
+
+export function useSession() {
+  return useContext(AppContext).session;
+}

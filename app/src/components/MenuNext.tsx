@@ -1,31 +1,63 @@
-import { useParams } from "react-router-dom";
-import { ReactComponent as BrandSvg } from "./brand.svg";
-import { Box, BoxProps, Type } from "../slang";
-import {
-  TreeStructure,
-  Laptop,
-  Chat,
-  IconProps,
-  Gear,
-  Share,
-  FolderOpen,
-} from "phosphor-react";
-import { AppContext, Showing } from "./AppContext";
-import { useContext } from "react";
-import styles from "./MenuNext.module.css";
 import { t, Trans } from "@lingui/macro";
+import VisuallyHidden from "@reach/visually-hidden";
 import {
+  Chat,
+  CopySimple,
+  FolderOpen,
+  Gear,
+  Globe,
+  Laptop,
+  NotePencil,
+  Plus,
+  Question,
+  Share,
+  TreeStructure,
+  User,
+} from "phosphor-react";
+import { useContext, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { useHistory, useRouteMatch } from "react-router";
+
+import { gaChangeTab, gaCopyChart, gaNewChart } from "../lib/analytics";
+import {
+  isError,
+  randomChartName,
+  slugify,
+  titleToLocalStorageKey,
+} from "../lib/helpers";
+import {
+  useCurrentHostedChart,
+  useIsReadOnly,
+  useIsValidSponsor,
+  useLocalStorageText,
+  useReadOnlyText,
+  useTitle,
+} from "../lib/hooks";
+import { makeChart, queryClient, renameChart } from "../lib/queries";
+import { Box, BoxProps, Type } from "../slang";
+import { AppContext, Showing, useSession } from "./AppContext";
+import { ReactComponent as BrandSvg } from "./brand.svg";
+import styles from "./MenuNext.module.css";
+import {
+  Button,
+  Dialog,
+  Input,
+  Notice,
+  Section,
   smallBtnTypeSize,
   smallIconSize,
   Tooltip,
   tooltipSize,
 } from "./Shared";
-import VisuallyHidden from "@reach/visually-hidden";
-
-const chartSpecific: Showing[] = ["editor", "share"];
 
 export default function MenuNext() {
-  const { showing } = useContext(AppContext);
+  const { showing, session } = useContext(AppContext);
+  const { setShowing } = useContext(AppContext);
+  const { push } = useHistory();
+  const { url } = useRouteMatch();
+  const isHelpPage = url === "/h";
+
   return (
     <Box
       as="header"
@@ -41,6 +73,7 @@ export default function MenuNext() {
       }}
       flow="column"
       items="center normal"
+      role="tablist"
       className={styles.Menu}
     >
       <Box
@@ -54,14 +87,50 @@ export default function MenuNext() {
         <Box pr={2} at={{ tablet: { pr: 0 } }}>
           <BrandSvg width={40} className={styles.Brand} />
         </Box>
-        <MenuTabButton icon={TreeStructure} tab="editor" label={t`Editor`} />
-        <MenuTabButton icon={FolderOpen} tab="navigation" label={t`Charts`} />
+        <MenuTabButton
+          icon={TreeStructure}
+          selected={"editor" === showing && !isHelpPage}
+          label={t`Editor`}
+          onClick={() => {
+            setShowing("editor");
+            isHelpPage && push("/");
+            gaChangeTab({ action: "editor" });
+          }}
+        />
+        <MenuTabButton
+          icon={FolderOpen}
+          selected={"navigation" === showing}
+          label={t`Charts`}
+          onClick={() => {
+            setShowing("navigation");
+            gaChangeTab({ action: "navigation" });
+          }}
+        />
+        <MenuTabButton
+          icon={Plus}
+          label={t`Create`}
+          onClick={() => {
+            push(`/${randomChartName()}`);
+            setShowing("editor");
+            gaNewChart();
+          }}
+        />
+        <MenuTabButton
+          icon={Question}
+          label={t`Help`}
+          selected={"editor" === showing && isHelpPage}
+          onClick={() => {
+            push("/h");
+            setShowing("editor");
+            gaChangeTab({ action: "help" });
+          }}
+        />
       </Box>
-      {chartSpecific.includes(showing) ? (
+      {showing === "editor" ? (
         <WorkspaceSection />
       ) : (
         <Box className={styles.PageTitle} pt={5} at={{ tablet: { pt: 0 } }}>
-          <Type>{translatedTitle(showing)}</Type>
+          <Type size={1}>{translatedTitle(showing)}</Type>
         </Box>
       )}
       <Box
@@ -71,24 +140,50 @@ export default function MenuNext() {
         at={{ tablet: { gap: 2, pr: 2 } }}
         className={styles.Side}
       >
-        <MenuTabButton icon={Gear} tab="settings" label={t`User Preferences`} />
-        <MenuTabButton icon={Chat} tab="feedback" label={t`Feedback`} />
+        <MenuTabButton
+          icon={Gear}
+          selected={"settings" === showing}
+          label={t`Settings`}
+          onClick={() => {
+            setShowing("settings");
+            gaChangeTab({ action: "settings" });
+          }}
+        />
+        <MenuTabButton
+          icon={Chat}
+          selected={"feedback" === showing}
+          label={t`Feedback`}
+          onClick={() => {
+            setShowing("feedback");
+            gaChangeTab({ action: "feedback" });
+          }}
+        />
+        <MenuTabButton
+          icon={session ? ActiveUser : User}
+          selected={"sponsor" === showing}
+          label={t`Sponsors`}
+          onClick={() => {
+            setShowing("sponsor");
+            gaChangeTab({ action: "sponsor" });
+          }}
+        />
       </Box>
     </Box>
   );
 }
 
-type Icon = React.ForwardRefExoticComponent<
-  IconProps & React.RefAttributes<SVGSVGElement>
->;
-
 const MenuTabButton = ({
   icon: Icon,
-  tab,
+  selected,
   label,
+  onClick,
   ...props
-}: { icon: Icon; tab: Showing; label: string } & BoxProps) => {
-  const { showing, setShowing } = useContext(AppContext);
+}: {
+  icon: any;
+  selected?: boolean;
+  label: string;
+  onClick?: () => void;
+} & BoxProps) => {
   return (
     <Tooltip
       label={label}
@@ -97,11 +192,12 @@ const MenuTabButton = ({
     >
       <Box
         as="button"
-        p={2}
+        p={1}
+        at={{ desktop: { p: 2 } }}
         rad={1}
         role="tab"
-        aria-selected={tab === showing}
-        onClick={() => setShowing(tab)}
+        aria-selected={selected}
+        onClick={onClick}
         className={styles.MenuTabButton}
         {...props}
       >
@@ -113,8 +209,9 @@ const MenuTabButton = ({
 };
 
 function WorkspaceSection() {
-  const { workspace = "" } = useParams<{ workspace?: string }>();
-
+  const [title, isHosted] = useTitle();
+  const Icon = isHosted ? Globe : Laptop;
+  const isReadOnly = useIsReadOnly();
   return (
     <Box
       flow="column"
@@ -132,21 +229,25 @@ function WorkspaceSection() {
         items="center normal"
         template="auto / auto 1fr"
         rad={1}
+        gap={1}
       >
         <Box
+          content="center"
           className={styles.WorkspaceButtonIcon}
-          pr={2}
-          at={{ tablet: { px: 1, pr: 3 } }}
+          color="color-edgeHover"
         >
-          <Laptop size={smallIconSize} />
+          <Icon size={20} />
         </Box>
-        <Box>
-          <Type as="h1" weight="400" className={styles.WorkspaceTitle}>
-            {workspace || "flowchart.fun"}
+        <Box style={{ marginTop: "-1px" }}>
+          <Type as="h1" weight="400" className={styles.WorkspaceTitle} size={1}>
+            {title || "flowchart.fun"}
           </Type>
         </Box>
       </Box>
-      <ExportButton />
+      <Box flow="column" gap={1}>
+        {!isReadOnly && <RenameButton />}
+        {isReadOnly ? <CopyButton /> : <ExportButton />}
+      </Box>
     </Box>
   );
 }
@@ -156,12 +257,149 @@ function translatedTitle(current: Showing) {
     case "feedback":
       return t`Feedback`;
     case "settings":
-      return t`User Preferences`;
+      return t`Settings`;
     case "navigation":
       return t`Charts`;
+    case "sponsor":
+      return t`Sponsors`;
     default:
       return current;
   }
+}
+
+function RenameButton() {
+  const isValidSponsor = useIsValidSponsor();
+  const session = useSession();
+  const [initialName, isHosted] = useTitle();
+  const { data } = useCurrentHostedChart();
+  const [text] = useLocalStorageText();
+  const [dialog, setDialog] = useState(false);
+  const { push } = useHistory();
+  const { register, handleSubmit, watch, formState } = useForm<{
+    name: string;
+    convertToHosted?: boolean;
+  }>({
+    defaultValues: { name: initialName, convertToHosted: false },
+    mode: "onChange",
+  });
+  const convertToHosted = watch("convertToHosted");
+  const currentName = watch("name");
+  const { ref, ...rest } = register("name", {
+    required: true,
+    minLength: 2,
+    setValueAs: (z) => (isHosted || convertToHosted ? z : slugify(z)),
+  });
+  const inputRef = useRef<null | HTMLInputElement>(null);
+  const rename = useMutation(
+    "updateChartName",
+    async ({
+      name,
+      convertToHosted,
+    }: {
+      name: string;
+      convertToHosted?: boolean;
+    }) => {
+      if (isHosted && data) {
+        await renameChart(data.id, name);
+      } else if (convertToHosted) {
+        if (session?.user?.id) {
+          const response = await makeChart({
+            name,
+            user_id: session?.user?.id,
+            chart: text,
+          });
+          if (!response) throw new Error("Could not create hosted chart");
+          const charts = response.data;
+          if (!charts) throw new Error("Could not create hosted chart");
+          const chart = charts[0];
+          if (!chart) throw new Error("Could not create hosted chart");
+          push(`/u/${chart.id}`);
+        }
+      } else {
+        const oldKey = titleToLocalStorageKey(slugify(initialName));
+        const newSlug = slugify(name);
+        const newKey = titleToLocalStorageKey(newSlug);
+        if (window.localStorage.getItem(newKey) !== null)
+          throw new Error("Chart already exists");
+        window.localStorage.setItem(newKey, text);
+        push(`/${newSlug}`);
+        window.localStorage.removeItem(oldKey);
+      }
+    },
+    {
+      onSuccess: () => {
+        setDialog(false);
+        if (isHosted) queryClient.resetQueries(["useChart"]);
+      },
+    }
+  );
+  const isValid =
+    formState.isValid && (currentName !== initialName || convertToHosted);
+  return (
+    <>
+      <Tooltip
+        label={t`Rename`}
+        aria-label={t`Rename`}
+        className={`slang-type size-${tooltipSize}`}
+      >
+        <Button
+          style={{ minWidth: 0 }}
+          onClick={() => setDialog(true)}
+          aria-label={t`Rename`}
+        >
+          <NotePencil size={smallIconSize} />
+        </Button>
+      </Tooltip>
+      <Dialog
+        dialogProps={{
+          isOpen: dialog,
+          onDismiss: () => setDialog(false),
+          initialFocusRef: inputRef,
+          "aria-label": t`Rename`,
+        }}
+        innerBoxProps={{
+          as: "form",
+          onSubmit: handleSubmit((data) => rename.mutate(data)),
+        }}
+      >
+        <Section>
+          <Type as="h2" weight="400">
+            <Trans>Rename</Trans>
+          </Type>
+          {isValidSponsor && !isHosted ? (
+            <Box
+              flow="column"
+              gap={2}
+              content="normal start"
+              items="center normal"
+            >
+              <Type size={-1}>
+                <Trans>Convert to hosted chart?</Trans>
+              </Type>
+              <input type="checkbox" {...register("convertToHosted")} />
+            </Box>
+          ) : null}
+          <Input
+            {...rest}
+            ref={(el) => {
+              ref(el);
+              inputRef.current = el;
+            }}
+            isLoading={rename.isLoading}
+          />
+          <Box flow="column" content="normal space-between">
+            <Button
+              type="button"
+              text={`Cancel`}
+              onClick={() => setDialog(false)}
+            />
+            <Button type="submit" text={t`Submit`} disabled={!isValid} />
+          </Box>
+          {isError(rename.error) && <Notice>{rename.error.message}</Notice>}
+        </Section>
+      </Dialog>
+    </>
+  );
 }
 
 function ExportButton() {
@@ -171,24 +409,136 @@ function ExportButton() {
     <Box
       as="button"
       rad={1}
-      className={styles.ExportButton}
+      className={[styles.ExportButton, styles.MenuNextTitleButton].join(" ")}
       items="center normal"
       at={{ tablet: { template: "auto / auto 1fr", px: 0 } }}
-      onClick={() => setShareModal(true)}
+      onClick={() => {
+        setShareModal(true);
+      }}
     >
-      <Box p={1} at={{ tablet: { p: 3 } }}>
+      <Box p={2} px={3}>
         <Share size={smallIconSize} />
       </Box>
-      <Box
-        display="none"
-        pr={3}
-        at={{ tablet: { display: "grid" } }}
-        className={styles.IconButtonText}
-      >
+      <Box display="none" pr={3} at={{ tablet: { display: "grid" } }}>
         <Type size={smallBtnTypeSize}>
           <Trans>Export</Trans>
         </Type>
       </Box>
     </Box>
+  );
+}
+
+/** Allow users to copy read-only charts */
+export function CopyButton() {
+  const text = useReadOnlyText();
+  const { push } = useHistory();
+  return (
+    <Box
+      as="button"
+      rad={1}
+      className={[styles.ExportButton, styles.MenuNextTitleButton].join(" ")}
+      items="center normal"
+      at={{ tablet: { template: "auto / auto 1fr", px: 0 } }}
+      onClick={() => {
+        const newChartTitle = randomChartName();
+        window.localStorage.setItem(
+          titleToLocalStorageKey(newChartTitle),
+          text ?? ""
+        );
+        push(`/${newChartTitle}`);
+        gaCopyChart();
+      }}
+    >
+      <Box p={2} px={3}>
+        <CopySimple size={smallIconSize} />
+      </Box>
+      <Box display="none" pr={3} at={{ tablet: { display: "grid" } }}>
+        <Type size={smallBtnTypeSize}>
+          <Trans>Create</Trans>
+        </Type>
+      </Box>
+    </Box>
+  );
+}
+
+function ActiveUser(props: any) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 33 33"
+      className={styles.ActiveUser}
+      {...props}
+    >
+      <defs>
+        <clipPath id="prefix__a17d60b4-e0f8-43b3-a564-04fa6e03ba61">
+          <path
+            className="prefix__b04d3312-aa75-43f2-ab63-2c3f069f959a"
+            d="M9.37 5.37H23.5V19.5H9.37z"
+          />
+        </clipPath>
+        <clipPath id="prefix__b352e344-bd63-4a79-9034-37b75fb29d2b">
+          <path
+            className="prefix__b04d3312-aa75-43f2-ab63-2c3f069f959a"
+            d="M9.37 5.37H22.5V18.5H9.37z"
+          />
+        </clipPath>
+        <clipPath id="prefix__e21ef387-74b1-4a51-ae3f-6daeab19301d">
+          <path
+            className="prefix__b04d3312-aa75-43f2-ab63-2c3f069f959a"
+            d="M10.37 5.37H23.5V18.5H10.37z"
+          />
+        </clipPath>
+        <style>
+          {".prefix__b04d3312-aa75-43f2-ab63-2c3f069f959a{fill:none}"}
+        </style>
+      </defs>
+      <g id="prefix__ff580aca-8ff2-475d-af97-318c8e2d48d0" data-name="Layer 2">
+        <g
+          id="prefix__ba6ea03b-2d28-4d9a-8170-a5e80ab0409c"
+          data-name="Layer 1"
+        >
+          <path
+            className="prefix__b04d3312-aa75-43f2-ab63-2c3f069f959a ignore"
+            d="M0 0h33v33H0z"
+          />
+          <circle
+            cx={16.5}
+            cy={12.38}
+            r={8.25}
+            strokeMiterlimit={1.29}
+            stroke="var(--color-foreground)"
+            fill="none"
+          />
+          <path
+            d="M4 27.84a14.46 14.46 0 0125 0"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="var(--color-foreground)"
+            fill="none"
+          />
+          <g clipPath="url(#prefix__a17d60b4-e0f8-43b3-a564-04fa6e03ba61)">
+            <path
+              d="M11.61 12.33a4.83 4.83 0 009.65 0"
+              stroke="var(--color-foreground)"
+              fill="none"
+            />
+          </g>
+          <g clipPath="url(#prefix__b352e344-bd63-4a79-9034-37b75fb29d2b)">
+            <path
+              d="M13.3 10.49a.89.89 0 100-1.77.89.89 0 000 1.77"
+              className="eyes ignore"
+              fill="var(--color-foreground)"
+            />
+          </g>
+          <g clipPath="url(#prefix__e21ef387-74b1-4a51-ae3f-6daeab19301d)">
+            <path
+              d="M19.56 10.49a.89.89 0 100-1.77.89.89 0 000 1.77"
+              className="eyes ignore"
+              fill="var(--color-foreground)"
+            />
+          </g>
+        </g>
+      </g>
+    </svg>
   );
 }

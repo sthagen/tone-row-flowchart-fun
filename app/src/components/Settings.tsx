@@ -1,9 +1,10 @@
-import { memo, ReactNode, useCallback, useContext } from "react";
-import { Box, BoxProps, Type } from "../slang";
-import styles from "./Settings.module.css";
-import { AppContext } from "./AppContext";
-import { Trans } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
+import { memo, useCallback, useContext } from "react";
+
 import { languages } from "../locales/i18n";
+import { Box, BoxProps, Type } from "../slang";
+import { AppContext } from "./AppContext";
+import styles from "./Settings.module.css";
 import { Button, Page, Section, SectionTitle } from "./Shared";
 
 const lowerLinksAt: BoxProps["at"] = {
@@ -23,19 +24,16 @@ const Settings = memo(() => {
   const setLightMode = useCallback(() => {
     document.body.classList.add("disableAnimation");
     updateUserSettings({ mode: "light" });
-    window.plausible("Set Appearance", { props: { mode: "light" } });
     setTimeout(() => document.body.classList.remove("disableAnimation"), 100);
   }, [updateUserSettings]);
   const setDarkMode = useCallback(() => {
     document.body.classList.add("disableAnimation");
     updateUserSettings({ mode: "dark" });
-    window.plausible("Set Appearance", { props: { mode: "dark" } });
     setTimeout(() => document.body.classList.remove("disableAnimation"), 100);
   }, [updateUserSettings]);
   const changeLanguage = useCallback(
     (l: string) => {
       updateUserSettings({ language: l });
-      window.plausible("Set Language", { props: { language: l } });
     },
     [updateUserSettings]
   );
@@ -51,15 +49,16 @@ const Settings = memo(() => {
             <Trans>Language</Trans>
           </SectionTitle>
           <Box
-            className={styles.ButtonGroup}
-            template="auto / repeat(3, minmax(0, 1fr))"
+            className={styles.ButtonGroupTwoLines}
             gap={1}
             at={{
+              small: {
+                template: "auto / repeat(2, minmax(0, 1fr))",
+              },
               tablet: {
-                flow: "column",
-                items: "normal start",
-                template: "none",
-                gap: 0,
+                items: "normal stretch",
+                template: "auto / repeat(4, 150px)",
+                gap: 1,
               },
             }}
           >
@@ -71,11 +70,8 @@ const Settings = memo(() => {
                 aria-label={`Select Language: ${
                   languages[locale as keyof typeof languages]
                 }`}
-              >
-                <Type size={-1}>
-                  {languages[locale as keyof typeof languages]}
-                </Type>
-              </GroupButton>
+                text={languages[locale as keyof typeof languages]}
+              />
             ))}
           </Box>
         </Section>
@@ -85,26 +81,30 @@ const Settings = memo(() => {
           </SectionTitle>
           <Box
             flow="column"
-            className={styles.ButtonGroup}
+            className={styles.ButtonGroupTwoLines}
             gap={1}
-            at={{ tablet: { gap: 0 } }}
+            at={{
+              tablet: {
+                items: "normal stretch",
+                template: "auto / repeat(4, 150px)",
+                gap: 1,
+              },
+            }}
           >
             <GroupButton
               disabled={mode === "light"}
               aria-pressed={mode === "light"}
-              aria-label="Light Mode"
+              aria-label={t`Light Mode`}
               onClick={setLightMode}
-            >
-              <Trans>Light Mode</Trans>
-            </GroupButton>
+              text={t`Light Mode`}
+            />
             <GroupButton
               disabled={mode === "dark"}
               aria-pressed={mode === "dark"}
-              aria-label="Dark Mode"
+              aria-label={t`Dark Mode`}
               onClick={setDarkMode}
-            >
-              <Trans>Dark Mode</Trans>
-            </GroupButton>
+              text={t`Dark Mode`}
+            />
           </Box>
         </Section>
         <Section className={styles.LowerLinks}>
@@ -128,16 +128,10 @@ const Settings = memo(() => {
               as="a"
               href="https://opencollective.com/tone-row/donate"
               size={-1}
-              onClick={() => window.plausible("Make a Donation")}
             >
               <Trans>Make a Donation</Trans>
             </Type>
-            <Type
-              as="a"
-              href="https://github.com/sponsors/tone-row"
-              size={-1}
-              onClick={() => window.plausible("Become a Sponsor")}
-            >
+            <Type as="a" href="https://github.com/sponsors/tone-row" size={-1}>
               <Trans>Become a Sponsor</Trans>
             </Type>
           </Section>
@@ -151,18 +145,12 @@ Settings.displayName = "Settings";
 
 export default Settings;
 
-const GroupButton = memo(
-  ({
-    children,
-    className = "",
-    ...props
-  }: { children: ReactNode } & BoxProps) => {
-    return (
-      <Button className={[styles.GroupButton, className].join(" ")} {...props}>
-        {children}
-      </Button>
-    );
-  }
-);
+const GroupButton = memo(({ children, className = "", ...props }: BoxProps) => {
+  return (
+    <Button className={[styles.GroupButton, className].join(" ")} {...props}>
+      {children}
+    </Button>
+  );
+});
 
 GroupButton.displayName = "GroupButton";

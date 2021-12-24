@@ -1,20 +1,21 @@
 import { memo, ReactNode, Suspense, useContext } from "react";
+import { useRouteMatch } from "react-router-dom";
+
+import { useFullscreen } from "../lib/hooks";
 import { Box } from "../slang";
-import styles from "./Layout.module.css";
-import ColorMode from "./ColorMode";
 import { AppContext } from "./AppContext";
+import ColorMode from "./ColorMode";
 import CurrentTab from "./CurrentTab";
-import MenuNext from "./MenuNext";
+import styles from "./Layout.module.css";
 import Loading from "./Loading";
-import Share from "./Share";
+import MenuNext from "./MenuNext";
 import ShareDialog from "./ShareDialog";
-import { useFullscreen } from "../hooks";
 
 const Layout = memo(({ children }: { children: ReactNode }) => {
   const isFullscreen = useFullscreen();
-
+  const { url } = useRouteMatch();
   return (
-    <LayoutWrapper isFullscreen={isFullscreen}>
+    <LayoutWrapper isFullscreen={isFullscreen} key={url}>
       {isFullscreen ? null : <MenuNext />}
       <EditorWrapper>
         <CurrentTab>{children}</CurrentTab>
@@ -36,19 +37,16 @@ function LayoutWrapper({
   children: ReactNode;
   isFullscreen: boolean;
 }) {
-  const { showing, shareModal } = useContext(AppContext);
+  const { showing } = useContext(AppContext);
   return (
-    <>
-      <Box
-        root
-        className={styles.LayoutWrapperNext}
-        data-showing={showing}
-        data-fullscreen={isFullscreen}
-      >
-        {children}
-      </Box>
-      {shareModal && <Share />}
-    </>
+    <Box
+      root
+      className={styles.LayoutWrapper}
+      data-showing={showing}
+      data-fullscreen={isFullscreen}
+    >
+      {children}
+    </Box>
   );
 }
 

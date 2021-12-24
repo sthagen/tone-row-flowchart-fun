@@ -1,3 +1,14 @@
+import cytoscapeSvg from "@tone-row/cytoscape-svg";
+import cytoscape, {
+  Core,
+  CytoscapeOptions,
+  EdgeSingular,
+  NodeSingular,
+} from "cytoscape";
+import dagre from "cytoscape-dagre";
+import klay from "cytoscape-klay";
+import frontmatter from "gray-matter";
+import { compressToEncodedURIComponent as compress } from "lz-string";
 import React, {
   Dispatch,
   memo,
@@ -8,25 +19,24 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import cytoscape, {
-  Core,
-  CytoscapeOptions,
-  EdgeSingular,
-  NodeSingular,
-} from "cytoscape";
 import { useDebouncedCallback } from "use-debounce";
-import dagre from "cytoscape-dagre";
-import cytoscapeSvg from "cytoscape-svg";
-import { delimiters, GraphOptionsObject, defaultLayout } from "../constants";
-import { parseText, stripComments } from "../utils";
-import styles from "./Graph.module.css";
+
+import {
+  defaultLayout,
+  delimiters,
+  GraphOptionsObject,
+} from "../lib/constants";
+import { useGraphTheme } from "../lib/graphThemes";
+import { graphUtilityClasses } from "../lib/graphUtilityClasses";
+import { isError } from "../lib/helpers";
+import { useAnimationSetting, useGetSize } from "../lib/hooks";
+import { Theme } from "../lib/themes/constants";
+import original from "../lib/themes/original";
+import { parseText, stripComments } from "../lib/utils";
 import { Box } from "../slang";
-import { compressToEncodedURIComponent as compress } from "lz-string";
-import frontmatter from "gray-matter";
-import { AppContext } from "./AppContext";
-import { useAnimationSetting, useGetSize, useGraphTheme } from "../hooks";
+import { AppContext, TAppContext } from "./AppContext";
+import styles from "./Graph.module.css";
 import useDownloadHandlers from "./useDownloadHandlers";
-import { graphThemes, GraphThemes } from "./graphThemes";
 
 declare global {
   interface Window {
@@ -36,6 +46,7 @@ declare global {
 
 if (!cytoscape.prototype.hasInitialised) {
   cytoscape.use(dagre);
+  cytoscape.use(klay);
   cytoscape.use(cytoscapeSvg);
   cytoscape.prototype.hasInitialised = true;
 }
@@ -54,13 +65,11 @@ const Graph = memo(
     const errorCatcher = useRef<undefined | Core>();
     const animate = useAnimationSetting();
     const graphInitialized = useRef(false);
-    const { setShareLink, setHasError } = useContext(AppContext);
+    const { setShareLink, setHasError, setHasStyleError } =
+      useContext(AppContext);
 
-    const graphTheme = useGraphTheme();
-    const getSize = useGetSize(
-      graphThemes[graphTheme].minWidth,
-      graphThemes[graphTheme].minHeight
-    );
+    const theme = useGraphTheme();
+    const getSize = useGetSize(theme);
 
     const handleResize = useCallback(() => {
       if (cy.current) {
@@ -125,6 +134,11 @@ const Graph = memo(
       }
     }, [textToParse]);
 
+    // Update Style
+    useEffect(() => {
+      updateStyle(cy, userStyle, errorCatcher, setHasStyleError, theme);
+    }, [theme, setHasStyleError, userStyle]);
+
     // Update Graph Nodes
     useEffect(() => {
       updateGraph(
@@ -140,17 +154,12 @@ const Graph = memo(
       );
     }, [animate, content, getSize, layout, setHasError, startingLineNumber]);
 
-    // Update Style
-    useEffect(() => {
-      updateStyle(cy, userStyle, errorCatcher, setHasError, graphTheme);
-    }, [graphTheme, setHasError, userStyle]);
-
     return (
       <Box
         className={[styles.GraphContainer, "graph"].join(" ")}
         overflow="hidden"
         h="100%"
-        style={{ backgroundColor: graphThemes[graphTheme].bg }}
+        style={{ background: theme.bg }}
       >
         <Box id="cy" overflow="hidden" />
       </Box>
@@ -172,7 +181,7 @@ function initializeGraph(
     container: document.getElementById("cy"), // container to render in
     layout: { ...(defaultLayout as cytoscape.LayoutOptions) },
     elements: [],
-    style: getCytoStyle("original"),
+    style: getCytoStyle(original),
     userZoomingEnabled: true,
     userPanningEnabled: true,
     boxSelectionEnabled: false,
@@ -228,7 +237,7 @@ function updateGraph(
   startingLineNumber: number,
   layoutString: string,
   errorCatcher: React.MutableRefObject<cytoscape.Core | undefined>,
-  setHasError: React.Dispatch<React.SetStateAction<boolean>>,
+  setHasError: TAppContext["setHasError"],
   graphInitialized: React.MutableRefObject<boolean>,
   animate: boolean,
   getSize: (label: string) =>
@@ -239,11 +248,12 @@ function updateGraph(
     | undefined
 ) {
   if (cy.current) {
+    let elements: cytoscape.ElementDefinition[] = [];
     try {
       const layout = JSON.parse(layoutString) as GraphOptionsObject["layout"];
 
       // Parse
-      const elements = parseText(content, getSize, startingLineNumber);
+      elements = parseText(content, getSize, startingLineNumber);
 
       // Test Error First
       errorCatcher.current?.json({ elements });
@@ -265,6 +275,7 @@ function updateGraph(
               ? animate
               : false
             : false,
+          animationDuration: animate ? 333 : 0,
         } as any)
         .run();
       cy.current.center();
@@ -278,7 +289,9 @@ function updateGraph(
       console.log(e);
       errorCatcher.current?.destroy();
       errorCatcher.current = cytoscape();
-      setHasError(true);
+      if (isError(e)) {
+        setHasError(sanitizeMessage(e.message, elements));
+      }
     }
   }
 }
@@ -287,14 +300,15 @@ function updateStyle(
   cy: React.MutableRefObject<cytoscape.Core | undefined>,
   userStyleString: string,
   errorCatcher: React.MutableRefObject<cytoscape.Core | undefined>,
-  setHasError: React.Dispatch<React.SetStateAction<boolean>>,
-  graphTheme: GraphThemes
+  setHasStyleError: TAppContext["setHasStyleError"],
+  graphTheme: Theme
 ) {
   if (cy.current) {
     try {
       const userStyle = JSON.parse(
         userStyleString
       ) as GraphOptionsObject["style"];
+
       // Prepare Styles
       const style = getCytoStyle(graphTheme, userStyle);
 
@@ -309,19 +323,48 @@ function updateStyle(
       // Reinitialize to avoid missing errors
       errorCatcher.current?.destroy();
       errorCatcher.current = cytoscape();
-      setHasError(false);
+      setHasStyleError(false);
     } catch (e) {
       console.log(e);
       errorCatcher.current?.destroy();
       errorCatcher.current = cytoscape();
-      setHasError(true);
+      if (isError(e)) {
+        setHasStyleError(sanitizeStyleMessage(e.message));
+      }
     }
   }
 }
 
 function getCytoStyle(
-  theme: GraphThemes,
+  theme: Theme,
   userStyle: cytoscape.Stylesheet[] = []
 ): CytoscapeOptions["style"] {
-  return [...graphThemes[theme].styles, ...userStyle];
+  return [...theme.styles, ...userStyle, ...graphUtilityClasses];
+}
+
+function sanitizeMessage(
+  message: string,
+  elements: cytoscape.ElementDefinition[]
+) {
+  let test = null;
+  if ((test = edgeSource.exec(message))) {
+    const { edge, source } = test.groups as { edge: string; source: string };
+    const edgeElement = elements.find((e) => e.data.id === edge);
+    edgeSource.lastIndex = 0;
+    return message
+      .replace(`\`${edge}\``, `to line ${edgeElement?.data?.lineNumber}`)
+      .replace(`\`${source}\``, "")
+      .replace("with", "from");
+  }
+  return message;
+}
+
+const edgeSource =
+  /Can not create edge `(?<edge>[^`]+)` with nonexistant source `(?<source>[^`]+)`/gm;
+
+function sanitizeStyleMessage(message: string) {
+  if (/userStyle is not iterable/gi.test(message)) {
+    return "Style object invalid";
+  }
+  return message;
 }
