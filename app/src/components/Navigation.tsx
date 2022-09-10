@@ -28,7 +28,7 @@ import {
   makeChart,
   queryClient,
   useChart,
-  useCharts,
+  useHostedCharts,
 } from "../lib/queries";
 import { Box, Type } from "../slang";
 import { AppContext } from "./AppContext";
@@ -61,7 +61,7 @@ export default function Charts() {
                 style={{ maxWidth: 400 }}
               >
                 <Trans>
-                  Sponsor flowchart.fun for $1 a month to access hosted
+                  Sponsor flowchart.fun for $5 a month to access hosted
                   flowcharts and the newest styles and features
                 </Trans>
               </Type>
@@ -90,10 +90,12 @@ export default function Charts() {
     </Box>
   );
 }
-
+type Fields = {
+  chartTitle: string;
+};
 function LocalCharts() {
   const { setShowing } = useContext(AppContext);
-  const { watch, register, handleSubmit } = useForm();
+  const { watch, register, handleSubmit } = useForm<Fields>();
   const title = watch("chartTitle");
   const [charts, setCharts] = useState<string[]>([]);
   const { push } = useHistory();
@@ -103,7 +105,7 @@ function LocalCharts() {
   const [copy, setCopy] = useState("");
 
   const onSubmit = useCallback(
-    ({ chartTitle }: { chartTitle: string }) => {
+    ({ chartTitle }: Fields) => {
       if (chartTitle) {
         push(`/${chartTitle}`);
         setShowing("editor");
@@ -341,7 +343,9 @@ function CopyChart({
     </Dialog>
   );
 }
-
+type CreateNewFields = {
+  name: string;
+};
 function HostedCharts() {
   const validSponsor = useIsValidSponsor();
   const { session, setShowing } = useContext(AppContext);
@@ -349,17 +353,18 @@ function HostedCharts() {
   const { id } = useParams<{ id?: string }>();
   const { mutate, isLoading } = useMutation("makeChart", makeChart, {
     onSuccess: (response: any) => {
-      queryClient.invalidateQueries(["auth", "userCharts"]);
+      queryClient.invalidateQueries(["auth", "hostedCharts"]);
       push(`/u/${response.data[0].id}`);
       setShowing("editor");
       gaCreateChart({ action: "hosted" });
     },
   });
-  const { data: charts } = useCharts();
-  const { register, watch, handleSubmit } = useForm();
+  const { data: charts } = useHostedCharts();
+  const { register, watch, handleSubmit } = useForm<CreateNewFields>();
   const name = watch("name");
+
   const onSubmit = useCallback(
-    ({ name }: { name: string }) => {
+    ({ name }: CreateNewFields) => {
       session?.user?.id && mutate({ name, user_id: session?.user?.id });
     },
     [mutate, session?.user?.id]
@@ -368,7 +373,6 @@ function HostedCharts() {
   const [deleteModal, setDeleteModal] = useState<
     false | { id: number; name: string }
   >(false);
-  const tooManyCharts = (charts?.length || 0) >= 16;
 
   return (
     <Section content="start normal" className={styles.ChartSection}>
@@ -417,7 +421,6 @@ function HostedCharts() {
             key={chart.id}
             chartId={chart.id}
             chartName={chart.name}
-            tooManyCharts={tooManyCharts}
             setCopyModal={setCopyModal}
             setDeleteModal={setDeleteModal}
             is_public={chart.is_public}
@@ -480,7 +483,9 @@ function CopyHostedChart({
     </Dialog>
   );
 }
-
+type CopyHostedFields = {
+  name: string;
+};
 function CopyHostedChartInner({
   isOpen,
   onDismiss,
@@ -488,12 +493,12 @@ function CopyHostedChartInner({
   isOpen: boolean | number;
   onDismiss: () => void;
 }) {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch } = useForm<CopyHostedFields>();
   const copyName = watch("name");
   const { push } = useHistory();
   const newChart = useMutation("makeChart", makeChart, {
     onSuccess: (response: any) => {
-      queryClient.invalidateQueries(["auth", "userCharts"]);
+      queryClient.invalidateQueries(["auth", "hostedCharts"]);
       push(`/u/${response.data[0].id}`);
       onDismiss();
     },
@@ -502,7 +507,8 @@ function CopyHostedChartInner({
     typeof isOpen === "number" ? isOpen.toString() : undefined
   );
   const { session } = useContext(AppContext);
-  function onSubmit({ name }: { name: string }) {
+
+  function onSubmit({ name }: CopyHostedFields) {
     if (chart && session?.user?.id) {
       newChart.mutate({
         name,
@@ -555,7 +561,7 @@ function DeleteHostedChart({
   const { push } = useHistory();
   const deleteChatMutation = useMutation("deleteChart", deleteChart, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["auth", "userCharts"]);
+      queryClient.invalidateQueries(["auth", "hostedCharts"]);
       push(`/`);
       onDismiss();
     },
@@ -666,7 +672,6 @@ const ChartButton = memo(function ChartButton({
   id,
   setCopyModal,
   setDeleteModal,
-  tooManyCharts,
 }: {
   chartId: number;
   chartName: string;
@@ -676,7 +681,6 @@ const ChartButton = memo(function ChartButton({
   id?: string;
   setCopyModal: any;
   setDeleteModal: any;
-  tooManyCharts: boolean;
 }) {
   const validSponsor = useIsValidSponsor();
   const setShowing = useContext(AppContext).setShowing;
@@ -725,7 +729,6 @@ const ChartButton = memo(function ChartButton({
           <Button
             className={styles.IconButton}
             onClick={() => setCopyModal(chartId)}
-            disabled={tooManyCharts}
           >
             <Copy />
           </Button>
