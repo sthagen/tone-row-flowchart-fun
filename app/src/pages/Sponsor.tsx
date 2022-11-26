@@ -5,22 +5,23 @@ import { ReactNode, useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 
+import { AppContext } from "../components/AppContext";
+import { LoginForm } from "../components/LoginForm";
+import {
+  Button,
+  Input,
+  Notice,
+  Section,
+  SectionTitle,
+} from "../components/Shared";
+import Spinner from "../components/Spinner";
 import { isError } from "../lib/helpers";
 import { createCustomer, createSubscription } from "../lib/queries";
 import { supabase } from "../lib/supabaseClient";
 import { Box, Type } from "../slang";
-import { AppContext } from "./AppContext";
-import { LoginForm } from "./LoginForm";
-import { Button, Input, Notice, Section, SectionTitle } from "./Shared";
-import Spinner from "./Spinner";
 import styles from "./Sponsor.module.css";
-import { SponsorDashboard } from "./SponsorDashboard";
 
 export default function Sponsor() {
-  const { session } = useContext(AppContext);
-
-  if (session) return <SponsorDashboard />;
-
   return (
     <Box className={styles.Page} p={5} gap={10} pt={10}>
       <Type className={styles.PageTitle} size={1}>

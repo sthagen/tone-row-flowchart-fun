@@ -14,11 +14,11 @@ import {
   memo,
   ReactNode,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
 } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import Select, {
   components,
   SingleValueProps,
@@ -32,7 +32,6 @@ import { defaultGraphTheme } from "../lib/graphThemes";
 import { useIsValidSponsor } from "../lib/hooks";
 import { UpdateDoc } from "../lib/UpdateDoc";
 import { Box, Type } from "../slang";
-import { AppContext } from "./AppContext";
 import { FreezeLayoutToggle } from "./FreezeLayoutToggle";
 import styles from "./GraphOptionsBar.module.css";
 import { IconButton } from "./IconButton";
@@ -53,7 +52,6 @@ const GraphOptionsBar = ({
   options: UseGraphOptionsReturn;
   isFrozen: boolean;
 }) => {
-  const { setShowing } = useContext(AppContext);
   const isValidSponsor = useIsValidSponsor();
   const { graphOptions = {} } = options;
   const {
@@ -67,6 +65,7 @@ const GraphOptionsBar = ({
   const layout = watch("layout.name");
   const theme = watch("theme");
   const valuesString = JSON.stringify(values);
+  const { push } = useHistory();
 
   useEffect(() => {
     if (layout) gaChangeGraphOption({ action: "layout", label: layout });
@@ -161,7 +160,7 @@ const GraphOptionsBar = ({
                     options={filterOptionsForSponsors(isValidSponsor, layouts)}
                     onChange={(layout: typeof layouts[number]) => {
                       if (layout.handleClick) {
-                        layout.handleClick(setShowing);
+                        layout.handleClick(push);
                       } else if (layout) {
                         onChange(layout.value);
                       }
@@ -230,7 +229,7 @@ const GraphOptionsBar = ({
                 options={filterOptionsForSponsors(isValidSponsor, themes)}
                 onChange={(theme: typeof themes[0]) => {
                   if (theme.handleClick) {
-                    theme.handleClick(setShowing);
+                    theme.handleClick(push);
                   } else if (theme) {
                     onChange(theme.value);
                   }

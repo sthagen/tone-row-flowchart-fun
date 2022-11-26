@@ -27,7 +27,7 @@ import {
 import Spinner from "./Spinner";
 import styles from "./SponsorDashboard.module.css";
 
-export function SponsorDashboard() {
+export default function SponsorDashboard() {
   const { customer, session, customerIsLoading } = useContext(AppContext);
   const [cancelModal, setCancelModal] = useState(false);
   const [resumeModal, setResumeModal] = useState(false);
