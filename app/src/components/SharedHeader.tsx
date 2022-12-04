@@ -185,11 +185,19 @@ export const SharedHeader = memo(function SharedHeader() {
                   }}
                 />
               ) : (
-                <HeaderLink
-                  href="/sponsor"
+                <HeaderClientLink
+                  to="/sponsor"
                   label={t`Become a Sponsor`}
                   icon={<Star height={20} width={20} />}
                   aria-current={isSponsorPage ? "page" : undefined}
+                  onClick={() => {
+                    // track in gtm
+                    window.dataLayer.push({
+                      event: "sponsor",
+                      action: "click",
+                      label: "header",
+                    });
+                  }}
                 />
               )}
             </nav>
@@ -200,7 +208,6 @@ export const SharedHeader = memo(function SharedHeader() {
         isDocsPage={isDocsPage}
         isSponsorPage={isSponsorPage}
         isChartsPage={isChartsPage}
-        isHelpPage={isHelpPage}
         isSettingsPage={isSettingsPage}
         isAccountPage={isAccountPage}
         isFeedbackPage={isFeedbackPage}
@@ -286,7 +293,6 @@ function MobileHeader({
   isDocsPage,
   isSponsorPage,
   isChartsPage,
-  isHelpPage,
   isSettingsPage,
   isAccountPage,
   isFeedbackPage,
@@ -295,7 +301,6 @@ function MobileHeader({
   isDocsPage: boolean;
   isSponsorPage: boolean;
   isChartsPage: boolean;
-  isHelpPage: boolean;
   isSettingsPage: boolean;
   isAccountPage: boolean;
   isFeedbackPage: boolean;
@@ -407,11 +412,19 @@ function MobileHeader({
                 }}
               />
             ) : (
-              <HeaderLink
-                href="/sponsor"
+              <HeaderClientLink
+                to="/sponsor"
                 label={t`Become a Sponsor`}
                 icon={<Star height={20} width={20} />}
                 aria-current={isSponsorPage ? "page" : undefined}
+                onClick={() => {
+                  // track event with gtm
+                  window.dataLayer.push({
+                    event: "sponsor",
+                    action: "click",
+                    label: "mobile-header",
+                  });
+                }}
               />
             )}
           </Dialog.Content>
