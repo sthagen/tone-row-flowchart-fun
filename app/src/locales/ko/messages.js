@@ -1,7 +1,9 @@
 /*eslint-disable*/ module.exports = {
   messages: {
     "$3 / Month": "$3/월",
+    "$3.00/month": "$3.00/월",
     "$30 / Year": "$30/년",
+    "$30.00/year (save 20%)": "$30.00/년(20% 할인)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "어디서든 이 차트를 이용하실 수 있습니다.<0/>편집한 내용의 동기화가 유지된 차트를 공유/삽입하세요",
     Account: "계정",
@@ -14,7 +16,9 @@
       ["0"],
       "으로 직접 이메일을 보내주십시오.",
     ],
+    Annually: "연간",
     Appearance: "외관",
+    Attributes: "Attributes",
     "Back To Editor": "편집기로 돌아가기",
     Background: "배경",
     "Become a Sponsor": "스폰서 되기",
@@ -29,15 +33,23 @@
     Charts: "차트",
     "Check your email for a link to log in. You can close this window.":
       "이메일에서 로그인 링크를 확인하십시오. 이 창을 닫아도 됩니다.",
+    "Choose to share your charts with full access, edit-only, or view-only permissions, giving you control over who can make changes to your work.":
+      "표를 전체 권한, 편집만 가능, 보기만 가능 권한 중 어떤 것으로 공유할 지 선택하여 작업물을 변경할 수 있는지 관리하세요.",
     Circle: "원",
+    Classes: "Classes",
     Clay: "점토",
     Clear: "지우다",
     "Clear text?": "텍스트를 지우시겠습니까?",
     Clone: "클론",
     Close: "닫기",
+    "Colors include red, orange, yellow, blue, purple, black, white, and gray.":
+      "Colors include red, orange, yellow, blue, purple, black, white, and gray.",
     "Comic Book": "만화책",
     Concentric: "동심",
     "Confirm New Email": "새 이메일 확인",
+    Containers: "Containers",
+    "Containers are nodes that contain other nodes. They are declared using curly braces.":
+      "Containers are nodes that contain other nodes. They are declared using curly braces.",
     "Convert to hosted chart?": "호스팅 차트로 변환하시겠습니까?",
     Copy: "복사",
     "Copy PNG Image": "PNG 이미지 복사",
@@ -46,7 +58,12 @@
     "Create a link directly using the exact label text":
       "정확한 레이블 텍스트를 사용하여 직접 링크 만들기",
     Created: "생성됨",
+    "Creating an edge between two nodes is done by indenting the second node below the first":
+      "Creating an edge between two nodes is done by indenting the second node below the first",
+    "Custom Sharing Options": "커스텀 공유 옵션",
     "Customer Portal": "고객 포털",
+    "Customize the look and feel of your charts with more layout and theme options, helping you to create professional, visually appealing diagrams.":
+      "더 많은 레이아웃 및 테마 옵션으로 차트의 모양과 느낌을 사용자의 요구대로 변경하여 전문적이면서도 시각적으로 매력적인 다이어그램을 만들 수 있습니다.",
     Dark: "다크",
     "Dark Mode": "다크 모드",
     Date: "날짜",
@@ -61,9 +78,15 @@
     "Download JPG": "JPG 다운로드",
     "Download PNG": "PNG 다운로드",
     "Download SVG": "SVG 다운로드",
+    "Draw an edge from multiple nodes by beginning the line with a reference":
+      "Draw an edge from multiple nodes by beginning the line with a reference",
     Duplicate: "복제",
-    "Edit your charts on any device. Share them with anyone. Publish your charts once and they remain up to date with your changes.":
-      "어떤 기기에서나 차트를 편집할 수 있습니다. 누구와도 공유할 수 있습니다. 한 번 차트를 배포하면 수정사항이 즉각 반영됩니다.",
+    "Dynamic Share Links": "다이나믹 공유 링크",
+    "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
+    "Edge Label": "Edge Label",
+    Edges: "Edges",
+    "Edges can also have ID's, classes, and attributes before the label":
+      "Edges can also have ID's, classes, and attributes before the label",
     Editable: "편집 가능",
     Editor: "에디터",
     Eggs: "달걀",
@@ -71,14 +94,15 @@
     "Enter a title": "제목을 입력하세요",
     Excalidraw: "Excalidraw",
     Export: "내보내기",
+    "Export to Common Image Formats": "일반 이미지 포맷으로 내보내기",
     Feedback: "피드백",
+    "Flowchart Fun makes it quick and easy to visually communicate your processes.":
+      "Flowchart Fun을 사용하여 과정을 쉽고 빠르게 시각화적으로 소통할 수 있습니다.",
     "Follow Us": "팔로우하세요",
     Fullscreen: "전체 화면",
     Futuristic: "미래 지향적",
     "Get More Layouts": "더 많은 레이아웃을 보고 싶어요",
     "Get More Themes": "더 많은 테마 받기",
-    "Get access to alternative styles for your flowcharts":
-      "플로우차트에 적용할 새로운 스타일을 잠금해제하세요",
     Graph: "그래프",
     Grid: "그리드",
     "Have fun! 🎉": "즐겨보세요! 🎉",
@@ -86,25 +110,30 @@
     History: "기록",
     Home: "집",
     "Hosted Charts": "호스트 차트",
+    "ID's": "ID's",
     "Indenting creates a link to the current line":
       "들여쓰기는 현재 줄에 대한 링크를 생성합니다",
     Info: "정보",
     Language: "언어",
     Layout: "레이아웃",
     "Layout is Frozen": "레이아웃이 고정됨",
+    "Layouts and Themes": "레이아웃 및 테마",
+    "Leading References": "Leading References",
     "Learn More": "더 알아보기",
     "Left to Right": "왼쪽에서 오른쪽으로",
     Light: "라이트",
     "Light Mode": "라이트 모드",
     Link: "링크",
     "Local Charts": "로컬 차트",
+    "Log In": "로그인",
     "Log Out": "로그아웃",
     "Made by <0>Tone Row</0>": "<0>Tone Row</0> 제작",
     "Make a Donation": "기부하기",
     "Make publicly accessible": "공개적으로 액세스 가능하게 만들기",
     Monospace: "Monospace",
+    Monthly: "월간",
     "More Layouts": "더 많은 레이아웃",
-    "More Themes": "더 많은 테마 보기",
+    "More Themes and Fonts": "더욱 많은 테마와 폰트",
     Museum: "박물관",
     Name: "이름",
     "Need Help? <0>Check out our documentation.</0>":
@@ -112,14 +141,29 @@
     New: "신규",
     "New Email": "새 이메일",
     "Next charge": "다음 청구 금액",
+    "Node Colors": "Node Colors",
+    "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
+    "Node Label": "Node Label",
+    "Node Shapes": "Node Shapes",
     "Open Customer Portal": "고객 포털 열기",
+    Plans: "요금제",
     Playbook: "플레이북",
-    "Powerful layout algorithms that bring order to graphs of all shapes and sizes":
-      "온갖 크기와 모양의 그래프를 질서있게 정리하는 강력한 레이아웃 알고리즘",
     Pricing: "가격",
     Public: "공용",
     Random: "무작위",
     "Read-only": "읽기 전용",
+    "Reference by Class": "Reference by Class",
+    "Reference by ID": "Reference by ID",
+    "Reference by Label": "Reference by Label",
+    References: "References",
+    "References are used to create edges between nodes that are created elsewhere in the document":
+      "References are used to create edges between nodes that are created elsewhere in the document",
+    "Referencing a node by its exact label":
+      "Referencing a node by its exact label",
+    "Referencing a node by its unique ID":
+      "Referencing a node by its unique ID",
+    "Referencing multiple nodes with the same assigned class":
+      "Referencing multiple nodes with the same assigned class",
     Rename: "이름 바꾸기",
     Reset: "재설정",
     "Resume Subscription": "구독 재개",
@@ -128,20 +172,40 @@
     "Right to Left": "오른쪽에서 왼쪽으로",
     Roadmap: "로드맵",
     Save: "구하다",
+    "Say goodbye to tedious flowchart creation":
+      "더 이상 지루하게 플로 차트를 작성할 필요가 없습니다",
     Settings: "설정",
+    "Shape Libraries": "셰이프 라이브러리",
+    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
+      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
+    "Share with Full Access, Edit-only, or View-only Permissions":
+      "완전한 접근권, 편집 전용, 또는 읽기 전용 권한으로 공유하세요",
     "Sign In": "로그인",
     "Sign Up": "가입",
+    "Sign Up Now": "지금 가입하세요",
+    "Some classes are available to help style your flowchart":
+      "Some classes are available to help style your flowchart",
     Spacing: "간격",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "호스트된 플로차트와 최신 스타일 및 기능에 액세스하기 위해 월 3달러 또는 연간 30달러로 플로차트.펀 후원",
-    "Sponsor flowchart.fun for <0>$3 / month</0> or <1>$30 / year</1> to get access to...":
-      "<0>$3/월</0> 또는 <1>$30/년</1>에 대해 순서도.fun 후원하기–",
     Start: "시작",
+    "Static Share Links": "스태틱 공유 링크",
     Status: "상태",
+    "Store any data associated to a node":
+      "Store any data associated to a node",
+    "Streamline your workflow and simplify your process visualization with Flowchart Fun":
+      "Flowchart Fun를 통해 워크플로우를 능률화하고 프로세스 시각화를 단순화하세요",
     Style: "스타일",
+    "Style Classes": "Style Classes",
     Submit: "보내다",
     Subscription: "구독",
     "Subscription will end": "구독이 종료될 예정입니다.",
+    Syntax: "문법",
+    "Syntax Reference": "Syntax Reference",
+    "Text followed by colon+space creates an edge with the text as the label":
+      "Text followed by colon+space creates an edge with the text as the label",
+    "Text on a line creates a node with the text as the label":
+      "Text on a line creates a node with the text as the label",
     "Thank you for your feedback!": "피드백을 해주셔서 감사합니다!",
     Theme: "테마",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -150,8 +214,13 @@
     "Top to Bottom": "위에서 아래로",
     "Try again": "다시 시도하세요",
     Unfreeze: "녹이다",
+    "Unique text value to identify a node":
+      "Unique text value to identify a node",
+    "Unlimited Hosted Charts": "무제한 차트 호스팅",
+    "Unlimited Local Charts": "무제한 로컬 차트",
     "Update Email": "이메일 업데이트",
     Updated: "업데이트됨",
+    "Use classes to group nodes": "Use classes to group nodes",
     "Use the customer portal to change your billing information.":
       "청구 정보를 변경하려면 고객 포털을 사용하십시오.",
     User: "사용자",
@@ -163,6 +232,8 @@
     "What would you like to name this copy?":
       "이 사본의 이름을 무엇으로 지정하시겠습니까?",
     "What would you like to share with us?": "무엇을 공유하시겠습니까?",
+    "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
+      "호스팅된 차트를 무제한으로 생성할 수 있는 기능을 통해, 장소와 디바이스에 무관하게 플로우차트에 접근하고 작업할 수 있습니다.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "귀하의 구독이 더 이상 활성 상태가 아닙니다. 호스트 차트를 작성 및 수정하려면 후원자가 되십시오.",
     "[custom ID] or": "[사용자 지정 ID] 또는",

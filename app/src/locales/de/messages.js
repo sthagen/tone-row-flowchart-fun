@@ -1,7 +1,9 @@
 /*eslint-disable*/ module.exports = {
   messages: {
     "$3 / Month": "$3 / Monat",
+    "$3.00/month": "3,00 $/Monat",
     "$30 / Year": "$30 / Year",
+    "$30.00/year (save 20%)": "30,00 $/Jahr (20 % sparen)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "Greifen Sie von überall auf diese Diagramme zu.<0/>Teilen/Einbetten von Diagrammen, die mit Ihren Bearbeitungen synchronisiert bleiben.",
     Account: "Konto",
@@ -14,7 +16,9 @@
       ["0"],
       ".",
     ],
+    Annually: "Jährlich",
     Appearance: "Erscheinungsbild",
+    Attributes: "Attributes",
     "Back To Editor": "Zurück zum Editor",
     Background: "Hintergrund",
     "Become a Sponsor": "Werden Sie zum Sponsoren",
@@ -29,15 +33,23 @@
     Charts: "Diagramme",
     "Check your email for a link to log in. You can close this window.":
       "Prüfen Sie Ihre E-Mail auf einen Link zum Einloggen. Sie können dieses Fenster schließen.",
+    "Choose to share your charts with full access, edit-only, or view-only permissions, giving you control over who can make changes to your work.":
+      "Wählen Sie aus, ob Sie Ihre Charts (Diagramme) mit vollem Zugriff, nur zum Bearbeiten oder nur zum Ansehen freigeben möchten. So haben Sie die Kontrolle darüber, wer Änderungen an Ihrer Arbeit vornehmen kann.",
     Circle: "Kreis",
+    Classes: "Classes",
     Clay: "Ton",
     Clear: "Löschen",
     "Clear text?": "Text löschen?",
     Clone: "Klon",
     Close: "Schließen",
+    "Colors include red, orange, yellow, blue, purple, black, white, and gray.":
+      "Colors include red, orange, yellow, blue, purple, black, white, and gray.",
     "Comic Book": "Comic-Buch",
     Concentric: "Konzentrisch",
     "Confirm New Email": "Neue E-Mail bestätigen",
+    Containers: "Containers",
+    "Containers are nodes that contain other nodes. They are declared using curly braces.":
+      "Containers are nodes that contain other nodes. They are declared using curly braces.",
     "Convert to hosted chart?": "In gehostetes Diagramm konvertieren?",
     Copy: "Kopieren",
     "Copy PNG Image": "PNG-Bild kopieren",
@@ -46,7 +58,12 @@
     "Create a link directly using the exact label text":
       "Erstellen Sie direkt einen Link mit dem genauen Beschriftungstext",
     Created: "Erstellt",
+    "Creating an edge between two nodes is done by indenting the second node below the first":
+      "Creating an edge between two nodes is done by indenting the second node below the first",
+    "Custom Sharing Options": "Benutzerdefinierte Freigabeoptionen",
     "Customer Portal": "Kundenportal",
+    "Customize the look and feel of your charts with more layout and theme options, helping you to create professional, visually appealing diagrams.":
+      "Passen Sie das Aussehen Ihrer Diagramme mit mehr Layout- und Designoptionen an, um professionelle, optisch ansprechende Diagramme zu erstellen.",
     Dark: "Dunkel",
     "Dark Mode": "Dunkelmodus",
     Date: "Datum",
@@ -62,9 +79,15 @@
     "Download JPG": "JPG herunterladen",
     "Download PNG": "PNG herunterladen",
     "Download SVG": "SVG herunterladen",
+    "Draw an edge from multiple nodes by beginning the line with a reference":
+      "Draw an edge from multiple nodes by beginning the line with a reference",
     Duplicate: "Duplizieren",
-    "Edit your charts on any device. Share them with anyone. Publish your charts once and they remain up to date with your changes.":
-      "Bearbeiten Sie Ihre Diagramme auf jedem Gerät. Teilen Sie diese mit jedem. Veröffentlichen Sie Ihre Diagramme einmal und sie bleiben mit Ihren Änderungen auf dem neuesten Stand.",
+    "Dynamic Share Links": "Dynamische Freigabelinks",
+    "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
+    "Edge Label": "Edge Label",
+    Edges: "Edges",
+    "Edges can also have ID's, classes, and attributes before the label":
+      "Edges can also have ID's, classes, and attributes before the label",
     Editable: "Editierbar",
     Editor: "Editor",
     Eggs: "Eier",
@@ -72,14 +95,15 @@
     "Enter a title": "Titel eingeben",
     Excalidraw: "Excalidraw",
     Export: "Exportieren",
+    "Export to Common Image Formats": "Exportieren Sie in gängige Bildformate",
     Feedback: "Feedback",
+    "Flowchart Fun makes it quick and easy to visually communicate your processes.":
+      "Mit Flowchart Fun können Sie Ihre Prozesse schnell und einfach visuell darstellen.",
     "Follow Us": "Folgen Sie uns",
     Fullscreen: "Vollbild",
     Futuristic: "Futuristisch",
     "Get More Layouts": "Mehr Layouts erhalten",
     "Get More Themes": "Weitere Themen erhalten",
-    "Get access to alternative styles for your flowcharts":
-      "Erhalten Sie Zugriff auf alternative Stile für Ihre Flussdiagramme",
     Graph: "Diagramm",
     Grid: "Raster",
     "Have fun! 🎉": "Viel Spaß! 🎉",
@@ -87,25 +111,30 @@
     History: "Verlauf",
     Home: "Startseite",
     "Hosted Charts": "Gehostete Diagramme",
+    "ID's": "ID's",
     "Indenting creates a link to the current line":
       "Durch das Einrücken wird eine Verbindung zur aktuellen Zeile hergestellt",
     Info: "Info",
     Language: "Sprache",
     Layout: "Layout",
     "Layout is Frozen": "Layout ist eingefroren",
+    "Layouts and Themes": "Layouts und Themen",
+    "Leading References": "Leading References",
     "Learn More": "Mehr erfahren",
     "Left to Right": "Von links nach rechts",
     Light: "Hell",
     "Light Mode": "Heller Modus",
     Link: "Link",
     "Local Charts": "Lokale Diagramme",
+    "Log In": "Anmelden",
     "Log Out": "Abmelden",
     "Made by <0>Tone Row</0>": "Gemacht von <0>Tone Row</0>",
     "Make a Donation": "Spenden",
     "Make publicly accessible": "Öffentlich zugänglich machen",
     Monospace: "Monospace",
+    Monthly: "Monatlich",
     "More Layouts": "Weitere Layouts",
-    "More Themes": "Weitere Themen",
+    "More Themes and Fonts": "Weitere Themen und Schriftarten",
     Museum: "Museum",
     Name: "Name",
     "Need Help? <0>Check out our documentation.</0>":
@@ -113,14 +142,29 @@
     New: "Neues",
     "New Email": "Neue e-mail",
     "Next charge": "Nächste Gebühr",
+    "Node Colors": "Node Colors",
+    "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
+    "Node Label": "Node Label",
+    "Node Shapes": "Node Shapes",
     "Open Customer Portal": "Öffnen Sie das Kundenportal",
+    Plans: "Pläne",
     Playbook: "Spielbuch",
-    "Powerful layout algorithms that bring order to graphs of all shapes and sizes":
-      "Leistungsstarke Layout-Algorithmen, die Ordnung in Diagramme aller Formen und Größen bringen",
     Pricing: "Preisgestaltung",
     Public: "Öffentlich",
     Random: "Zufällig",
     "Read-only": "Schreibgeschützt",
+    "Reference by Class": "Reference by Class",
+    "Reference by ID": "Reference by ID",
+    "Reference by Label": "Reference by Label",
+    References: "References",
+    "References are used to create edges between nodes that are created elsewhere in the document":
+      "References are used to create edges between nodes that are created elsewhere in the document",
+    "Referencing a node by its exact label":
+      "Referencing a node by its exact label",
+    "Referencing a node by its unique ID":
+      "Referencing a node by its unique ID",
+    "Referencing multiple nodes with the same assigned class":
+      "Referencing multiple nodes with the same assigned class",
     Rename: "Umbenennen",
     Reset: "Zurücksetzen",
     "Resume Subscription": "Abonnement fortsetzen",
@@ -129,20 +173,40 @@
     "Right to Left": "Von rechts nach links",
     Roadmap: "Fahrplan",
     Save: "Speichern",
+    "Say goodbye to tedious flowchart creation":
+      "Verabschieden Sie sich von der mühsamen Erstellung von Flussdiagrammen",
     Settings: "Einstellungen",
+    "Shape Libraries": "Bibliotheken anpassen",
+    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
+      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
+    "Share with Full Access, Edit-only, or View-only Permissions":
+      "Freigabe mit vollem Zugriff, Nur-Bearbeiten- oder Nur-Anzeigen-Berechtigung",
     "Sign In": "Einloggen",
     "Sign Up": "Registrieren",
+    "Sign Up Now": "Jetzt registrieren",
+    "Some classes are available to help style your flowchart":
+      "Some classes are available to help style your flowchart",
     Spacing: "Abstand",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "Sponsern Sie flowchart.fun für 3 $ / Monat oder 30 $ / Jahr, um auf gehostete Flussdiagramme und die neuesten Stile und Funktionen zuzugreifen",
-    "Sponsor flowchart.fun for <0>$3 / month</0> or <1>$30 / year</1> to get access to...":
-      "Sponsern Sie flowchart.fun für <0>3 $ / Monat</0> oder <1>30 $ / Jahr</1>, um Zugang zu erhalten zu...",
     Start: "Start",
+    "Static Share Links": "Statische Freigabelinks",
     Status: "Status",
+    "Store any data associated to a node":
+      "Store any data associated to a node",
+    "Streamline your workflow and simplify your process visualization with Flowchart Fun":
+      "Optimieren Sie Ihren Arbeitsablauf und vereinfachen Sie Ihre Prozessvisualisierung mit Flowchart Fun",
     Style: "Stil",
+    "Style Classes": "Style Classes",
     Submit: "Einsenden",
     Subscription: "Abonnement",
     "Subscription will end": "Abonnement wird beendet",
+    Syntax: "Syntax",
+    "Syntax Reference": "Syntax Reference",
+    "Text followed by colon+space creates an edge with the text as the label":
+      "Text followed by colon+space creates an edge with the text as the label",
+    "Text on a line creates a node with the text as the label":
+      "Text on a line creates a node with the text as the label",
     "Thank you for your feedback!": "Danke für Ihr Feedback!",
     Theme: "Thema",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -151,8 +215,13 @@
     "Top to Bottom": "Von oben nach unten",
     "Try again": "Erneut versuchen",
     Unfreeze: "Freigeben",
+    "Unique text value to identify a node":
+      "Unique text value to identify a node",
+    "Unlimited Hosted Charts": "Unbegrenzte Anzahl gehosteter Charts",
+    "Unlimited Local Charts": "Unbegrenzte lokale Charts",
     "Update Email": "E-Mail aktualisieren",
     Updated: "Aktualisiert",
+    "Use classes to group nodes": "Use classes to group nodes",
     "Use the customer portal to change your billing information.":
       "Verwenden Sie das Kundenportal, um Ihre Rechnungsinformationen zu ändern.",
     User: "Benutzer",
@@ -164,6 +233,8 @@
     "What would you like to name this copy?":
       "Wie möchten Sie diese Kopie nennen?",
     "What would you like to share with us?": "Was möchten Sie uns mitteilen?",
+    "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
+      "Mit der Möglichkeit, eine unbegrenzte Anzahl gehosteter Charts zu erstellen, können Sie von jedem Gerät aus und von jedem Ort aus auf Ihre Flowcharts zugreifen und daran arbeiten.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "Ihr Abonnement ist nicht mehr aktiv. Wenn Sie gehostete Diagramme erstellen und bearbeiten möchten, werden Sie Sponsor.",
     "[custom ID] or": "[benutzerdefinierte ID] oder",
