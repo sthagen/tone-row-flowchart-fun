@@ -28,7 +28,7 @@ import { getLayout } from "../lib/getLayout";
 import { getUserStyle } from "../lib/getTheme";
 import { DEFAULT_GRAPH_PADDING } from "../lib/graphOptions";
 import { useThemeStore } from "../lib/graphThemes";
-import { graphUtilityClasses } from "../lib/graphUtilityClasses";
+import { baseStyles, graphUtilityClasses } from "../lib/graphUtilityClasses";
 import { isError } from "../lib/helpers";
 import { getAnimationSettings } from "../lib/hooks";
 import { Parsers, universalParse, useParser } from "../lib/parsers";
@@ -117,10 +117,9 @@ const Graph = memo(function Graph({ shouldResize }: { shouldResize: number }) {
   }, [handleDragFree]);
 
   // Apply theme on initial load
-  // useEffect(() => {
-  //   getStyleUpdater({ cy, errorCatcher, bg })(theme);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    getStyleUpdater({ cy, errorCatcher, bg })(useThemeStore.getState());
+  }, [bg]);
 
   const throttleStyleUpdate = useMemo(() => {
     const updater = getStyleUpdater({ cy, errorCatcher, bg });
@@ -307,10 +306,11 @@ function getGraphUpdater({
           })
           .run();
       } else {
-        cy.current.layout({ ...layout, animate: false }).run();
+        cy.current.layout({ ...layout, animate: false, fit: false }).run();
       }
-      cy.current.fit(undefined, DEFAULT_GRAPH_PADDING);
 
+      if (!graphInitialized.current)
+        cy.current.fit(undefined, DEFAULT_GRAPH_PADDING);
       graphInitialized.current = true;
 
       // Reinitialize to avoid missing errors
@@ -397,6 +397,7 @@ function getCytoStyle(
     });
   }
   return [
+    ...baseStyles,
     ...theme.styles,
     ...bgOverrides,
     ...userStyle,

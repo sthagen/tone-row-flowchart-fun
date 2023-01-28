@@ -33,13 +33,13 @@ msgstr "$30.00/년(20% 할인)"
 msgid "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits."
 msgstr "어디서든 이 차트를 이용하실 수 있습니다.<0/>편집한 내용의 동기화가 유지된 차트를 공유/삽입하세요"
 
-#: src/components/SharedHeader.tsx:164
-#: src/components/SharedHeader.tsx:382
+#: src/components/SharedHeader.tsx:171
+#: src/components/SharedHeader.tsx:395
 msgid "Account"
 msgstr "계정"
 
-#: src/pages/Edit.tsx:114
-#: src/pages/EditHosted.tsx:110
+#: src/pages/Edit.tsx:92
+#: src/pages/EditHosted.tsx:87
 msgid "Advanced"
 msgstr "고급의"
 
@@ -47,7 +47,7 @@ msgstr "고급의"
 msgid "Already a sponsor? Log in here"
 msgstr "이미 후원중이신가요? 여기서 로그인하세요"
 
-#: src/components/SponsorDashboard.tsx:283
+#: src/components/SponsorDashboard.tsx:289
 msgid "Amount"
 msgstr "금액"
 
@@ -63,7 +63,7 @@ msgstr "연간"
 msgid "Appearance"
 msgstr "외관"
 
-#: src/components/SyntaxHelpDialog.tsx:118
+#: src/components/SyntaxReference.tsx:118
 msgid "Attributes"
 msgstr ""
 
@@ -76,13 +76,14 @@ msgid "Background"
 msgstr "배경"
 
 #: src/components/Settings.tsx:135
-#: src/components/SponsorDashboard.tsx:188
+#: src/components/SponsorDashboard.tsx:194
 #: src/pages/SignUp.tsx:48
 msgid "Become a Sponsor"
 msgstr "스폰서 되기"
 
-#: src/components/SharedHeader.tsx:136
-#: src/components/SharedHeader.tsx:361
+#: src/components/SharedHeader.tsx:142
+#: src/components/SharedHeader.tsx:371
+#: src/pages/Blog.tsx:19
 msgid "Blog"
 msgstr "블로그"
 
@@ -96,32 +97,33 @@ msgid "Breadthfirst"
 msgstr "폭 우선"
 
 #: src/components/ClearTextButton.tsx:44
-#: src/components/SponsorDashboard.tsx:253
-#: src/components/SponsorDashboard.tsx:264
-#: src/components/SponsorDashboard.tsx:353
-#: src/components/SponsorDashboard.tsx:365
-#: src/components/SponsorDashboard.tsx:409
+#: src/components/SponsorDashboard.tsx:259
+#: src/components/SponsorDashboard.tsx:270
+#: src/components/SponsorDashboard.tsx:370
+#: src/components/SponsorDashboard.tsx:382
+#: src/components/SponsorDashboard.tsx:426
 #: src/pages/Charts.tsx:243
 #: src/pages/Charts.tsx:514
 #: src/pages/Charts.tsx:564
 msgid "Cancel"
 msgstr "취소"
 
-#: src/components/SponsorDashboard.tsx:256
+#: src/components/SponsorDashboard.tsx:262
 msgid "Cancel your subscription. Your hosted charts will become read-only."
 msgstr "구독을 취소하십시오. 귀하의 호스트 차트가 읽기 전용이 됩니다."
 
-#: src/components/SponsorDashboard.tsx:177
+#: src/components/SponsorDashboard.tsx:183
 msgid "Change Email Address"
 msgstr "이메일 주소 변경"
 
-#: src/components/SharedHeader.tsx:143
-#: src/components/SharedHeader.tsx:366
+#: src/components/SharedHeader.tsx:150
+#: src/components/SharedHeader.tsx:377
+#: src/pages/Changelog.tsx:18
 msgid "Changelog"
 msgstr "변경 로그"
 
-#: src/components/SharedHeader.tsx:82
-#: src/components/SharedHeader.tsx:340
+#: src/components/SharedHeader.tsx:88
+#: src/components/SharedHeader.tsx:350
 msgid "Charts"
 msgstr "차트"
 
@@ -138,7 +140,7 @@ msgstr "표를 전체 권한, 편집만 가능, 보기만 가능 권한 중 어�
 msgid "Circle"
 msgstr "원"
 
-#: src/components/SyntaxHelpDialog.tsx:109
+#: src/components/SyntaxReference.tsx:109
 msgid "Classes"
 msgstr ""
 
@@ -163,7 +165,7 @@ msgstr "클론"
 msgid "Close"
 msgstr "닫기"
 
-#: src/components/SyntaxHelpDialog.tsx:251
+#: src/components/SyntaxReference.tsx:251
 msgid "Colors include red, orange, yellow, blue, purple, black, white, and gray."
 msgstr ""
 
@@ -175,15 +177,15 @@ msgstr "만화책"
 msgid "Concentric"
 msgstr "동심"
 
-#: src/components/SponsorDashboard.tsx:171
+#: src/components/SponsorDashboard.tsx:177
 msgid "Confirm New Email"
 msgstr "새 이메일 확인"
 
-#: src/components/SyntaxHelpDialog.tsx:225
+#: src/components/SyntaxReference.tsx:225
 msgid "Containers"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:228
+#: src/components/SyntaxReference.tsx:228
 msgid "Containers are nodes that contain other nodes. They are declared using curly braces."
 msgstr ""
 
@@ -223,7 +225,7 @@ msgstr "정확한 레이블 텍스트를 사용하여 직접 링크 만들기"
 msgid "Created"
 msgstr "생성됨"
 
-#: src/components/SyntaxHelpDialog.tsx:132
+#: src/components/SyntaxReference.tsx:132
 msgid "Creating an edge between two nodes is done by indenting the second node below the first"
 msgstr ""
 
@@ -231,7 +233,7 @@ msgstr ""
 msgid "Custom Sharing Options"
 msgstr "커스텀 공유 옵션"
 
-#: src/components/SponsorDashboard.tsx:132
+#: src/components/SponsorDashboard.tsx:138
 msgid "Customer Portal"
 msgstr "고객 포털"
 
@@ -248,7 +250,7 @@ msgstr "다크"
 msgid "Dark Mode"
 msgstr "다크 모드"
 
-#: src/components/SponsorDashboard.tsx:280
+#: src/components/SponsorDashboard.tsx:286
 msgid "Date"
 msgstr "날짜"
 
@@ -267,7 +269,7 @@ msgstr "방향"
 msgid "Discard"
 msgstr "버리다"
 
-#: src/components/SponsorDashboard.tsx:358
+#: src/components/SponsorDashboard.tsx:375
 msgid "Do you want to cancel your subscription?"
 msgstr "구독을 취소하시겠습니까?"
 
@@ -275,13 +277,13 @@ msgstr "구독을 취소하시겠습니까?"
 msgid "Do you want to delete this?"
 msgstr "본 항목을 삭제하시겠습니까?"
 
-#: src/pages/Edit.tsx:95
-#: src/pages/EditHosted.tsx:100
+#: src/pages/Edit.tsx:73
+#: src/pages/EditHosted.tsx:77
 msgid "Document"
 msgstr "문서"
 
-#: src/components/SharedHeader.tsx:102
-#: src/components/SharedHeader.tsx:346
+#: src/components/SharedHeader.tsx:108
+#: src/components/SharedHeader.tsx:356
 msgid "Documentation"
 msgstr "선적 서류 비치"
 
@@ -301,7 +303,7 @@ msgstr "PNG 다운로드"
 msgid "Download SVG"
 msgstr "SVG 다운로드"
 
-#: src/components/SyntaxHelpDialog.tsx:213
+#: src/components/SyntaxReference.tsx:213
 msgid "Draw an edge from multiple nodes by beginning the line with a reference"
 msgstr ""
 
@@ -314,20 +316,28 @@ msgstr "복제"
 msgid "Dynamic Share Links"
 msgstr "다이나믹 공유 링크"
 
-#: src/components/SyntaxHelpDialog.tsx:153
+#: src/components/SyntaxReference.tsx:153
 msgid "Edge ID, Classes, Attributes"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:141
+#: src/components/SyntaxReference.tsx:141
 msgid "Edge Label"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:129
+#: src/components/SyntaxReference.tsx:291
+msgid "Edge Style"
+msgstr ""
+
+#: src/components/SyntaxReference.tsx:129
 msgid "Edges"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:156
+#: src/components/SyntaxReference.tsx:156
 msgid "Edges can also have ID's, classes, and attributes before the label"
+msgstr ""
+
+#: src/components/SyntaxReference.tsx:294
+msgid "Edges can be styled with dashed, dotted, or solid lines"
 msgstr ""
 
 #: src/components/ShareDialog.tsx:89
@@ -335,8 +345,8 @@ msgid "Editable"
 msgstr "편집 가능"
 
 #: src/components/MobileTabToggle.tsx:21
-#: src/components/SharedHeader.tsx:74
-#: src/components/SharedHeader.tsx:334
+#: src/components/SharedHeader.tsx:80
+#: src/components/SharedHeader.tsx:344
 msgid "Editor"
 msgstr "에디터"
 
@@ -359,7 +369,7 @@ msgstr "제목을 입력하세요"
 msgid "Excalidraw"
 msgstr "Excalidraw"
 
-#: src/components/EditorWrapper.tsx:44
+#: src/components/EditorWrapper.tsx:58
 #: src/components/ShareDialog.tsx:43
 #: src/components/ShareDialog.tsx:99
 msgid "Export"
@@ -371,10 +381,14 @@ msgid "Export to Common Image Formats"
 msgstr "일반 이미지 포맷으로 내보내기"
 
 #: src/components/Feedback.tsx:74
-#: src/components/SharedHeader.tsx:110
-#: src/components/SharedHeader.tsx:353
+#: src/components/SharedHeader.tsx:116
+#: src/components/SharedHeader.tsx:363
 msgid "Feedback"
 msgstr "피드백"
+
+#: src/components/GraphFloatingMenu.tsx:46
+msgid "Fit Graph"
+msgstr ""
 
 #: src/pages/Sponsor.tsx:19
 msgid "Flowchart Fun makes it quick and easy to visually communicate your processes."
@@ -413,11 +427,15 @@ msgstr "그리드"
 msgid "Have fun! 🎉"
 msgstr "즐겨보세요! 🎉"
 
-#: src/components/SharedHeader.tsx:91
+#: src/components/MightLoseWarning.tsx:26
+msgid "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud."
+msgstr ""
+
+#: src/components/SharedHeader.tsx:97
 msgid "Help"
 msgstr "도움말"
 
-#: src/components/SponsorDashboard.tsx:270
+#: src/components/SponsorDashboard.tsx:276
 msgid "History"
 msgstr "기록"
 
@@ -430,7 +448,7 @@ msgstr "집"
 msgid "Hosted Charts"
 msgstr "호스트 차트"
 
-#: src/components/SyntaxHelpDialog.tsx:101
+#: src/components/SyntaxReference.tsx:101
 msgid "ID's"
 msgstr ""
 
@@ -439,7 +457,7 @@ msgstr ""
 msgid "Indenting creates a link to the current line"
 msgstr "들여쓰기는 현재 줄에 대한 링크를 생성합니다"
 
-#: src/components/SharedHeader.tsx:125
+#: src/components/SharedHeader.tsx:131
 msgid "Info"
 msgstr "정보"
 
@@ -448,8 +466,8 @@ msgid "Language"
 msgstr "언어"
 
 #: src/components/Tabs/EditLayoutTab.tsx:69
-#: src/pages/Edit.tsx:100
-#: src/pages/EditHosted.tsx:103
+#: src/pages/Edit.tsx:78
+#: src/pages/EditHosted.tsx:80
 msgid "Layout"
 msgstr "레이아웃"
 
@@ -461,10 +479,11 @@ msgstr "레이아웃이 고정됨"
 msgid "Layouts and Themes"
 msgstr "레이아웃 및 테마"
 
-#: src/components/SyntaxHelpDialog.tsx:210
+#: src/components/SyntaxReference.tsx:210
 msgid "Leading References"
 msgstr ""
 
+#: src/components/MightLoseWarning.tsx:53
 #: src/pages/Charts.tsx:734
 msgid "Learn More"
 msgstr "더 알아보기"
@@ -491,11 +510,11 @@ msgstr "링크"
 msgid "Local Charts"
 msgstr "로컬 차트"
 
-#: src/components/SharedHeader.tsx:188
+#: src/components/SharedHeader.tsx:189
 msgid "Log In"
 msgstr "로그인"
 
-#: src/components/SponsorDashboard.tsx:127
+#: src/components/SponsorDashboard.tsx:133
 msgid "Log Out"
 msgstr "로그아웃"
 
@@ -540,37 +559,45 @@ msgstr "이름"
 msgid "Need Help? <0>Check out our documentation.</0>"
 msgstr "도움이 필요하신가요? <0>저희 문서를 확인해 보세요.</0>"
 
-#: src/components/SharedHeader.tsx:66
-#: src/components/SharedHeader.tsx:328
+#: src/components/SharedHeader.tsx:72
+#: src/components/SharedHeader.tsx:338
 msgid "New"
 msgstr "신규"
 
-#: src/components/SponsorDashboard.tsx:164
+#: src/components/SponsorDashboard.tsx:170
 msgid "New Email"
 msgstr "새 이메일"
 
-#: src/components/SponsorDashboard.tsx:215
-#: src/components/SponsorDashboard.tsx:406
+#: src/components/SponsorDashboard.tsx:221
+#: src/components/SponsorDashboard.tsx:423
 msgid "Next charge"
 msgstr "다음 청구 금액"
 
-#: src/components/SyntaxHelpDialog.tsx:248
+#: src/components/SyntaxReference.tsx:304
+msgid "Node Border Style"
+msgstr ""
+
+#: src/components/SyntaxReference.tsx:248
 msgid "Node Colors"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:99
+#: src/components/SyntaxReference.tsx:99
 msgid "Node ID, Classes, Attributes"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:88
+#: src/components/SyntaxReference.tsx:88
 msgid "Node Label"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:261
+#: src/components/SyntaxReference.tsx:261
 msgid "Node Shapes"
 msgstr ""
 
-#: src/components/SponsorDashboard.tsx:149
+#: src/components/SyntaxReference.tsx:307
+msgid "Nodes can be styled with dashed, dotted, double, or solid borders"
+msgstr ""
+
+#: src/components/SponsorDashboard.tsx:155
 msgid "Open Customer Portal"
 msgstr "고객 포털 열기"
 
@@ -582,8 +609,8 @@ msgstr "요금제"
 msgid "Playbook"
 msgstr "플레이북"
 
-#: src/components/SharedHeader.tsx:173
-#: src/components/SharedHeader.tsx:390
+#: src/components/SharedHeader.tsx:180
+#: src/components/SharedHeader.tsx:403
 msgid "Pricing"
 msgstr "가격"
 
@@ -597,41 +624,45 @@ msgstr "공용"
 msgid "Random"
 msgstr "무작위"
 
-#: src/components/EditorWrapper.tsx:37
+#: src/components/EditorWrapper.tsx:51
 #: src/components/ShareDialog.tsx:92
 msgid "Read-only"
 msgstr "읽기 전용"
 
-#: src/components/SyntaxHelpDialog.tsx:196
+#: src/components/SyntaxReference.tsx:196
 msgid "Reference by Class"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:186
+#: src/components/SyntaxReference.tsx:186
 msgid "Reference by ID"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:176
+#: src/components/SyntaxReference.tsx:176
 msgid "Reference by Label"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:167
+#: src/components/SyntaxReference.tsx:167
 msgid "References"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:170
+#: src/components/SyntaxReference.tsx:170
 msgid "References are used to create edges between nodes that are created elsewhere in the document"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:179
+#: src/components/SyntaxReference.tsx:179
 msgid "Referencing a node by its exact label"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:189
+#: src/components/SyntaxReference.tsx:189
 msgid "Referencing a node by its unique ID"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:199
+#: src/components/SyntaxReference.tsx:199
 msgid "Referencing multiple nodes with the same assigned class"
+msgstr ""
+
+#: src/components/MightLoseWarning.tsx:39
+msgid "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!"
 msgstr ""
 
 #: src/components/RenameButton.tsx:103
@@ -647,10 +678,10 @@ msgstr "이름 바꾸기"
 msgid "Reset"
 msgstr "재설정"
 
-#: src/components/SponsorDashboard.tsx:243
-#: src/components/SponsorDashboard.tsx:400
-#: src/components/SponsorDashboard.tsx:404
-#: src/components/SponsorDashboard.tsx:413
+#: src/components/SponsorDashboard.tsx:249
+#: src/components/SponsorDashboard.tsx:417
+#: src/components/SponsorDashboard.tsx:421
+#: src/components/SponsorDashboard.tsx:430
 msgid "Resume Subscription"
 msgstr "구독 재개"
 
@@ -658,7 +689,7 @@ msgstr "구독 재개"
 msgid "Retro"
 msgstr "레트로"
 
-#: src/components/SponsorDashboard.tsx:361
+#: src/components/SponsorDashboard.tsx:378
 msgid "Return"
 msgstr "반품"
 
@@ -667,8 +698,9 @@ msgstr "반품"
 msgid "Right to Left"
 msgstr "오른쪽에서 왼쪽으로"
 
-#: src/components/SharedHeader.tsx:150
-#: src/components/SharedHeader.tsx:371
+#: src/components/SharedHeader.tsx:157
+#: src/components/SharedHeader.tsx:383
+#: src/pages/Roadmap.tsx:19
 msgid "Roadmap"
 msgstr "로드맵"
 
@@ -680,8 +712,8 @@ msgstr "구하다"
 msgid "Say goodbye to tedious flowchart creation"
 msgstr "더 이상 지루하게 플로 차트를 작성할 필요가 없습니다"
 
-#: src/components/SharedHeader.tsx:157
-#: src/components/SharedHeader.tsx:375
+#: src/components/SharedHeader.tsx:164
+#: src/components/SharedHeader.tsx:388
 msgid "Settings"
 msgstr "설정"
 
@@ -690,7 +722,7 @@ msgstr "설정"
 msgid "Shape Libraries"
 msgstr "셰이프 라이브러리"
 
-#: src/components/SyntaxHelpDialog.tsx:266
+#: src/components/SyntaxReference.tsx:264
 msgid "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon."
 msgstr ""
 
@@ -711,8 +743,12 @@ msgstr "가입"
 msgid "Sign Up Now"
 msgstr "지금 가입하세요"
 
-#: src/components/SyntaxHelpDialog.tsx:243
+#: src/components/SyntaxReference.tsx:243
 msgid "Some classes are available to help style your flowchart"
+msgstr ""
+
+#: src/components/OnlyInEnglish.tsx:23
+msgid "Sorry! This page is only available in English."
 msgstr ""
 
 #: src/components/Tabs/EditLayoutTab.tsx:123
@@ -723,7 +759,7 @@ msgstr "간격"
 msgid "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features"
 msgstr "호스트된 플로차트와 최신 스타일 및 기능에 액세스하기 위해 월 3달러 또는 연간 30달러로 플로차트.펀 후원"
 
-#: src/components/SponsorDashboard.tsx:227
+#: src/components/SponsorDashboard.tsx:233
 msgid "Start"
 msgstr "시작"
 
@@ -732,11 +768,11 @@ msgstr "시작"
 msgid "Static Share Links"
 msgstr "스태틱 공유 링크"
 
-#: src/components/SponsorDashboard.tsx:206
+#: src/components/SponsorDashboard.tsx:212
 msgid "Status"
 msgstr "상태"
 
-#: src/components/SyntaxHelpDialog.tsx:121
+#: src/components/SyntaxReference.tsx:121
 msgid "Store any data associated to a node"
 msgstr ""
 
@@ -744,12 +780,12 @@ msgstr ""
 msgid "Streamline your workflow and simplify your process visualization with Flowchart Fun"
 msgstr "Flowchart Fun를 통해 워크플로우를 능률화하고 프로세스 시각화를 단순화하세요"
 
-#: src/pages/Edit.tsx:105
-#: src/pages/EditHosted.tsx:106
+#: src/pages/Edit.tsx:83
+#: src/pages/EditHosted.tsx:83
 msgid "Style"
 msgstr "스타일"
 
-#: src/components/SyntaxHelpDialog.tsx:240
+#: src/components/SyntaxReference.tsx:240
 msgid "Style Classes"
 msgstr ""
 
@@ -758,11 +794,11 @@ msgstr ""
 msgid "Submit"
 msgstr "보내다"
 
-#: src/components/SponsorDashboard.tsx:201
+#: src/components/SponsorDashboard.tsx:207
 msgid "Subscription"
 msgstr "구독"
 
-#: src/components/SponsorDashboard.tsx:238
+#: src/components/SponsorDashboard.tsx:244
 msgid "Subscription will end"
 msgstr "구독이 종료될 예정입니다."
 
@@ -770,17 +806,25 @@ msgstr "구독이 종료될 예정입니다."
 msgid "Syntax"
 msgstr "문법"
 
-#: src/components/SyntaxHelpDialog.tsx:58
-#: src/components/SyntaxHelpDialog.tsx:74
+#: src/components/SyntaxReference.tsx:58
+#: src/components/SyntaxReference.tsx:74
 msgid "Syntax Reference"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:144
+#: src/components/SyntaxReference.tsx:278
+msgid "Text Sizes"
+msgstr ""
+
+#: src/components/SyntaxReference.tsx:144
 msgid "Text followed by colon+space creates an edge with the text as the label"
 msgstr ""
 
-#: src/components/SyntaxHelpDialog.tsx:91
+#: src/components/SyntaxReference.tsx:91
 msgid "Text on a line creates a node with the text as the label"
+msgstr ""
+
+#: src/components/SyntaxReference.tsx:281
+msgid "Text sizes include small, regular, large, and extra-large."
 msgstr ""
 
 #: src/components/Feedback.tsx:125
@@ -813,7 +857,7 @@ msgstr "다시 시도하세요"
 msgid "Unfreeze"
 msgstr "녹이다"
 
-#: src/components/SyntaxHelpDialog.tsx:103
+#: src/components/SyntaxReference.tsx:103
 msgid "Unique text value to identify a node"
 msgstr ""
 
@@ -827,7 +871,7 @@ msgstr "무제한 차트 호스팅"
 msgid "Unlimited Local Charts"
 msgstr "무제한 로컬 차트"
 
-#: src/components/SponsorDashboard.tsx:157
+#: src/components/SponsorDashboard.tsx:163
 msgid "Update Email"
 msgstr "이메일 업데이트"
 
@@ -835,15 +879,15 @@ msgstr "이메일 업데이트"
 msgid "Updated"
 msgstr "업데이트됨"
 
-#: src/components/SyntaxHelpDialog.tsx:112
+#: src/components/SyntaxReference.tsx:112
 msgid "Use classes to group nodes"
 msgstr ""
 
-#: src/components/SponsorDashboard.tsx:135
+#: src/components/SponsorDashboard.tsx:141
 msgid "Use the customer portal to change your billing information."
 msgstr "청구 정보를 변경하려면 고객 포털을 사용하십시오."
 
-#: src/components/SponsorDashboard.tsx:122
+#: src/components/SponsorDashboard.tsx:128
 msgid "User"
 msgstr "사용자"
 
@@ -871,10 +915,18 @@ msgstr "무엇을 공유하시겠습니까?"
 msgid "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere."
 msgstr "호스팅된 차트를 무제한으로 생성할 수 있는 기능을 통해, 장소와 디바이스에 무관하게 플로우차트에 접근하고 작업할 수 있습니다."
 
-#: src/components/SponsorDashboard.tsx:191
+#: src/components/SponsorDashboard.tsx:197
 #: src/pages/Charts.tsx:375
 msgid "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor."
 msgstr "귀하의 구독이 더 이상 활성 상태가 아닙니다. 호스트 차트를 작성 및 수정하려면 후원자가 되십시오."
+
+#: src/components/GraphFloatingMenu.tsx:40
+msgid "Zoom In"
+msgstr ""
+
+#: src/components/GraphFloatingMenu.tsx:35
+msgid "Zoom Out"
+msgstr ""
 
 #: src/lib/queries.ts:155
 #: src/lib/useDefaultDoc.ts:9

@@ -85,9 +85,12 @@
     "Dynamic Share Links": "डायनामिक शेयर लिंक्स",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
+    "Edge Style": "Edge Style",
     Edges: "Edges",
     "Edges can also have ID's, classes, and attributes before the label":
       "Edges can also have ID's, classes, and attributes before the label",
+    "Edges can be styled with dashed, dotted, or solid lines":
+      "Edges can be styled with dashed, dotted, or solid lines",
     Editable: "संपादन योग्य",
     Editor: "संपादक",
     Eggs: "अंडे",
@@ -97,6 +100,7 @@
     Export: "एक्सपोर्ट करें",
     "Export to Common Image Formats": "कॉमन इमेज फॉर्मेट में एक्सपोर्ट करें",
     Feedback: "फ़ीडबैक",
+    "Fit Graph": "Fit Graph",
     "Flowchart Fun makes it quick and easy to visually communicate your processes.":
       "Flowchart Fun आपकी विज़ुअल कम्युनिकेट प्रक्रियाओं को तीव्र और आसान बनाता है।",
     "Follow Us": "हमें फॉलो करें",
@@ -107,6 +111,8 @@
     Graph: "ग्राफ़",
     Grid: "ग्रिड",
     "Have fun! 🎉": "मज़े करो! 🎉",
+    "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
+      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
     Help: "मदद",
     History: "हिस्ट्री",
     Home: "होम",
@@ -142,10 +148,13 @@
     New: "नया",
     "New Email": "नई ईमेल",
     "Next charge": "अगला चार्ज",
+    "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
+    "Nodes can be styled with dashed, dotted, double, or solid borders":
+      "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "ग्राहक पोर्टल खोलें",
     Plans: "प्लान",
     Playbook: "प्लेबुक",
@@ -165,6 +174,8 @@
       "Referencing a node by its unique ID",
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
+    "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
+      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
     Rename: "फिर से नाम बदलें",
     Reset: "रीसेट करें",
     "Resume Subscription": "सदस्यता फिर से शुरू करें",
@@ -186,6 +197,8 @@
     "Sign Up Now": "अभी साइन अप करें",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
+    "Sorry! This page is only available in English.":
+      "Sorry! This page is only available in English.",
     Spacing: "अंतर",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "होस्ट किए गए फ़्लोचार्ट और नवीनतम शैलियों और सुविधाओं तक पहुँचने के लिए $3/माह या $30/वर्ष के लिए फ़्लोचार्ट.फ़न को प्रायोजित करें",
@@ -203,10 +216,13 @@
     "Subscription will end": "सदस्यता समाप्त हो जाएगी",
     Syntax: "सिंटेक्स",
     "Syntax Reference": "Syntax Reference",
+    "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
     "Text on a line creates a node with the text as the label":
       "Text on a line creates a node with the text as the label",
+    "Text sizes include small, regular, large, and extra-large.":
+      "Text sizes include small, regular, large, and extra-large.",
     "Thank you for your feedback!": "आपके फ़ीडबैक के लिए धन्यवाद!",
     Theme: "शैली",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -238,6 +254,8 @@
       "असीमित होस्टेड चार्ट बनाने की क्षमता के साथ, आप किसी भी डिवाइस पर कहीं से भी फ़्लोचार्ट तक पहुंच सकते हैं और उस पर काम कर सकते हैं।",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "आपकी सदस्यता अब एक्टिव नहीं है. अगर आप होस्टेड चार्ट बनाना और एडिट करना चाहते हैं तो स्पॉन्सर बनें.",
+    "Zoom In": "Zoom In",
+    "Zoom Out": "Zoom Out",
     "[custom ID] or": "[कस्टम ID] या",
     "any text: before a colon creates a label":
       "कोई भी टेक्स्ट: कॉलन से पहले एक लेबल बनाता है",

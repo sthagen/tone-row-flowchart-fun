@@ -84,9 +84,12 @@
     "Dynamic Share Links": "다이나믹 공유 링크",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
+    "Edge Style": "Edge Style",
     Edges: "Edges",
     "Edges can also have ID's, classes, and attributes before the label":
       "Edges can also have ID's, classes, and attributes before the label",
+    "Edges can be styled with dashed, dotted, or solid lines":
+      "Edges can be styled with dashed, dotted, or solid lines",
     Editable: "편집 가능",
     Editor: "에디터",
     Eggs: "달걀",
@@ -96,6 +99,7 @@
     Export: "내보내기",
     "Export to Common Image Formats": "일반 이미지 포맷으로 내보내기",
     Feedback: "피드백",
+    "Fit Graph": "Fit Graph",
     "Flowchart Fun makes it quick and easy to visually communicate your processes.":
       "Flowchart Fun을 사용하여 과정을 쉽고 빠르게 시각화적으로 소통할 수 있습니다.",
     "Follow Us": "팔로우하세요",
@@ -106,6 +110,8 @@
     Graph: "그래프",
     Grid: "그리드",
     "Have fun! 🎉": "즐겨보세요! 🎉",
+    "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
+      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
     Help: "도움말",
     History: "기록",
     Home: "집",
@@ -141,10 +147,13 @@
     New: "신규",
     "New Email": "새 이메일",
     "Next charge": "다음 청구 금액",
+    "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
+    "Nodes can be styled with dashed, dotted, double, or solid borders":
+      "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "고객 포털 열기",
     Plans: "요금제",
     Playbook: "플레이북",
@@ -164,6 +173,8 @@
       "Referencing a node by its unique ID",
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
+    "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
+      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
     Rename: "이름 바꾸기",
     Reset: "재설정",
     "Resume Subscription": "구독 재개",
@@ -185,6 +196,8 @@
     "Sign Up Now": "지금 가입하세요",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
+    "Sorry! This page is only available in English.":
+      "Sorry! This page is only available in English.",
     Spacing: "간격",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "호스트된 플로차트와 최신 스타일 및 기능에 액세스하기 위해 월 3달러 또는 연간 30달러로 플로차트.펀 후원",
@@ -202,10 +215,13 @@
     "Subscription will end": "구독이 종료될 예정입니다.",
     Syntax: "문법",
     "Syntax Reference": "Syntax Reference",
+    "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
     "Text on a line creates a node with the text as the label":
       "Text on a line creates a node with the text as the label",
+    "Text sizes include small, regular, large, and extra-large.":
+      "Text sizes include small, regular, large, and extra-large.",
     "Thank you for your feedback!": "피드백을 해주셔서 감사합니다!",
     Theme: "테마",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -236,6 +252,8 @@
       "호스팅된 차트를 무제한으로 생성할 수 있는 기능을 통해, 장소와 디바이스에 무관하게 플로우차트에 접근하고 작업할 수 있습니다.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "귀하의 구독이 더 이상 활성 상태가 아닙니다. 호스트 차트를 작성 및 수정하려면 후원자가 되십시오.",
+    "Zoom In": "Zoom In",
+    "Zoom Out": "Zoom Out",
     "[custom ID] or": "[사용자 지정 ID] 또는",
     "any text: before a colon creates a label":
       "콜론 앞의 모든 텍스트는: 레이블을 생성합니다",

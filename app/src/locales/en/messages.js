@@ -84,9 +84,12 @@
     "Dynamic Share Links": "Dynamic Share Links",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
+    "Edge Style": "Edge Style",
     Edges: "Edges",
     "Edges can also have ID's, classes, and attributes before the label":
       "Edges can also have ID's, classes, and attributes before the label",
+    "Edges can be styled with dashed, dotted, or solid lines":
+      "Edges can be styled with dashed, dotted, or solid lines",
     Editable: "Editable",
     Editor: "Editor",
     Eggs: "Eggs",
@@ -96,6 +99,7 @@
     Export: "Export",
     "Export to Common Image Formats": "Export to Common Image Formats",
     Feedback: "Feedback",
+    "Fit Graph": "Fit Graph",
     "Flowchart Fun makes it quick and easy to visually communicate your processes.":
       "Flowchart Fun makes it quick and easy to visually communicate your processes.",
     "Follow Us": "Follow Us",
@@ -106,6 +110,8 @@
     Graph: "Graph",
     Grid: "Grid",
     "Have fun! 🎉": "Have fun! 🎉",
+    "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
+      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
     Help: "Help",
     History: "History",
     Home: "Home",
@@ -141,10 +147,13 @@
     New: "New",
     "New Email": "New Email",
     "Next charge": "Next charge",
+    "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
+    "Nodes can be styled with dashed, dotted, double, or solid borders":
+      "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "Open Customer Portal",
     Plans: "Plans",
     Playbook: "Playbook",
@@ -164,6 +173,8 @@
       "Referencing a node by its unique ID",
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
+    "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
+      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
     Rename: "Rename",
     Reset: "Reset",
     "Resume Subscription": "Resume Subscription",
@@ -185,6 +196,8 @@
     "Sign Up Now": "Sign Up Now",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
+    "Sorry! This page is only available in English.":
+      "Sorry! This page is only available in English.",
     Spacing: "Spacing",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features",
@@ -202,10 +215,13 @@
     "Subscription will end": "Subscription will end",
     Syntax: "Syntax",
     "Syntax Reference": "Syntax Reference",
+    "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
     "Text on a line creates a node with the text as the label":
       "Text on a line creates a node with the text as the label",
+    "Text sizes include small, regular, large, and extra-large.":
+      "Text sizes include small, regular, large, and extra-large.",
     "Thank you for your feedback!": "Thank you for your feedback!",
     Theme: "Theme",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -237,6 +253,8 @@
       "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.",
+    "Zoom In": "Zoom In",
+    "Zoom Out": "Zoom Out",
     "[custom ID] or": "[custom ID] or",
     "any text: before a colon creates a label":
       "any text: before a colon creates a label",

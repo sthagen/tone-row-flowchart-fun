@@ -83,9 +83,12 @@
     "Dynamic Share Links": "动态分享链接",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
+    "Edge Style": "Edge Style",
     Edges: "Edges",
     "Edges can also have ID's, classes, and attributes before the label":
       "Edges can also have ID's, classes, and attributes before the label",
+    "Edges can be styled with dashed, dotted, or solid lines":
+      "Edges can be styled with dashed, dotted, or solid lines",
     Editable: "可编辑",
     Editor: "编辑器",
     Eggs: "蛋",
@@ -95,6 +98,7 @@
     Export: "导出",
     "Export to Common Image Formats": "导出为常见图片格式",
     Feedback: "反馈",
+    "Fit Graph": "Fit Graph",
     "Flowchart Fun makes it quick and easy to visually communicate your processes.":
       "Flowchart Fun 可以快速且轻松地以视觉方式传达您的流程。",
     "Follow Us": "关注我们",
@@ -105,6 +109,8 @@
     Graph: "图表",
     Grid: "网格",
     "Have fun! 🎉": "玩得开心！🎉",
+    "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
+      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
     Help: "帮助",
     History: "历史",
     Home: "主页",
@@ -140,10 +146,13 @@
     New: "新",
     "New Email": "新邮件",
     "Next charge": "下次扣费",
+    "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
+    "Nodes can be styled with dashed, dotted, double, or solid borders":
+      "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "打开客户门户",
     Plans: "计划",
     Playbook: "剧本",
@@ -163,6 +172,8 @@
       "Referencing a node by its unique ID",
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
+    "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
+      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
     Rename: "重命名",
     Reset: "重置",
     "Resume Subscription": "恢复订阅",
@@ -183,6 +194,8 @@
     "Sign Up Now": "马上注册",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
+    "Sorry! This page is only available in English.":
+      "Sorry! This page is only available in English.",
     Spacing: "间距",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "以 3 美元/月或 30 美元/年的价格赞助流程图.fun，以访问托管流程图以及最新的样式和功能",
@@ -200,10 +213,13 @@
     "Subscription will end": "订阅即将到期",
     Syntax: "句法",
     "Syntax Reference": "Syntax Reference",
+    "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
     "Text on a line creates a node with the text as the label":
       "Text on a line creates a node with the text as the label",
+    "Text sizes include small, regular, large, and extra-large.":
+      "Text sizes include small, regular, large, and extra-large.",
     "Thank you for your feedback!": "感谢您的反馈!",
     Theme: "风格",
     "These charts are only available in this browser on this device.<0/>Clearing your browser local storage will erase these.":
@@ -233,6 +249,8 @@
       "由于能够创建无限制的托管图表，您可以从任何设备随时随地访问和处理您的流程图。",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "您的订阅不再有效。如果您想创建和编辑托管的图表，请成为赞助人。",
+    "Zoom In": "Zoom In",
+    "Zoom Out": "Zoom Out",
     "[custom ID] or": "[自定义 ID] 或",
     "any text: before a colon creates a label":
       "任何文本：在冒号前创建一个标签",
