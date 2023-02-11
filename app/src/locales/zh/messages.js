@@ -1,27 +1,25 @@
 /*eslint-disable*/ module.exports = {
   messages: {
     "$3 / Month": "3 美元/月",
-    "$3.00/month": "$3.00/月",
     "$30 / Year": "30 美元 / 年",
-    "$30.00/year (save 20%)": "$30.00/年（节省 20%）",
+    "(before a colon creates a label)": "(在冒号前创建一个标签)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "随时随地访问这些图表。<0/>共享/嵌入与您编辑的文档保持同步的图表。",
     Account: "帐户",
     Advanced: "先进的",
-    "Already a sponsor? Log in here": "已经是赞助商了吗？在此登录",
     Amount: "数量",
     "An error occurred. Try resubmitting or email {0} directly.": [
       "发生了一个错误。请尝试重新提交或直接发送电子邮件至",
       ["0"],
       "。",
     ],
-    Annually: "每年",
     Appearance: "外观",
     Attributes: "Attributes",
     "Back To Editor": "返回编辑器",
     Background: "背景",
     "Become a Sponsor": "赞助我们",
     Blog: "博客",
+    Border: "Border",
     "Bottom to Top": "从下到上",
     Breadthfirst: "宽度优先",
     Cancel: "取消",
@@ -39,8 +37,11 @@
     Clay: "粘土",
     Clear: "清除",
     "Clear text?": "清除文字？",
+    "Click on \\n⟨⟩ Syntax Reference\\nto learn more .blue.border-none.roundrectangle[w=100][h=70]":
+      "单击语法参考以了解更多信息 .blue.border-none.roundrectangle",
     Clone: "克隆",
     Close: "关闭",
+    Color: "Color",
     "Colors include red, orange, yellow, blue, purple, black, white, and gray.":
       "Colors include red, orange, yellow, blue, purple, black, white, and gray.",
     "Comic Book": "漫画书",
@@ -54,15 +55,11 @@
     "Copy PNG Image": "复制PNG图像",
     "Copy SVG Code": "复制 SVG 代码",
     Create: "创建",
-    "Create a link directly using the exact label text":
-      "使用完全一样的标签文本，直接创建链接",
     Created: "已创建",
     "Creating an edge between two nodes is done by indenting the second node below the first":
       "Creating an edge between two nodes is done by indenting the second node below the first",
     "Custom Sharing Options": "自定义分享选项",
     "Customer Portal": "客户门户",
-    "Customize the look and feel of your charts with more layout and theme options, helping you to create professional, visually appealing diagrams.":
-      "使用更多布局和主题选项自定义图表的外观和观感，帮助您创建专业而闲心悦目的示意图。",
     Dark: "深色",
     "Dark Mode": "深色模式",
     Date: "日期",
@@ -96,11 +93,9 @@
     "Enter a title": "输入标题",
     Excalidraw: "Excalidraw",
     Export: "导出",
-    "Export to Common Image Formats": "导出为常见图片格式",
+    "Extra Large": "Extra Large",
     Feedback: "反馈",
     "Fit Graph": "Fit Graph",
-    "Flowchart Fun makes it quick and easy to visually communicate your processes.":
-      "Flowchart Fun 可以快速且轻松地以视觉方式传达您的流程。",
     "Follow Us": "关注我们",
     Fullscreen: "全屏",
     Futuristic: "未来主义的",
@@ -108,21 +103,21 @@
     "Get More Themes": "获取更多主题",
     Graph: "图表",
     Grid: "网格",
-    "Have fun! 🎉": "玩得开心！🎉",
     "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
-      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
+      "注意！在清除缓存之前，请记住此文档没有在云端保存。",
     Help: "帮助",
     History: "历史",
     Home: "主页",
     "Hosted Charts": "托管的图表",
     "ID's": "ID's",
-    "Indenting creates a link to the current line":
-      "缩进可创建连接到当前行的链接",
+    "Image Export": "图像导出",
+    Images: "Images",
+    "Indenting creates an edge": "缩进创建链接",
     Info: "信息",
     Language: "语言",
+    Large: "Large",
     Layout: "布局",
     "Layout is Frozen": "布局被冻结",
-    "Layouts and Themes": "布局和主题",
     "Leading References": "Leading References",
     "Learn More": "学到更多",
     "Left to Right": "从左到右",
@@ -135,8 +130,10 @@
     "Made by <0>Tone Row</0>": "由 <0>Tone Row</0> 制作",
     "Make a Donation": "捐款",
     "Make publicly accessible": "设为公开访问",
+    "Make your workflow easier with Flowchart Fun Pro– subscribe now for only $3/month or $30/year!":
+      "使用 Flowchart Fun Pro 让您的工作流程更轻松——现在订阅只需 3 美元/月或 30 美元/年！",
+    Medium: "Medium",
     Monospace: "Monospace",
-    Monthly: "每月",
     "More Layouts": "更多布局",
     "More Themes and Fonts": "更多主题和字体",
     Museum: "博物馆",
@@ -146,6 +143,7 @@
     New: "新",
     "New Email": "新邮件",
     "Next charge": "下次扣费",
+    Node: "Node",
     "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
@@ -154,7 +152,6 @@
     "Nodes can be styled with dashed, dotted, double, or solid borders":
       "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "打开客户门户",
-    Plans: "计划",
     Playbook: "剧本",
     Pricing: "价钱",
     Public: "公开",
@@ -173,7 +170,7 @@
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
     "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
-      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
+      "请记住，本文档仅保存在此电脑上，如果您希望储存文档并随时随地访问它们，那么请试试我们的高级计划，可以托管不限数量的图表，还有更多功能！仅需 $3/月！",
     Rename: "重命名",
     Reset: "重置",
     "Resume Subscription": "恢复订阅",
@@ -182,20 +179,21 @@
     "Right to Left": "从右到左",
     Roadmap: "路线图",
     Save: "救球",
-    "Say goodbye to tedious flowchart creation": "告别繁琐的流程图创建",
     Settings: "设置",
+    Shape: "Shape",
     "Shape Libraries": "形状库",
-    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
-      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
+    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
+      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
     "Share with Full Access, Edit-only, or View-only Permissions":
       "以完全访问权限、仅编辑权限或仅查看权限共享",
     "Sign In": "登录",
     "Sign Up": "注册",
-    "Sign Up Now": "马上注册",
+    Size: "Size",
+    Small: "Small",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
     "Sorry! This page is only available in English.":
-      "Sorry! This page is only available in English.",
+      "抱歉！此页面只有英语版。",
     Spacing: "间距",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "以 3 美元/月或 30 美元/年的价格赞助流程图.fun，以访问托管流程图以及最新的样式和功能",
@@ -207,12 +205,15 @@
     "Streamline your workflow and simplify your process visualization with Flowchart Fun":
       "使用 Flowchart Fun，简化您的工作流程和过程可视化",
     Style: "风格",
+    "Style Attributes": "Style Attributes",
     "Style Classes": "Style Classes",
+    "Style attributes can be used to style nodes and edges":
+      "Style attributes can be used to style nodes and edges",
     Submit: "提交",
     Subscription: "订阅",
     "Subscription will end": "订阅即将到期",
     Syntax: "句法",
-    "Syntax Reference": "Syntax Reference",
+    "Syntax Reference": "语法参考",
     "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
@@ -235,6 +236,10 @@
     "Update Email": "更新电子邮件",
     Updated: "已更新",
     "Use classes to group nodes": "Use classes to group nodes",
+    "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.":
+      "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.",
+    "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.":
+      "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.",
     "Use the customer portal to change your billing information.":
       "使用客户门户更改您的账单信息。",
     User: "用户",
@@ -245,22 +250,16 @@
       "我们使用 cookies 来让您保持登录状态。",
     "What would you like to name this copy?": "你想将这个副本命名为什么？",
     "What would you like to share with us?": "您想跟我们分享什么？",
+    "Width and Height": "Width and Height",
     "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
       "由于能够创建无限制的托管图表，您可以从任何设备随时随地访问和处理您的流程图。",
+    'You can also wrap text in "\\( \\)" to create an edge':
+      "您还可以将文本包装在\\n“\\( \\)”中以创建链接",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "您的订阅不再有效。如果您想创建和编辑托管的图表，请成为赞助人。",
     "Zoom In": "Zoom In",
     "Zoom Out": "Zoom Out",
-    "[custom ID] or": "[自定义 ID] 或",
     "any text: before a colon creates a label":
-      "任何文本：在冒号前创建一个标签",
-    "by adding an %5BID%5D and referencing that": "通过添加并引用一个 %5BID%5D",
-    comments: "注释",
-    "like this: (This app works by typing)":
-      "像这样：（这款应用的工作原理是输入）",
-    "like this: (custom ID) // You can also use single-line comments":
-      "像这样：（自定义 ID）// 你也可以使用单行注释",
-    multiline: "多行",
-    or: "或",
+      "任何文本： 在冒号前创建一个标签",
   },
 };

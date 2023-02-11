@@ -6,7 +6,7 @@ import { useThemeKey } from "../../lib/getTheme";
 import { themes } from "../../lib/graphOptions";
 import { useThemeStore } from "../../lib/graphThemes";
 import { useIsValidSponsor } from "../../lib/hooks";
-import { useDoc } from "../../lib/prepareChart";
+import { useDoc } from "../../lib/useDoc";
 import { Button } from "../Shared";
 import {
   CustomSelect,
@@ -82,7 +82,7 @@ export function EditStyleTab() {
         </OptionWithLabel>
       </TabOptionsGrid>
       {!isValidSponsor && (
-        <LargeLink href="/sponsor">
+        <LargeLink href="/pricing">
           <Trans>Get More Themes</Trans>
         </LargeLink>
       )}

@@ -17,9 +17,8 @@ test.describe("Monthly Sign Up", () => {
   test("Monthly Sign-up", async ({ page }) => {
     test.setTimeout(240000);
     await page.getByRole("link", { name: "Pricing" }).click();
-    await expect(page).toHaveURL(`${BASE_URL}/sponsor`);
-    await page.getByRole("link", { name: "Sign Up Now" }).first().click();
-    await expect(page).toHaveURL(`${BASE_URL}/i`);
+    await expect(page).toHaveURL(`${BASE_URL}/pricing`);
+
     await page.getByTestId("email").click();
     const email = await getTempEmail();
     await page.getByTestId("email").fill(email);

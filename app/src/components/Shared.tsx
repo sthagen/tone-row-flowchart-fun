@@ -110,15 +110,13 @@ export const Button = forwardRef<
     onClick,
     className = "",
     text,
-    typeProps = { size: -1 },
+    typeProps = {},
     ...props
   },
   ref
 ) {
   return (
     <Box
-      p={2}
-      px={3}
       as={as}
       className={[styles.Button, className].join(" ")}
       rad={1}
@@ -150,16 +148,16 @@ export const Dialog = ({
   children: ReactNode;
   innerBoxProps: BoxProps;
 }) => {
+  const { className = "", ...rest } = dialogProps;
   return (
     <Box
       as={ReachDialog}
       p={2}
-      pt={1.5}
       rad={2}
-      background="color-nodeHover"
-      {...dialogProps}
+      className={`${className} ${styles.Dialog}`}
+      {...rest}
     >
-      <Box gap={1}>
+      <Box gap={0}>
         <Box
           as="button"
           className={styles.CloseButton}
@@ -169,7 +167,7 @@ export const Dialog = ({
           <VisuallyHidden>
             <Trans>Close</Trans>
           </VisuallyHidden>
-          <X size={24} aria-hidden />
+          <X size={28} aria-hidden />
         </Box>
         <Box
           as={as}

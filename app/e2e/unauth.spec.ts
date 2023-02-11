@@ -15,14 +15,14 @@ test.describe("unauth", () => {
     await goToPath(page);
   });
 
-  test("View Sponsors Page", async ({ page }) => {
+  test("View Pricing Page", async ({ page }) => {
     await goToTab(page, "Charts");
 
     await page.click('button:has-text("Learn More")');
 
     // Expect "Sponsor flowchart.fun" to be visible
     await expect(
-      page.getByText(/Say goodbye to tedious flowchart creation/i)
+      page.getByText(/Make your workflow easier with Flowchart Fun Pro/i)
     ).toBeVisible();
   });
 
@@ -141,7 +141,7 @@ test.describe("unauth", () => {
 
     // Expect text to be reset
     await expect(
-      page.locator("text=before a colon creates a label")
+      page.locator("text=before a colon creates a label").first()
     ).toBeVisible();
   });
 
@@ -177,8 +177,8 @@ test.describe("unauth", () => {
     await page.locator('[aria-label="Rename"]').click();
     // Fill input[name="name"]
     await page.locator('input[name="name"]').fill("my new chart");
-    // Click button:has-text("Submit")
-    await page.locator('button:has-text("Submit")').click();
+    // Click button:has-text("Rename")
+    await page.locator('button:has-text("Rename")').click();
     await expect(page).toHaveURL(`${BASE_URL}/my-new-chart`);
     // Click text=my-new-chart
     await expect(page.locator("text=my-new-chart")).toBeVisible();
@@ -188,8 +188,8 @@ test.describe("unauth", () => {
     await page.locator('input[name="name"]').press("Meta+a");
     // Fill input[name="name"]
     await page.locator('input[name="name"]').fill("cool chart");
-    // Click button:has-text("Submit")
-    await page.locator('button:has-text("Submit")').click();
+    // Click button:has-text("Rename")
+    await page.locator('button:has-text("Rename")').click();
     await expect(page).toHaveURL(`${BASE_URL}/cool-chart`);
     // Click text=cool-chart
     await expect(page.locator("text=cool-chart")).toBeVisible();
@@ -458,19 +458,6 @@ test.describe("unauth", () => {
       // Take Screenshot
       await page.screenshot({ path: "ERROR.png" });
     }
-  });
-
-  test("Can toggle Syntax", async ({ page }) => {
-    await page
-      .getByRole("combobox", { name: "Syntax" })
-      .selectOption("graph-selector");
-    await page.getByRole("button", { name: "Export" }).click();
-    const input = page.getByTestId("Copy Fullscreen");
-    // get input value
-    const value = await input.evaluate((el) => (el as HTMLInputElement).value);
-    expect(value).toContain(
-      "CoCwlgzgBAhgDnKB3A9gJwNbQEYE8oAuucYAdgOYBQUUAkqQCYCmpBZ5UAxmkzAU9BhQANmQyEUhEEy4BXND1YiyTarFL5+ADwIAuKNiYAzdDKGcUwlKS48+A2CJiHhagMJ3+j0aXEMwPJwEwviyEOxSMkxaMEFOLoTRBGo0ohgyBOAQ+gAUoJCwCMjoWAaaxOwAlClQANqcYQQoALZ0ACIAulDoNTR4sAz+FOpQAKQArABCtG0TbeoMUDxGTIqcEZl8vTTK6VKQuQ0QTa0zlVAA9BdQAJooslwwNjDCEJJhMuEUwkwAtD4yCzNZosAgQSgXABUlB6zVkwjYAMoQJBrHBlAAEjAAG4yIyyUgAQiggB4NwCR+5RIRdKJQALz0+mUADeagARHAYGgIKtWfpWeQ0PAQL9uT8guhWZQAL50hm0oA"
-    );
   });
 });
 

@@ -526,11 +526,15 @@ function DeleteHostedChart({
   onDismiss: () => void;
 }) {
   const { handleSubmit } = useForm();
-  const { push } = useHistory();
   const deleteChatMutation = useMutation("deleteChart", deleteChart, {
     onSuccess: () => {
       queryClient.invalidateQueries(["auth", "hostedCharts"]);
-      push(`/`);
+      // set the root chart as the active one
+      useLastChart.setState({ lastChart: "" });
+      // remove the deleted chart from reactQuery
+      if (isOpen && isOpen.id)
+        queryClient.removeQueries(["useHostedDoc", isOpen.id]);
+
       onDismiss();
     },
   });
@@ -733,7 +737,7 @@ function HostedChartsCallout() {
           typeProps={{ size: 0 }}
           text={t`Learn More`}
           onClick={() => {
-            push("/sponsor");
+            push("/pricing");
           }}
         />
       </Box>

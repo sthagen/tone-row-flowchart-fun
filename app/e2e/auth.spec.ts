@@ -29,10 +29,7 @@ test.describe("Sign Up", () => {
   test("yearly sign-up", async () => {
     test.setTimeout(240000);
     await page.getByRole("link", { name: "Pricing" }).click();
-    await expect(page).toHaveURL(`${BASE_URL}/sponsor`);
-    await page.getByRole("button", { name: "Annually" }).click();
-    await page.getByRole("link", { name: "Sign Up Now" }).first().click();
-    await expect(page).toHaveURL(`${BASE_URL}/i#annually`);
+    await expect(page).toHaveURL(`${BASE_URL}/pricing`);
 
     await page.getByTestId("email").click();
     email = await getTempEmail();
@@ -114,7 +111,30 @@ test.describe("Sign Up", () => {
 
     // expect Clone button to be present
     await expect(page.getByRole("button", { name: "Clone" })).toBeVisible();
+  });
 
+  test("can convert chart to hosted from Might Lose Trigger", async () => {
+    // Create a blank local chart
+    await page.goto(`${BASE_URL}/my-new-chart`);
+
+    // Hover [data-testid="might-lose-sponsor-trigger"] then wait for the button to appear
+    await page.getByTestId("might-lose-sponsor-trigger").click();
+
+    // Make sure the input with the label Convert to hosted chart? is checked
+    await page.getByTestId("convert-to-hosted").click();
+
+    // Add a character to make name different
+    await page.getByRole("textbox").click();
+    await page.getByRole("textbox").fill("my-new-chart-");
+
+    // Rename
+    await page.getByRole("button", { name: "Rename" }).click();
+
+    // expect "/u/" to be in the url
+    await expect(page).toHaveURL(new RegExp(`${BASE_URL}/u/\\d+`));
+  });
+
+  test.afterAll(async () => {
     /* This should be run in the last test */
     await deleteCustomerByEmail(email);
     console.log("deleted stripe customer: ", email);

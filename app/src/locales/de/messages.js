@@ -1,28 +1,26 @@
 /*eslint-disable*/ module.exports = {
   messages: {
     "$3 / Month": "$3 / Monat",
-    "$3.00/month": "3,00 $/Monat",
     "$30 / Year": "$30 / Year",
-    "$30.00/year (save 20%)": "30,00 $/Jahr (20 % sparen)",
+    "(before a colon creates a label)":
+      "(vor einem Doppelpunkt wird zu einer Beschriftung)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "Greifen Sie von überall auf diese Diagramme zu.<0/>Teilen/Einbetten von Diagrammen, die mit Ihren Bearbeitungen synchronisiert bleiben.",
     Account: "Konto",
     Advanced: "Vorangeschritten",
-    "Already a sponsor? Log in here":
-      "Sind Sie schon ein Sponsor? Hier anmelden",
     Amount: "Betrag",
     "An error occurred. Try resubmitting or email {0} directly.": [
       "Es ist ein Fehler aufgetreten. Versuchen Sie, es erneut einzureichen oder senden Sie eine E-Mail direkt an ",
       ["0"],
       ".",
     ],
-    Annually: "Jährlich",
     Appearance: "Erscheinungsbild",
     Attributes: "Attributes",
     "Back To Editor": "Zurück zum Editor",
     Background: "Hintergrund",
     "Become a Sponsor": "Werden Sie zum Sponsoren",
     Blog: "Blog",
+    Border: "Border",
     "Bottom to Top": "Von unten nach oben",
     Breadthfirst: "In die Breite",
     Cancel: "Abbrechen",
@@ -40,8 +38,11 @@
     Clay: "Ton",
     Clear: "Löschen",
     "Clear text?": "Text löschen?",
+    "Click on \\n⟨⟩ Syntax Reference\\nto learn more .blue.border-none.roundrectangle[w=100][h=70]":
+      "Klicken Sie auf\\n⟨⟩ Syntax-Referenz\\num mehr zu erfahren .blue.border-none.roundrectangle[w=100][h=70]",
     Clone: "Klon",
     Close: "Schließen",
+    Color: "Color",
     "Colors include red, orange, yellow, blue, purple, black, white, and gray.":
       "Colors include red, orange, yellow, blue, purple, black, white, and gray.",
     "Comic Book": "Comic-Buch",
@@ -55,15 +56,11 @@
     "Copy PNG Image": "PNG-Bild kopieren",
     "Copy SVG Code": "Kopieren Sie den SVG-Code",
     Create: "Erstellen",
-    "Create a link directly using the exact label text":
-      "Erstellen Sie direkt einen Link mit dem genauen Beschriftungstext",
     Created: "Erstellt",
     "Creating an edge between two nodes is done by indenting the second node below the first":
       "Creating an edge between two nodes is done by indenting the second node below the first",
     "Custom Sharing Options": "Benutzerdefinierte Freigabeoptionen",
     "Customer Portal": "Kundenportal",
-    "Customize the look and feel of your charts with more layout and theme options, helping you to create professional, visually appealing diagrams.":
-      "Passen Sie das Aussehen Ihrer Diagramme mit mehr Layout- und Designoptionen an, um professionelle, optisch ansprechende Diagramme zu erstellen.",
     Dark: "Dunkel",
     "Dark Mode": "Dunkelmodus",
     Date: "Datum",
@@ -98,11 +95,9 @@
     "Enter a title": "Titel eingeben",
     Excalidraw: "Excalidraw",
     Export: "Exportieren",
-    "Export to Common Image Formats": "Exportieren Sie in gängige Bildformate",
+    "Extra Large": "Extra Large",
     Feedback: "Feedback",
     "Fit Graph": "Fit Graph",
-    "Flowchart Fun makes it quick and easy to visually communicate your processes.":
-      "Mit Flowchart Fun können Sie Ihre Prozesse schnell und einfach visuell darstellen.",
     "Follow Us": "Folgen Sie uns",
     Fullscreen: "Vollbild",
     Futuristic: "Futuristisch",
@@ -110,21 +105,21 @@
     "Get More Themes": "Weitere Themen erhalten",
     Graph: "Diagramm",
     Grid: "Raster",
-    "Have fun! 🎉": "Viel Spaß! 🎉",
     "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
-      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
+      "Aufgepasst! Bevor Sie Ihren Cache löschen, denken Sie daran, dass dieses Dokument nicht in der Cloud gespeichert ist.",
     Help: "Hilfe",
     History: "Verlauf",
     Home: "Startseite",
     "Hosted Charts": "Gehostete Diagramme",
     "ID's": "ID's",
-    "Indenting creates a link to the current line":
-      "Durch das Einrücken wird eine Verbindung zur aktuellen Zeile hergestellt",
+    "Image Export": "Bildexport",
+    Images: "Images",
+    "Indenting creates an edge": "Durch das Einrücken entsteht eine Kante",
     Info: "Info",
     Language: "Sprache",
+    Large: "Large",
     Layout: "Layout",
     "Layout is Frozen": "Layout ist eingefroren",
-    "Layouts and Themes": "Layouts und Themen",
     "Leading References": "Leading References",
     "Learn More": "Mehr erfahren",
     "Left to Right": "Von links nach rechts",
@@ -137,8 +132,10 @@
     "Made by <0>Tone Row</0>": "Gemacht von <0>Tone Row</0>",
     "Make a Donation": "Spenden",
     "Make publicly accessible": "Öffentlich zugänglich machen",
+    "Make your workflow easier with Flowchart Fun Pro– subscribe now for only $3/month or $30/year!":
+      "Vereinfachen Sie Ihren Arbeitsablauf mit Flowchart Fun Pro – abonnieren Sie jetzt für nur 3 $/Monat oder 30 $/Jahr!",
+    Medium: "Medium",
     Monospace: "Monospace",
-    Monthly: "Monatlich",
     "More Layouts": "Weitere Layouts",
     "More Themes and Fonts": "Weitere Themen und Schriftarten",
     Museum: "Museum",
@@ -148,6 +145,7 @@
     New: "Neues",
     "New Email": "Neue e-mail",
     "Next charge": "Nächste Gebühr",
+    Node: "Node",
     "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
@@ -156,7 +154,6 @@
     "Nodes can be styled with dashed, dotted, double, or solid borders":
       "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "Öffnen Sie das Kundenportal",
-    Plans: "Pläne",
     Playbook: "Spielbuch",
     Pricing: "Preisgestaltung",
     Public: "Öffentlich",
@@ -175,7 +172,7 @@
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
     "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
-      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
+      "Denken Sie daran, dass dieses Dokument nur auf diesem Computer gespeichert wird. Wenn Sie eine Möglichkeit suchen, Dokumente zu speichern und von überall darauf zuzugreifen, dann probieren Sie unseren Pro-Plan mit unbegrenzten gehosteten Diagrammen und mehr! Für nur 3 $/Monat!",
     Rename: "Umbenennen",
     Reset: "Zurücksetzen",
     "Resume Subscription": "Abonnement fortsetzen",
@@ -184,21 +181,21 @@
     "Right to Left": "Von rechts nach links",
     Roadmap: "Fahrplan",
     Save: "Speichern",
-    "Say goodbye to tedious flowchart creation":
-      "Verabschieden Sie sich von der mühsamen Erstellung von Flussdiagrammen",
     Settings: "Einstellungen",
+    Shape: "Shape",
     "Shape Libraries": "Bibliotheken anpassen",
-    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
-      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
+    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
+      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
     "Share with Full Access, Edit-only, or View-only Permissions":
       "Freigabe mit vollem Zugriff, Nur-Bearbeiten- oder Nur-Anzeigen-Berechtigung",
     "Sign In": "Einloggen",
     "Sign Up": "Registrieren",
-    "Sign Up Now": "Jetzt registrieren",
+    Size: "Size",
+    Small: "Small",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
     "Sorry! This page is only available in English.":
-      "Sorry! This page is only available in English.",
+      "Entschuldigung! Diese Seite ist nur auf Englisch verfügbar.",
     Spacing: "Abstand",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "Sponsern Sie flowchart.fun für 3 $ / Monat oder 30 $ / Jahr, um auf gehostete Flussdiagramme und die neuesten Stile und Funktionen zuzugreifen",
@@ -210,12 +207,15 @@
     "Streamline your workflow and simplify your process visualization with Flowchart Fun":
       "Optimieren Sie Ihren Arbeitsablauf und vereinfachen Sie Ihre Prozessvisualisierung mit Flowchart Fun",
     Style: "Stil",
+    "Style Attributes": "Style Attributes",
     "Style Classes": "Style Classes",
+    "Style attributes can be used to style nodes and edges":
+      "Style attributes can be used to style nodes and edges",
     Submit: "Einsenden",
     Subscription: "Abonnement",
     "Subscription will end": "Abonnement wird beendet",
     Syntax: "Syntax",
-    "Syntax Reference": "Syntax Reference",
+    "Syntax Reference": "Syntax-Referenz",
     "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
@@ -238,6 +238,10 @@
     "Update Email": "E-Mail aktualisieren",
     Updated: "Aktualisiert",
     "Use classes to group nodes": "Use classes to group nodes",
+    "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.":
+      "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.",
+    "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.":
+      "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.",
     "Use the customer portal to change your billing information.":
       "Verwenden Sie das Kundenportal, um Ihre Rechnungsinformationen zu ändern.",
     User: "Benutzer",
@@ -249,23 +253,16 @@
     "What would you like to name this copy?":
       "Wie möchten Sie diese Kopie nennen?",
     "What would you like to share with us?": "Was möchten Sie uns mitteilen?",
+    "Width and Height": "Width and Height",
     "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
       "Mit der Möglichkeit, eine unbegrenzte Anzahl gehosteter Charts zu erstellen, können Sie von jedem Gerät aus und von jedem Ort aus auf Ihre Flowcharts zugreifen und daran arbeiten.",
+    'You can also wrap text in "\\( \\)" to create an edge':
+      'Sie können Text auch in "\\( \\)" umbrechen, um eine Kante zu erstellen',
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "Ihr Abonnement ist nicht mehr aktiv. Wenn Sie gehostete Diagramme erstellen und bearbeiten möchten, werden Sie Sponsor.",
     "Zoom In": "Zoom In",
     "Zoom Out": "Zoom Out",
-    "[custom ID] or": "[benutzerdefinierte ID] oder",
     "any text: before a colon creates a label":
       "Jeder beliebige Text: vor einem Doppelpunkt wird zu einer Beschriftung",
-    "by adding an %5BID%5D and referencing that":
-      "indem man ein %5BID%5D hinzufügt und darauf verweist",
-    comments: "Kommentare",
-    "like this: (This app works by typing)":
-      "so wie hier: (Diese App funktioniert durch Tippen)",
-    "like this: (custom ID) // You can also use single-line comments":
-      "so wie hier: (benutzerdefinierte ID) // Sie können auch einzeilige Kommentare verwenden",
-    multiline: "mehrzeilige",
-    or: "oder",
   },
 };

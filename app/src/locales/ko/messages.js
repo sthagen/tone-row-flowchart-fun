@@ -1,28 +1,25 @@
 /*eslint-disable*/ module.exports = {
   messages: {
     "$3 / Month": "$3/월",
-    "$3.00/month": "$3.00/월",
     "$30 / Year": "$30/년",
-    "$30.00/year (save 20%)": "$30.00/년(20% 할인)",
+    "(before a colon creates a label)": "(레이블을 생성합니다)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "어디서든 이 차트를 이용하실 수 있습니다.<0/>편집한 내용의 동기화가 유지된 차트를 공유/삽입하세요",
     Account: "계정",
     Advanced: "고급의",
-    "Already a sponsor? Log in here":
-      "이미 후원중이신가요? 여기서 로그인하세요",
     Amount: "금액",
     "An error occurred. Try resubmitting or email {0} directly.": [
       "오류가 발생하였습니다. 다시 제출하거나 ",
       ["0"],
       "으로 직접 이메일을 보내주십시오.",
     ],
-    Annually: "연간",
     Appearance: "외관",
     Attributes: "Attributes",
     "Back To Editor": "편집기로 돌아가기",
     Background: "배경",
     "Become a Sponsor": "스폰서 되기",
     Blog: "블로그",
+    Border: "Border",
     "Bottom to Top": "아래에서 위로",
     Breadthfirst: "폭 우선",
     Cancel: "취소",
@@ -40,8 +37,11 @@
     Clay: "점토",
     Clear: "지우다",
     "Clear text?": "텍스트를 지우시겠습니까?",
+    "Click on \\n⟨⟩ Syntax Reference\\nto learn more .blue.border-none.roundrectangle[w=100][h=70]":
+      "자세한 내용을 보려면 구문 참조를 클릭하십시오 .blue.border-none.ellipse[w=100][h=100]",
     Clone: "클론",
     Close: "닫기",
+    Color: "Color",
     "Colors include red, orange, yellow, blue, purple, black, white, and gray.":
       "Colors include red, orange, yellow, blue, purple, black, white, and gray.",
     "Comic Book": "만화책",
@@ -55,15 +55,11 @@
     "Copy PNG Image": "PNG 이미지 복사",
     "Copy SVG Code": "SVG 코드 복사",
     Create: "만들기",
-    "Create a link directly using the exact label text":
-      "정확한 레이블 텍스트를 사용하여 직접 링크 만들기",
     Created: "생성됨",
     "Creating an edge between two nodes is done by indenting the second node below the first":
       "Creating an edge between two nodes is done by indenting the second node below the first",
     "Custom Sharing Options": "커스텀 공유 옵션",
     "Customer Portal": "고객 포털",
-    "Customize the look and feel of your charts with more layout and theme options, helping you to create professional, visually appealing diagrams.":
-      "더 많은 레이아웃 및 테마 옵션으로 차트의 모양과 느낌을 사용자의 요구대로 변경하여 전문적이면서도 시각적으로 매력적인 다이어그램을 만들 수 있습니다.",
     Dark: "다크",
     "Dark Mode": "다크 모드",
     Date: "날짜",
@@ -97,11 +93,9 @@
     "Enter a title": "제목을 입력하세요",
     Excalidraw: "Excalidraw",
     Export: "내보내기",
-    "Export to Common Image Formats": "일반 이미지 포맷으로 내보내기",
+    "Extra Large": "Extra Large",
     Feedback: "피드백",
     "Fit Graph": "Fit Graph",
-    "Flowchart Fun makes it quick and easy to visually communicate your processes.":
-      "Flowchart Fun을 사용하여 과정을 쉽고 빠르게 시각화적으로 소통할 수 있습니다.",
     "Follow Us": "팔로우하세요",
     Fullscreen: "전체 화면",
     Futuristic: "미래 지향적",
@@ -109,21 +103,21 @@
     "Get More Themes": "더 많은 테마 받기",
     Graph: "그래프",
     Grid: "그리드",
-    "Have fun! 🎉": "즐겨보세요! 🎉",
     "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.":
-      "Heads up! Before you clear your cache, remember that this document isn't saved in the cloud.",
+      "주의! 캐시를 지우기 전에 이 문서는 클라우드에 저장 되어있지 않다는 것을 기억하시기 바랍니다. ",
     Help: "도움말",
     History: "기록",
     Home: "집",
     "Hosted Charts": "호스트 차트",
     "ID's": "ID's",
-    "Indenting creates a link to the current line":
-      "들여쓰기는 현재 줄에 대한 링크를 생성합니다",
+    "Image Export": "이미지 내보내기",
+    Images: "Images",
+    "Indenting creates an edge": "들여 쓰기는 가장자리를 만듭니다",
     Info: "정보",
     Language: "언어",
+    Large: "Large",
     Layout: "레이아웃",
     "Layout is Frozen": "레이아웃이 고정됨",
-    "Layouts and Themes": "레이아웃 및 테마",
     "Leading References": "Leading References",
     "Learn More": "더 알아보기",
     "Left to Right": "왼쪽에서 오른쪽으로",
@@ -136,8 +130,10 @@
     "Made by <0>Tone Row</0>": "<0>Tone Row</0> 제작",
     "Make a Donation": "기부하기",
     "Make publicly accessible": "공개적으로 액세스 가능하게 만들기",
+    "Make your workflow easier with Flowchart Fun Pro– subscribe now for only $3/month or $30/year!":
+      "Flowchart Fun Pro로 작업 흐름을 더 쉽게 만드세요. 지금 구독을 월 $3 또는 연간 $30에 불과합니다!",
+    Medium: "Medium",
     Monospace: "Monospace",
-    Monthly: "월간",
     "More Layouts": "더 많은 레이아웃",
     "More Themes and Fonts": "더욱 많은 테마와 폰트",
     Museum: "박물관",
@@ -147,6 +143,7 @@
     New: "신규",
     "New Email": "새 이메일",
     "Next charge": "다음 청구 금액",
+    Node: "Node",
     "Node Border Style": "Node Border Style",
     "Node Colors": "Node Colors",
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
@@ -155,7 +152,6 @@
     "Nodes can be styled with dashed, dotted, double, or solid borders":
       "Nodes can be styled with dashed, dotted, double, or solid borders",
     "Open Customer Portal": "고객 포털 열기",
-    Plans: "요금제",
     Playbook: "플레이북",
     Pricing: "가격",
     Public: "공용",
@@ -174,7 +170,7 @@
     "Referencing multiple nodes with the same assigned class":
       "Referencing multiple nodes with the same assigned class",
     "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
-      "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
+      "이 문서는 이 컴퓨터에만 저장된다는 점 기억하세요. 만약 어디를 가서라도 문서를 저장하고 또 그 문서에 접속하는 방법을 찾으신다면, 무제한의 호스티드 차트와 함께 더 많은 기능을 갖춘 저희 Pro 플랜을 이용해 보세요! 한 달에 단 $3면 됩니다!",
     Rename: "이름 바꾸기",
     Reset: "재설정",
     "Resume Subscription": "구독 재개",
@@ -183,21 +179,21 @@
     "Right to Left": "오른쪽에서 왼쪽으로",
     Roadmap: "로드맵",
     Save: "구하다",
-    "Say goodbye to tedious flowchart creation":
-      "더 이상 지루하게 플로 차트를 작성할 필요가 없습니다",
     Settings: "설정",
+    Shape: "Shape",
     "Shape Libraries": "셰이프 라이브러리",
-    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
-      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, round-triangle, round-diamond, round-pentagon, round-hexagon, round-heptagon, round-octagon, round-tag, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
+    "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
+      "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
     "Share with Full Access, Edit-only, or View-only Permissions":
       "완전한 접근권, 편집 전용, 또는 읽기 전용 권한으로 공유하세요",
     "Sign In": "로그인",
     "Sign Up": "가입",
-    "Sign Up Now": "지금 가입하세요",
+    Size: "Size",
+    Small: "Small",
     "Some classes are available to help style your flowchart":
       "Some classes are available to help style your flowchart",
     "Sorry! This page is only available in English.":
-      "Sorry! This page is only available in English.",
+      "죄송합니다! 이 페이지는 영어로만 제공됩니다.",
     Spacing: "간격",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "호스트된 플로차트와 최신 스타일 및 기능에 액세스하기 위해 월 3달러 또는 연간 30달러로 플로차트.펀 후원",
@@ -209,12 +205,15 @@
     "Streamline your workflow and simplify your process visualization with Flowchart Fun":
       "Flowchart Fun를 통해 워크플로우를 능률화하고 프로세스 시각화를 단순화하세요",
     Style: "스타일",
+    "Style Attributes": "Style Attributes",
     "Style Classes": "Style Classes",
+    "Style attributes can be used to style nodes and edges":
+      "Style attributes can be used to style nodes and edges",
     Submit: "보내다",
     Subscription: "구독",
     "Subscription will end": "구독이 종료될 예정입니다.",
     Syntax: "문법",
-    "Syntax Reference": "Syntax Reference",
+    "Syntax Reference": "신택스 참조",
     "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
@@ -237,6 +236,10 @@
     "Update Email": "이메일 업데이트",
     Updated: "업데이트됨",
     "Use classes to group nodes": "Use classes to group nodes",
+    "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.":
+      "Use the attribute <0>src</0> to set the image of a node. The image will be scaled to fit the node, so you may need to adjust the width and height of the node to get the desired result. Only public images (not blocked by CORS) are supported.",
+    "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.":
+      "Use the attributes <0>w</0> and <1>h</1> to explicitly set the width and height of a node.",
     "Use the customer portal to change your billing information.":
       "청구 정보를 변경하려면 고객 포털을 사용하십시오.",
     User: "사용자",
@@ -248,23 +251,16 @@
     "What would you like to name this copy?":
       "이 사본의 이름을 무엇으로 지정하시겠습니까?",
     "What would you like to share with us?": "무엇을 공유하시겠습니까?",
+    "Width and Height": "Width and Height",
     "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
       "호스팅된 차트를 무제한으로 생성할 수 있는 기능을 통해, 장소와 디바이스에 무관하게 플로우차트에 접근하고 작업할 수 있습니다.",
+    'You can also wrap text in "\\( \\)" to create an edge':
+      '텍스트를 "\\( \\)"로 감싸서 가장자리를 만들 수도 있습니다.',
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "귀하의 구독이 더 이상 활성 상태가 아닙니다. 호스트 차트를 작성 및 수정하려면 후원자가 되십시오.",
     "Zoom In": "Zoom In",
     "Zoom Out": "Zoom Out",
-    "[custom ID] or": "[사용자 지정 ID] 또는",
     "any text: before a colon creates a label":
       "콜론 앞의 모든 텍스트는: 레이블을 생성합니다",
-    "by adding an %5BID%5D and referencing that":
-      "%5BID%5D를 추가하고 참조하여",
-    comments: "댓글",
-    "like this: (This app works by typing)":
-      "이렇게: (이 앱은 타이핑으로 작동합니다)",
-    "like this: (custom ID) // You can also use single-line comments":
-      "이렇게: (사용자 지정 ID) // 한 줄을 사용할 수도 있습니다 댓글",
-    multiline: "멀티라인",
-    or: "또는",
   },
 };

@@ -264,9 +264,7 @@ export function SyntaxReference() {
                 <Trans>
                   Shapes include rectangle, roundrectangle, ellipse, triangle,
                   pentagon, hexagon, heptagon, octagon, star, barrel, diamond,
-                  vee, rhomboid, polygon, tag, round-rectangle, round-triangle,
-                  round-diamond, round-pentagon, round-hexagon, round-heptagon,
-                  round-octagon, round-tag, cut-rectangle,
+                  vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle,
                   bottom-round-rectangle, and concave-hexagon.
                 </Trans>
               </p>
@@ -312,6 +310,45 @@ export function SyntaxReference() {
               <CodeExample
                 code={`A <span data-highlight>.dashed</span>\nB <span data-highlight>.dotted</span>\nC <span data-highlight>.double</span>\nD`}
                 src="13"
+              />
+            </section>
+            <section>
+              <h1>
+                <Trans>Style Attributes</Trans>
+              </h1>
+              <p>
+                <Trans>
+                  Style attributes can be used to style nodes and edges
+                </Trans>
+              </p>
+              <h2>
+                <Trans>Width and Height</Trans>
+              </h2>
+              <p>
+                <Trans>
+                  Use the attributes <code>w</code> and <code>h</code> to
+                  explicitly set the width and height of a node.
+                </Trans>
+              </p>
+              <CodeExample
+                code={`👋 <span data-highlight>[w=50]</span>\n👋 <span data-highlight>[h=50]</span>\n👋 <span data-highlight>[w=50][h=50]</span>`}
+                src="14"
+              />
+              <h2>
+                <Trans>Images</Trans>
+              </h2>
+              <p>
+                <Trans>
+                  Use the attribute <code>src</code> to set the image of a node.
+                  The image will be scaled to fit the node, so you may need to
+                  adjust the width and height of the node to get the desired
+                  result. Only public images (not blocked by CORS) are
+                  supported.
+                </Trans>
+              </p>
+              <CodeExample
+                code={`Flowchart Fun <span data-highlight>[src="https://flowchart.fun/apple-touch-icon.png"]</span>[w=90][h=90]`}
+                src="15"
               />
             </section>
           </Box>

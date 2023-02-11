@@ -4,7 +4,7 @@ import { parse, toCytoscapeElements } from "graph-selector";
 import { TGetSize } from "./getGetSize";
 import { SelectOption } from "./graphOptions";
 import { parseText } from "./parseText";
-import { useDoc } from "./prepareChart";
+import { useDoc } from "./useDoc";
 import { stripComments } from "./utils";
 
 /** Recognized names for support parsers */
@@ -34,14 +34,24 @@ export function universalParse(
   switch (parser) {
     case "graph-selector":
       return toCytoscapeElements(parse(text)).map((element) => {
+        let size: Record<string, string | number> = {};
+        if ("w" in element.data || "h" in element.data) {
+          size = {
+            width: element.data.w || "label",
+            height: element.data.h || "label",
+          };
+        } else {
+          size = getSize(
+            element?.data?.label,
+            (element?.classes ?? "").split(" ")
+          );
+        }
+
         return {
           ...element,
           data: {
             ...element.data,
-            ...getSize(
-              element?.data?.label,
-              (element?.classes ?? "").split(" ")
-            ),
+            ...size,
           },
         };
       });
