@@ -6,6 +6,7 @@
       "(avant que deux-points ne créent une étiquette)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "Accédez à ces graphiques depuis n'importe où.<0/>Partagez ou intégrez des graphiques, qui se synchronisent au fil de vos modifications.",
+    "Accessible from any device": "Accessible depuis n'importe quel appareil",
     Account: "Compte",
     Advanced: "Avancé",
     Amount: "Montant",
@@ -16,9 +17,11 @@
     ],
     Appearance: "Thème",
     Attributes: "Attributes",
+    "Auto-Layouts": "Mises en page automatiques",
     "Back To Editor": "Retour à l'éditeur",
     Background: "L'arrière plan",
     "Become a Sponsor": "Devenir un sponsor",
+    Blank: "Blank",
     Blog: "Blog",
     Border: "Border",
     "Bottom to Top": "De bas en haut",
@@ -56,6 +59,9 @@
     "Copy PNG Image": "Copier l'image PNG",
     "Copy SVG Code": "Copier le code SVG",
     Create: "Créer",
+    "Create Flowcharts from a Prompt with AI":
+      "Créer des diagrammes à partir d'une invite avec l'IA",
+    "Create a New Flowchart": "Créer un nouveau diagramme",
     Created: "Créé",
     "Creating an edge between two nodes is done by indenting the second node below the first":
       "Creating an edge between two nodes is done by indenting the second node below the first",
@@ -65,13 +71,17 @@
     "Dark Mode": "Mode sombre",
     Date: "Date",
     Delete: "Supprimer",
+    "Deleted when browser data is cleared":
+      "Supprimé lorsque les données du navigateur sont effacées",
+    "Describe the flowchart you wish to create":
+      "Décrivez le schéma que vous souhaitez créer",
     Direction: "Direction",
     Discard: "Jeter",
     "Do you want to cancel your subscription?":
       "Souhaitez-vous résilier votre abonnement ?",
     "Do you want to delete this?": "Souhaitez-vous supprimer ceci ?",
     Document: "Document",
-    Documentation: "Documentation",
+    "Don't have an account?": "Vous n'avez pas de compte ?",
     Download: "Télécharger",
     "Download JPG": "Télécharger JPG",
     "Download PNG": "Télécharger PNG",
@@ -79,7 +89,6 @@
     "Draw an edge from multiple nodes by beginning the line with a reference":
       "Draw an edge from multiple nodes by beginning the line with a reference",
     Duplicate: "Dupliquer",
-    "Dynamic Share Links": "Liens de partage dynamiques",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
     "Edge Style": "Edge Style",
@@ -93,9 +102,11 @@
     Eggs: "Oeufs",
     Email: "E-mail",
     "Enter a title": "Entrez un titre",
+    "Everything in Free": "Tout dans le plan gratuit",
     Excalidraw: "Excalidraw",
     Export: "Exporter",
     "Extra Large": "Extra Large",
+    Extract: "Extrait",
     Feedback: "Commentaire",
     "Fit Graph": "Fit Graph",
     "Follow Us": "Suivez-nous",
@@ -116,6 +127,7 @@
     Images: "Images",
     "Indenting creates an edge": "L'indentation crée un bord",
     Info: "Info",
+    Instruct: "Instruire",
     Language: "Langue",
     Large: "Large",
     Layout: "Disposition",
@@ -135,9 +147,8 @@
     "Make your workflow easier with Flowchart Fun Pro– subscribe now for only $3/month or $30/year!":
       "Facilitez votre flux de travail avec Flowchart Fun Pro - abonnez-vous maintenant pour seulement 3 $/mois ou 30 $/an !",
     Medium: "Medium",
+    Method: "Method",
     Monospace: "Monospace",
-    "More Layouts": "Plus de mises en page",
-    "More Themes and Fonts": "Plus de thèmes et de polices",
     Museum: "Musée",
     Name: "Nom",
     "Need Help? <0>Check out our documentation.</0>":
@@ -151,11 +162,17 @@
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
-    "Nodes can be styled with dashed, dotted, double, or solid borders":
-      "Nodes can be styled with dashed, dotted, double, or solid borders",
+    "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.":
+      "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.",
+    "One-time Share Links": "Liens de partage à usage unique",
     "Open Customer Portal": "Ouvrir le portail client",
+    "Paste the information you wish to convert to a flowchart":
+      "Collez les informations que vous souhaitez convertir en organigramme",
+    Permalinks: "Permalinks",
+    "Persistent Flowcharts": "Diagrammes persistants",
     Playbook: "Livre-jeu",
     Pricing: "Tarification",
+    Prompt: "Prompt",
     Public: "Public",
     Random: "Aléatoire",
     "Read-only": "Lecture seulement",
@@ -183,12 +200,8 @@
     Save: "Sauver",
     Settings: "Paramètres",
     Shape: "Shape",
-    "Shape Libraries": "Bibliothèques de formes",
     "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
       "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
-    "Share with Full Access, Edit-only, or View-only Permissions":
-      "Partager avec des autorisations d'accès complet, d'édition uniquement ou d'affichage uniquement",
-    "Sign In": "Connectez",
     "Sign Up": "Inscription",
     Size: "Size",
     Small: "Small",
@@ -199,11 +212,13 @@
     Spacing: "Espacement",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "Parrainez flowchart.fun pour 3 $ / mois ou 30 $ / an pour accéder aux organigrammes hébergés et aux nouveaux styles et fonctionnalités",
+    Standard: "Standard",
     Start: "Début",
-    "Static Share Links": "Liens de partage statiques",
     Status: "État",
     "Store any data associated to a node":
       "Store any data associated to a node",
+    "Stored in the cloud": "Stocké dans le cloud",
+    "Stored on this computer": "Stocké sur cet ordinateur",
     "Streamline your workflow and simplify your process visualization with Flowchart Fun":
       "Rationalisez votre flux de travail et simplifiez la visualisation de vos processus grâce à Flowchart Fun",
     Style: "Style",
@@ -216,6 +231,8 @@
     "Subscription will end": "L'abonnement prendra fin",
     Syntax: "Syntaxe",
     "Syntax Reference": "Référence de syntaxe",
+    Temporary: "Temporaire",
+    "Temporary Flowcharts": "Diagrammes temporaires",
     "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
@@ -230,11 +247,10 @@
     "This app works by typing": "Chaque ligne creé une nouvelle boite",
     "Top to Bottom": "De haut en bas",
     "Try again": "Réessayer",
+    Type: "Type",
     Unfreeze: "Débloquer",
     "Unique text value to identify a node":
       "Unique text value to identify a node",
-    "Unlimited Hosted Charts": "Nombre illimité de graphiques hébergés",
-    "Unlimited Local Charts": "Nombre illimité de graphiques locaux",
     "Update Email": "Mettre à jour l'e-mail",
     Updated: "Mis à jour",
     "Use classes to group nodes": "Use classes to group nodes",
@@ -257,8 +273,12 @@
     "Width and Height": "Width and Height",
     "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
       "Grâce à la possibilité de créer un nombre illimité de graphiques hébergés, vous pouvez accéder à vos organigrammes et y travailler depuis n'importe quel appareil, où que vous soyez.",
+    "You already have a flowchart with this name.":
+      "Vous avez déjà un diagramme avec ce nom.",
     'You can also wrap text in "\\( \\)" to create an edge':
       'Vous pouvez également envelopper le texte dans "\\( \\)" pour créer un bord',
+    "You must log in to create a standard flowchart.":
+      "Vous devez vous connecter pour créer un diagramme standard.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "Votre abonnement n'est plus valable. Si vous souhaitez créer et modifier des graphiques hébergés, devenez sponsor.",
     "Zoom In": "Zoom In",

@@ -5,6 +5,7 @@
     "(before a colon creates a label)": "(कॉलन से पहले एक लेबल बनाता है)",
     "Access these charts from anywhere.<0/>Share/embed charts that stay in sync with your edits.":
       "इन चार्ट को कहीं से भी एक्सेस करें.<0/>ऐसे चार्ट शेयर करें/लगाएं जो आपके एडिट के साथ सिंक हों.",
+    "Accessible from any device": "किसी भी उपकरण से पहुँचा जा सकता है",
     Account: "खाता",
     Advanced: "विकसित",
     Amount: "रकम",
@@ -15,9 +16,11 @@
     ],
     Appearance: "दिखावट",
     Attributes: "Attributes",
+    "Auto-Layouts": "ऑटो लेआउट",
     "Back To Editor": "संपादक पर वापस जाएं",
     Background: "पृष्ठभूमि",
     "Become a Sponsor": "एक प्रायोजक बनें",
+    Blank: "Blank",
     Blog: "ब्लॉग",
     Border: "Border",
     "Bottom to Top": "नीचे से शीर्ष तक",
@@ -55,6 +58,9 @@
     "Copy PNG Image": "PNG छवि कॉपी करें",
     "Copy SVG Code": "SVG कोड कॉपी करें",
     Create: "बनाएँ",
+    "Create Flowcharts from a Prompt with AI":
+      "एआई के साथ प्रॉम्प्ट से डायग्राम बनाएं",
+    "Create a New Flowchart": "एक नया आरेख बनाएँ",
     Created: "बनाया गया",
     "Creating an edge between two nodes is done by indenting the second node below the first":
       "Creating an edge between two nodes is done by indenting the second node below the first",
@@ -64,13 +70,17 @@
     "Dark Mode": "डार्क मोड",
     Date: "तारीख़",
     Delete: "हटाएँ",
+    "Deleted when browser data is cleared":
+      "ब्राउज़र डेटा साफ़ होने पर हटा दिया गया",
+    "Describe the flowchart you wish to create":
+      "उस आरेख का वर्णन करें जिसे आप बनाना चाहते हैं",
     Direction: "दिशा",
     Discard: "रद्द करें",
     "Do you want to cancel your subscription?":
       "क्या आप अपनी सदस्यता रद्द करना चाहते हैं?",
     "Do you want to delete this?": "क्या आप इसे डिलीट करना चाहते हैं?",
     Document: "दस्तावेज़",
-    Documentation: "प्रलेखन",
+    "Don't have an account?": "खाता नहीं है?",
     Download: "डाउनलोड",
     "Download JPG": "JPG डाउनलोड करें",
     "Download PNG": "PNG डाउनलोड करें",
@@ -78,7 +88,6 @@
     "Draw an edge from multiple nodes by beginning the line with a reference":
       "Draw an edge from multiple nodes by beginning the line with a reference",
     Duplicate: "डुप्लिकेट बनाएँ",
-    "Dynamic Share Links": "डायनामिक शेयर लिंक्स",
     "Edge ID, Classes, Attributes": "Edge ID, Classes, Attributes",
     "Edge Label": "Edge Label",
     "Edge Style": "Edge Style",
@@ -92,9 +101,11 @@
     Eggs: "अंडे",
     Email: "ईमेल",
     "Enter a title": "एक शीर्षक दर्ज करें",
+    "Everything in Free": "फ्री प्लान में सब कुछ",
     Excalidraw: "Excalidraw",
     Export: "एक्सपोर्ट करें",
     "Extra Large": "Extra Large",
+    Extract: "निकालना",
     Feedback: "फ़ीडबैक",
     "Fit Graph": "Fit Graph",
     "Follow Us": "हमें फॉलो करें",
@@ -115,6 +126,7 @@
     Images: "Images",
     "Indenting creates an edge": "इंडेंटिंग एक बढ़त बनाता है",
     Info: "जानकारी",
+    Instruct: "हिदायत",
     Language: "भाषा",
     Large: "Large",
     Layout: "ख़ाका",
@@ -134,9 +146,8 @@
     "Make your workflow easier with Flowchart Fun Pro– subscribe now for only $3/month or $30/year!":
       "फ़्लोचार्ट फ़न प्रो के साथ अपने कार्यप्रवाह को आसान बनाएं– केवल $3/माह या $30/वर्ष के लिए अभी सदस्यता लें!",
     Medium: "Medium",
+    Method: "Method",
     Monospace: "Monospace",
-    "More Layouts": "ज़्यादा लेआउट",
-    "More Themes and Fonts": "और अधिक थीम और फॉन्ट",
     Museum: "म्यूज़ियम",
     Name: "नाम",
     "Need Help? <0>Check out our documentation.</0>":
@@ -150,11 +161,17 @@
     "Node ID, Classes, Attributes": "Node ID, Classes, Attributes",
     "Node Label": "Node Label",
     "Node Shapes": "Node Shapes",
-    "Nodes can be styled with dashed, dotted, double, or solid borders":
-      "Nodes can be styled with dashed, dotted, double, or solid borders",
+    "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.":
+      "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.",
+    "One-time Share Links": "वन-टाइम शेयर लिंक",
     "Open Customer Portal": "ग्राहक पोर्टल खोलें",
+    "Paste the information you wish to convert to a flowchart":
+      "उस जानकारी को पेस्ट करें जिसे आप फ़्लोचार्ट में बदलना चाहते हैं",
+    Permalinks: "Permalinks",
+    "Persistent Flowcharts": "लगातार आरेख",
     Playbook: "प्लेबुक",
     Pricing: "मूल्य निर्धारण",
+    Prompt: "Prompt",
     Public: "पब्लिक",
     Random: "अनियमित",
     "Read-only": "केवल पढ़ने के लिए",
@@ -182,12 +199,8 @@
     Save: "सहेजें",
     Settings: "सेटिंग",
     Shape: "Shape",
-    "Shape Libraries": "शेप लाइब्रेरी",
     "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.":
       "Shapes include rectangle, roundrectangle, ellipse, triangle, pentagon, hexagon, heptagon, octagon, star, barrel, diamond, vee, rhomboid, polygon, tag, round-rectangle, cut-rectangle, bottom-round-rectangle, and concave-hexagon.",
-    "Share with Full Access, Edit-only, or View-only Permissions":
-      "पूरे एक्सेस के साथ शेयर करें , सिर्फ एडिट करें , या व्यू ओनली की अनुमति",
-    "Sign In": "साइन इन करें",
     "Sign Up": "साइन अप",
     Size: "Size",
     Small: "Small",
@@ -198,11 +211,13 @@
     Spacing: "अंतर",
     "Sponsor flowchart.fun for $3 / month or $30 / year to access hosted flowcharts and the newest styles and features":
       "होस्ट किए गए फ़्लोचार्ट और नवीनतम शैलियों और सुविधाओं तक पहुँचने के लिए $3/माह या $30/वर्ष के लिए फ़्लोचार्ट.फ़न को प्रायोजित करें",
+    Standard: "मानक",
     Start: "शुरू",
-    "Static Share Links": "स्टैटिक शेयर लिंक्स",
     Status: "स्टेटस",
     "Store any data associated to a node":
       "Store any data associated to a node",
+    "Stored in the cloud": "बादल में संग्रहित",
+    "Stored on this computer": "इस कंप्यूटर पर संग्रहीत",
     "Streamline your workflow and simplify your process visualization with Flowchart Fun":
       "अपने वर्कफ्लो को स्ट्रीमलाइन करें और अपनी प्रक्रिया को आसान बनाएं फ्लोचार्ट फन के साथ विजुअलाइजेशन",
     Style: "शैली",
@@ -215,6 +230,8 @@
     "Subscription will end": "सदस्यता समाप्त हो जाएगी",
     Syntax: "सिंटेक्स",
     "Syntax Reference": "वाक्य-विन्यास संदर्भ",
+    Temporary: "अस्थायी",
+    "Temporary Flowcharts": "अस्थायी आरेख",
     "Text Sizes": "Text Sizes",
     "Text followed by colon+space creates an edge with the text as the label":
       "Text followed by colon+space creates an edge with the text as the label",
@@ -229,11 +246,10 @@
     "This app works by typing": "यह ऐप टाइप द्वारा काम करता है",
     "Top to Bottom": "ऊपर से नीचे",
     "Try again": "फिर से कोशिश करें",
+    Type: "प्रकार",
     Unfreeze: "अनफ़्रीज़",
     "Unique text value to identify a node":
       "Unique text value to identify a node",
-    "Unlimited Hosted Charts": "असीमित होस्टेड चार्ट",
-    "Unlimited Local Charts": "असीमित लोकल चार्ट",
     "Update Email": "ईमेल अपडेट करें",
     Updated: "अपडेट किया गया",
     "Use classes to group nodes": "Use classes to group nodes",
@@ -256,8 +272,12 @@
     "Width and Height": "Width and Height",
     "With the ability to create unlimited hosted charts, you can access and work on your flowcharts from any device, anywhere.":
       "असीमित होस्टेड चार्ट बनाने की क्षमता के साथ, आप किसी भी डिवाइस पर कहीं से भी फ़्लोचार्ट तक पहुंच सकते हैं और उस पर काम कर सकते हैं।",
+    "You already have a flowchart with this name.":
+      "आपके पास इस नाम का आरेख पहले से है।",
     'You can also wrap text in "\\( \\)" to create an edge':
       'किनारे बनाने के लिए आप टेक्स्ट को "\\( \\)" में भी रैप कर सकते हैं',
+    "You must log in to create a standard flowchart.":
+      "मानक आरेख बनाने के लिए आपको लॉग इन करना होगा।",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "आपकी सदस्यता अब एक्टिव नहीं है. अगर आप होस्टेड चार्ट बनाना और एडिट करना चाहते हैं तो स्पॉन्सर बनें.",
     "Zoom In": "Zoom In",

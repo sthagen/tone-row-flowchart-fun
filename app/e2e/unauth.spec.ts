@@ -128,16 +128,25 @@ test.describe("unauth", () => {
     await expect(page.locator("text=delete-me")).not.toBeVisible();
   });
 
-  test("Create New", async ({ page }) => {
+  test("Create a New Local Chart", async ({ page }) => {
     await changeEditorText(page, "1");
 
     expect(new URL(page.url()).pathname).toBe("/");
 
-    // Click the link with the text New
-    await page.click('a:has-text("New")');
+    await page.getByRole("link", { name: "New" }).click();
+    await page.getByPlaceholder("Untitled").click();
+    await page.getByPlaceholder("Untitled").fill("a-b-c-d-e");
 
-    // Make sure no longer on index
-    expect(new URL(page.url()).pathname).not.toBe("/");
+    await page
+      .getByRole("radio", {
+        name: "Temporary Stored on this computer Deleted when browser data is cleared",
+      })
+      .click();
+
+    await page.getByRole("button", { name: "Create" }).click();
+
+    // Make sure we're on the new chart
+    expect(new URL(page.url()).pathname).toBe("/a-b-c-d-e");
 
     // Expect text to be reset
     await expect(
@@ -145,31 +154,25 @@ test.describe("unauth", () => {
     ).toBeVisible();
   });
 
-  test("View an Example", async ({ page }) => {
-    // click button with text "Help"
-    await page.locator('button:has-text("Help")').click();
+  test.skip("Creating a new chart from a template immediatetly creates a local chart", async ({
+    page,
+  }) => {
+    // Need timeout to avoid failure in firefox
+    // https://github.com/microsoft/playwright/issues/20749
+    await page.waitForTimeout(1000);
 
-    // click button with text "Documentation"
-    await page.locator('a:has-text("Documentation")').first().click();
+    // go to url
+    await page.goto(
+      `${BASE_URL}/n#C4ewBARgpmCWB2ZgAsYBMQGMCuBbK8wAUALxllEDeRYYARAA4CGATgM5Qt0Bc9A5iyYNkAWg4AbKJlBciAX1LkSQA`
+    );
 
-    await expect(page).toHaveURL(`${BASE_URL}/h`);
-
-    // Click text=Table of Contents
-    await page.locator("text=Table of Contents").click();
-
-    // Click a:has-text("Adding Shapes and Colors")
-    await page.locator('a:has-text("Adding Shapes and Colors")').click();
-    await expect(page).toHaveURL(`${BASE_URL}/h#adding-shapes-and-colors`);
-
-    await page
-      .locator(
-        'pre:has-text("~~~ layout: name: grid ~~~ [.circle] circle [.ellipse] ellipse [.triangle] trian") .code-example-link'
-      )
-      .click();
-
+    // expect "to be in the document" to be in the document
     await expect(
-      page.locator('div[role="code"] div:has-text("[.circle] circle")').nth(4)
+      page.locator("text=to be in the document").first()
     ).toBeVisible();
+
+    // expect the url to contain "temp" in it
+    expect(page.url()).toContain("temp");
   });
 
   test("Rename chart", async ({ page }) => {

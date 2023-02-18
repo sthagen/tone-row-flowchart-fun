@@ -89,6 +89,17 @@ test.describe("Sign Up", () => {
   test("can publish chart", async () => {
     // page
     await page.getByRole("link", { name: "New" }).click();
+
+    // Make a new hosted chart
+    await page.getByPlaceholder("Untitled").fill("my new chart");
+    await page
+      .getByRole("radio", {
+        name: "Standard Stored in the cloud Accessible from any device",
+      })
+      .click();
+
+    await page.getByRole("button", { name: "Create" }).click();
+
     // expect url to be regex BASE_URL + /u/\d+
     await expect(page).toHaveURL(new RegExp(`${BASE_URL}/u/\\d+`));
 
@@ -96,9 +107,10 @@ test.describe("Sign Up", () => {
     await page.getByLabel("Make publicly accessible").check();
 
     // read the value from the textbox with the name 'Copy Public Link'
-    const publicLink = await page.getByRole("textbox", {
+    const publicLink = page.getByRole("textbox", {
       name: "Copy Public Link",
     });
+
     const publicLinkValue = await publicLink.getAttribute("value");
 
     if (!publicLinkValue) throw new Error("Public link value is empty");
@@ -132,6 +144,36 @@ test.describe("Sign Up", () => {
 
     // expect "/u/" to be in the url
     await expect(page).toHaveURL(new RegExp(`${BASE_URL}/u/\\d+`));
+  });
+
+  test("can create chart from prompt by instruction", async () => {
+    await page.getByRole("link", { name: "New" }).click();
+    await page.getByRole("radio", { name: "Prompt" }).click();
+    await page.getByTestId("instruct").click();
+    await page.getByTestId("prompt-entry-textarea").click();
+    await page
+      .getByTestId("prompt-entry-textarea")
+      .fill("the stages of the water cycle");
+    await page.getByRole("button", { name: "Create" }).click();
+    // expect url to be regex BASE_URL + /u/\d+
+    await expect(page).toHaveURL(new RegExp(`${BASE_URL}/u/\\d+`), {
+      timeout: 12000,
+    });
+  });
+
+  test("can create chart from prompt by extraction", async () => {
+    await page.getByRole("link", { name: "New" }).click();
+    await page.getByRole("radio", { name: "Prompt" }).click();
+    await page.getByTestId("extract").click();
+    await page.getByTestId("prompt-entry-textarea").click();
+    await page
+      .getByTestId("prompt-entry-textarea")
+      .fill("a is greater than b but less than a");
+    await page.getByRole("button", { name: "Create" }).click();
+    // expect url to be regex BASE_URL + /u/\d+
+    await expect(page).toHaveURL(new RegExp(`${BASE_URL}/u/\\d+`), {
+      timeout: 12000,
+    });
   });
 
   test.afterAll(async () => {
