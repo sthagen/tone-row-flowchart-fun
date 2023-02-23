@@ -10,6 +10,7 @@ import { Button, Input, Notice } from "../components/Shared";
 import Spinner from "../components/Spinner";
 import { isError } from "../lib/helpers";
 import { createCustomer, createSubscription } from "../lib/queries";
+import { logError } from "../lib/sentry";
 import { supabase } from "../lib/supabaseClient";
 import { Box, Type } from "../slang";
 import styles from "./SignUpForm.module.css";
@@ -82,11 +83,15 @@ export function SignUpForm() {
       const { error: supabaseError } = await supabase.auth.signInWithOtp({
         email,
       });
+
       if (supabaseError) throw supabaseError;
     },
     {
       onSuccess: () => {
         setSuccess(true);
+      },
+      onError: (error) => {
+        logError(error as Error);
       },
     }
   );
@@ -100,7 +105,7 @@ export function SignUpForm() {
   ) : (
     <Box
       as="form"
-      gap={7}
+      gap={3}
       pt={3}
       onSubmit={handleSubmit((data) => {
         create.mutate(data);
@@ -123,7 +128,7 @@ export function SignUpForm() {
             value={field.value}
             onValueChange={(value) => field.onChange(value)}
           >
-            <Box flow="column" gap={2}>
+            <Box flow="column" gap={3}>
               {[
                 { label: t`$3 / Month`, value: "monthly" },
                 { label: t`$30 / Year`, value: "yearly" },
@@ -175,10 +180,10 @@ export function SignUpForm() {
           text={t`Sign Up`}
           className={styles.SignUpButton}
           p={3}
-          typeProps={{ size: 1 }}
+          typeProps={{ size: 0 }}
         />
         <Box template="auto / auto auto" content="normal space-between">
-          <Type size={-1} as="span">
+          <Type size={-1} as="span" style={{ opacity: 0.5 }}>
             *<Trans>We use cookies to keep you logged in.</Trans>
           </Type>
           {create.isLoading && (
