@@ -1,5 +1,5 @@
 import { t, Trans } from "@lingui/macro";
-import { Plus } from "phosphor-react";
+import { CheckCircle } from "phosphor-react";
 import { ReactNode } from "react";
 
 import { SignUpForm } from "../components/SignUpForm";
@@ -44,10 +44,14 @@ export default function Pricing() {
               features={[
                 t`Everything in Free`,
                 t`Persistent Flowcharts`,
+                t`Remove Image Watermark`,
+                t`Export High-Resolution Images`,
                 `13 ${t`Auto-Layouts`}`,
                 t`Permalinks`,
                 t`Custom Sharing Options`,
                 t`Create Flowcharts from a Prompt with AI`,
+                t`One-on-One Support`,
+                t`Office Hours`,
               ]}
               right={<SignUpForm />}
             />
@@ -139,7 +143,7 @@ function Plan({
               content="start"
               items="start"
             >
-              <Plus
+              <CheckCircle
                 style={{ marginTop: 5 }}
                 weight="bold"
                 color="var(--plus-color)"

@@ -106,6 +106,7 @@
     "Everything in Free": "Everything in Free",
     Excalidraw: "Excalidraw",
     Export: "Export",
+    "Export High-Resolution Images": "Export High-Resolution Images",
     "Extra Large": "Extra Large",
     Extract: "Extract",
     Feedback: "Feedback",
@@ -162,6 +163,8 @@
     "Node Shapes": "Node Shapes",
     "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.":
       "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.",
+    "Office Hours": "Office Hours",
+    "One-on-One Support": "One-on-One Support",
     "One-time Share Links": "One-time Share Links",
     "Open Customer Portal": "Open Customer Portal",
     "Paste the information you wish to convert to a flowchart":
@@ -190,6 +193,7 @@
     "Reload to Update": "Reload to Update",
     "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
       "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!",
+    "Remove Image Watermark": "Remove Image Watermark",
     Rename: "Rename",
     Reset: "Reset",
     "Resume Subscription": "Resume Subscription",

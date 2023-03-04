@@ -102,6 +102,7 @@
     "Everything in Free": "免费计划中的一切",
     Excalidraw: "Excalidraw",
     Export: "导出",
+    "Export High-Resolution Images": "导出高分辨率图像",
     "Extra Large": "Extra Large",
     Extract: "提取",
     Feedback: "反馈",
@@ -158,6 +159,8 @@
     "Node Shapes": "Node Shapes",
     "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.":
       "Nodes can be styled with dashed, dotted, or double. Borders can also be removed with border-none.",
+    "Office Hours": "工作时间",
+    "One-on-One Support": "一对一支持",
     "One-time Share Links": "一次性分享链接",
     "Open Customer Portal": "打开客户门户",
     "Paste the information you wish to convert to a flowchart":
@@ -186,6 +189,7 @@
     "Reload to Update": "Reload to Update",
     "Remember that this document is only saved on this computer. If you want a way to store documents and access them wherever you go, then try our Pro plan with unlimited hosted charts, and more! For only $3/month!":
       "请记住，本文档仅保存在此电脑上，如果您希望储存文档并随时随地访问它们，那么请试试我们的高级计划，可以托管不限数量的图表，还有更多功能！仅需 $3/月！",
+    "Remove Image Watermark": "去除图片水印",
     Rename: "重命名",
     Reset: "重置",
     "Resume Subscription": "恢复订阅",
