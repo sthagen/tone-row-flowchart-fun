@@ -236,6 +236,17 @@ test.describe("unauth", () => {
     }
   });
 
+  test("Open mermaid.live link", async ({ page }) => {
+    await openExportDialog(page);
+
+    const page1Promise = page.waitForEvent("popup");
+    await page.getByTestId("Mermaid Live").click();
+    const page1 = await page1Promise;
+    await expect(page1.getByText('["This app works by typing"]')).toBeVisible({
+      timeout: 15 * 1000,
+    });
+  });
+
   test("Change Language", async ({ page }) => {
     await goToTab(page, "Settings");
     // Click [aria-label="Select Language\: Deutsch"]
@@ -372,5 +383,20 @@ test.describe("unauth", () => {
       // Take Screenshot
       await page.screenshot({ path: "ERROR.png" });
     }
+  });
+
+  test("Export to Visio CSV", async ({ page }) => {
+    await openExportDialog(page);
+    await page.getByRole("tab", { name: "Visio" }).click();
+    const [download] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByTestId("Visio Flowchart").click(),
+    ]);
+    expect(download.suggestedFilename()).toBe("flowchart-fun-visio-flow.csv");
+    const [download1] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByTestId("Visio Org Chart").click(),
+    ]);
+    expect(download1.suggestedFilename()).toBe("flowchart-fun-visio-org.csv");
   });
 });
