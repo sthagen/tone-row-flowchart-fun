@@ -1,8 +1,7 @@
-import { Trans } from "@lingui/macro";
 import * as Tabs from "@radix-ui/react-tabs";
 import throttle from "lodash.throttle";
 import { editor } from "monaco-editor";
-import { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouteMatch } from "react-router-dom";
 
 import { ClearTextButton } from "../components/ClearTextButton";
@@ -13,6 +12,7 @@ import { EditWrapper } from "../components/EditWrapper";
 import Main from "../components/Main";
 import { EditLayoutTab } from "../components/Tabs/EditLayoutTab";
 import { EditMetaTab } from "../components/Tabs/EditMetaTab";
+import { EditorTabList } from "../components/Tabs/EditorTabList";
 import { EditStyleTab } from "../components/Tabs/EditStyleTab";
 import { TextEditor } from "../components/TextEditor";
 import { getDefaultChart } from "../lib/getDefaultChart";
@@ -21,18 +21,10 @@ import { useIsValidSponsor } from "../lib/hooks";
 import { prepareChart } from "../lib/prepareChart/prepareChart";
 import { Doc, docToString, useDoc } from "../lib/useDoc";
 import { useTrackLastChart } from "../lib/useLastChart";
-import { Type } from "../slang";
 import styles from "./Edit.module.css";
 
-const Edit = memo(function Edit() {
-  const { workspace = "" } = useParams<{ workspace?: string }>();
+const Edit = memo(function Edit({ workspace }: { workspace: string }) {
   const editorRef = useRef<null | editor.IStandaloneCodeEditor>(null);
-
-  // Memoized local workspace preparation, keeps it running in-order
-  // Using react-query for this was causing it to be deferred
-  useMemo(() => {
-    return loadWorkspace(workspace);
-  }, [workspace]);
 
   const isValidSponsor = useIsValidSponsor();
 
@@ -66,33 +58,7 @@ const Edit = memo(function Edit() {
       <Main>
         <EditorWrapper>
           <Tabs.Root defaultValue="Document" className={styles.Tabs}>
-            <Tabs.List className={styles.TabsList}>
-              <Tabs.Trigger value="Document" data-testid="Editor Tab: Document">
-                <Type>
-                  <Trans>Document</Trans>
-                </Type>
-              </Tabs.Trigger>
-              <Tabs.Trigger value="Layout" data-testid="Editor Tab: Layout">
-                <Type>
-                  <Trans>Layout</Trans>
-                </Type>
-              </Tabs.Trigger>
-              <Tabs.Trigger value="Style" data-testid="Editor Tab: Style">
-                <Type>
-                  <Trans>Style</Trans>
-                </Type>
-              </Tabs.Trigger>
-              {isValidSponsor && (
-                <Tabs.Trigger
-                  value="Advanced"
-                  data-testid="Editor Tab: Advanced"
-                >
-                  <Type>
-                    <Trans>Advanced</Trans>
-                  </Type>
-                </Tabs.Trigger>
-              )}
-            </Tabs.List>
+            <EditorTabList />
             <Tabs.Content value="Document">
               <EditorOptions>
                 <TextEditor
@@ -129,7 +95,21 @@ const Edit = memo(function Edit() {
   );
 });
 
-export default Edit;
+/**
+ * This is a wrapper component that loads the workspace into our zustand store
+ */
+function EditOuter() {
+  const [loaded, setLoaded] = useState(false);
+  const { workspace = "" } = useParams<{ workspace?: string }>();
+  useEffect(() => {
+    loadWorkspace(workspace);
+    setLoaded(true);
+  }, [workspace]);
+  if (!loaded) return null;
+  return <Edit key={workspace} workspace={workspace} />;
+}
+
+export default EditOuter;
 
 /**
  * Load the workspace into our zustand store
