@@ -14,7 +14,7 @@
       "从任何地方访问这些图表。<0/>共享并嵌入保持同步的流程图。",
     "Accessible from any device": "可从任何设备访问",
     Account: "帐户",
-    "Activate Flowchart Fun Pro": "激活 Flowchart Fun Pro",
+    "Activate your account": "激活您的账户",
     Advanced: "先进的",
     Amount: "数量",
     "An error occurred. Try resubmitting or email {0} directly.": [
@@ -31,6 +31,8 @@
     "Become a Github Sponsor": "成为Github赞助商",
     "Become a Pro User": "成为专业用户",
     "Become a Sponsor": "赞助我们",
+    "Begin with a simple example showing how <0>Flowchart Fun</0> works.":
+      "以一个简单的例子开始来展示<0>流程图的乐趣</0>是如何工作的。",
     Blank: "空白",
     Blog: "博客",
     Border: "边框",
@@ -64,7 +66,6 @@
     Column: "列",
     "Comic Book": "漫画书",
     Comment: "评论",
-    "Complete Subscription": "完成订阅",
     Concentric: "同心",
     "Confirm New Email": "确认新电子邮件",
     Containers: "容器",
@@ -134,6 +135,8 @@
     Empty: "空",
     "Enter your email": "请输入您的电子邮件",
     "Equal To": "等于",
+    "Essay writing process flowchart, guiding students through brainstorming, outlining, drafting, and revising stages":
+      "文章写作流程流程图，指导学生进行头脑风暴，大纲制定，起草和修改阶段",
     "Everything in Free": "免费计划中的一切",
     Excalidraw: "Excalidraw",
     Export: "导出",
@@ -153,6 +156,7 @@
     "Get More Themes": "获取更多主题",
     "Get personalized attention and support from our expert team":
       "从我们的专家团队获得个性化的关注和支持",
+    "Getting Started": "开始",
     Graph: "图表",
     Grid: "网格",
     "Have complex questions or issues? We're here to help.":
@@ -211,6 +215,8 @@
     "Make sure you use the same email you will use to log in.":
       "確保您使用的是與登錄時相同的電子郵件。",
     "Map Data": "對應資料",
+    "Market understanding and competitive landscape maintenance for SaaS product development":
+      "为SaaS产品开发提供市场理解和竞争环境维护",
     Medium: "中等",
     Method: "方法",
     Monospace: "Monospace",
@@ -247,10 +253,13 @@
     Permalinks: "永久链接",
     "Permanent Charts are a Pro Feature": "永久图表是专业功能",
     "Permanent Flowcharts": "永久流程图",
+    Persistent: "坚持不懈",
     "Persistent Flowcharts": "持久图",
     Playbook: "剧本",
     "Pointer and container on same line": "同一行上的指针和容器",
     Pricing: "价钱",
+    "Process for corporate social responsibility initiatives development and implementation across company operations":
+      "公司社会责任倡议的发展和在公司业务中的实施过程",
     "Processing Data": "处理数据",
     Prompt: "提示",
     Public: "公开",
@@ -289,6 +298,7 @@
     Settings: "设置",
     Shape: "形状",
     "Sign Up": "注册",
+    "Sign Up Now": "现在注册",
     Size: "尺寸",
     Small: "小",
     "Some classes are available to help style your flowchart":
@@ -301,7 +311,6 @@
     "Source/Target Arrow Shape": "源/目标箭头形状",
     Spacing: "间距",
     "Special Attributes": "特殊属性",
-    Standard: "标准",
     Start: "开始",
     "Start Over": "重新開始",
     Status: "状态",
@@ -315,6 +324,8 @@
     Submit: "提交",
     Subscription: "订阅",
     "Subscription will end": "订阅即将到期",
+    "Supply chain analysis and optimization: cost reduction, efficiency improvement, and stakeholder collaboration":
+      "供应链分析和优化：成本降低，效率提高和利益相关者协作",
     "Target Arrow": "目标箭头",
     "Target Column": "目標欄",
     "Target Delimiter": "目標分隔符",
@@ -362,11 +373,11 @@
     "Unknown Parsing Error": "未知的解析错误",
     "Unleash your creativity and streamline your workflow with Flowchart Fun Pro – starting at just $3/month!":
       "釋放您的創意並簡化您的工作流程，從每月只需3美元開始，Flowchart Fun Pro！",
-    "Unlock the full potential of Flowchart Fun Pro and get unlimited access to all of our advanced features. Complete your subscription below and start creating amazing flowcharts today!":
-      "解锁Flowchart Fun Pro的全部潜力，并获得对我们所有高级功能的无限访问权限。请在下面完成您的订阅，今天就开始创建令人惊叹的流程图！",
     "Update Email": "更新电子邮件",
     "Use AI to create flowcharts from data sets or algorithms":
       "使用AI從數據集或算法創建流程圖",
+    "Use AI to generate a flowchart from a prompt. <0>Learn More</0>":
+      "使用AI从提示中生成流程图。<0>了解更多</0>",
     "Use classes to group nodes": "使用类来分组节点",
     "Use the attribute <0>href</0> to set a link on a node that opens in a new tab.":
       "使用属性<0>href</0>在节点上设置一个在新标签页中打开的链接。",
@@ -382,6 +393,8 @@
       "使用此文件进行顺序、流程和工作流程。",
     User: "用户",
     "View on Github": "在 Github 上查看",
+    "Water evaporates from the Earth's surface, rises into the atmosphere and falls back down as precipitation. This water then runs off into rivers, lakes and oceans, where it again evaporates and is recycled back into the atmosphere.":
+      "水从地球表面蒸发，升入大气中，然后以降水形式回落。这些水然后流入河流，湖泊和海洋，在那里又蒸发，重新回到大气中循环。",
     "We use cookies to keep you logged in.":
       "我们使用 cookies 来让您保持登录状态。",
     "We use magic links to log you in. Enter your email below to get started.":
@@ -395,11 +408,11 @@
       ["您即将为您的图添加", ["numNodes"], "个节点和", ["numEdges"], "条边。"],
     'You can also wrap text in "\\( \\)" to create an edge':
       "您还可以将文本包装在\\n“\\( \\)”中以创建链接",
-    "You must log in to create a standard flowchart.":
-      "您必须登录才能创建标准图表。",
+    "You must log in to create a persistent flowchart.":
+      "您必须登录才能创建一个持久的流程图。",
+    "You're almost there! Just one more step to unlock the full potential of <0>Flowchart Fun Pro</0>. Enter your payment details below to complete your subscription and start creating amazing flowcharts today.":
+      "您已经快完成了！只需要一步就可以解锁 <0>Flowchart Fun Pro</0> 的全部功能。请在下面输入您的付款详情来完成您的订阅，并今天开始创建令人惊叹的流程图。",
     "Your Charts": "您的图表",
-    "Your payment details are secure. You can cancel anytime.":
-      "您的付款详情是安全的。您可以随时取消。",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "您的订阅不再有效。如果您想创建和编辑托管的图表，请成为赞助人。",
     "Zoom In": "放大",

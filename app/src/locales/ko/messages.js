@@ -14,7 +14,7 @@
       "어디서든 이 차트에 액세스하세요.<0/>동기화되어 유지되는 플로우차트를 공유하고 삽입하세요.",
     "Accessible from any device": "모든 장치에서 액세스 가능",
     Account: "계정",
-    "Activate Flowchart Fun Pro": "Flowchart Fun Pro를 활성화하십시오",
+    "Activate your account": "계정을 활성화하세요",
     Advanced: "고급의",
     Amount: "금액",
     "An error occurred. Try resubmitting or email {0} directly.": [
@@ -31,6 +31,8 @@
     "Become a Github Sponsor": "깃허브 스폰서가 되기",
     "Become a Pro User": "프로 사용자가 되기",
     "Become a Sponsor": "스폰서 되기",
+    "Begin with a simple example showing how <0>Flowchart Fun</0> works.":
+      "<0>Flowchart Fun</0>이 어떻게 작동하는지를 보여주는 간단한 예제로 시작하세요.",
     Blank: "빈칸",
     Blog: "블로그",
     Border: "경계",
@@ -65,7 +67,6 @@
     Column: "열",
     "Comic Book": "만화책",
     Comment: "댓글 달기",
-    "Complete Subscription": "구독을 완료하십시오",
     Concentric: "동심",
     "Confirm New Email": "새 이메일 확인",
     Containers: "컨테이너",
@@ -136,6 +137,8 @@
     Empty: "비어 있음",
     "Enter your email": "이메일을 입력하세요",
     "Equal To": "같음",
+    "Essay writing process flowchart, guiding students through brainstorming, outlining, drafting, and revising stages":
+      "에세이 작성 과정 플로차트는 학생들을 초기 아이디어 생성, 개념 정리, 작성, 수정 단계를 거쳐 이끌어줍니다.",
     "Everything in Free": "무료 플랜의 모든 것",
     Excalidraw: "Excalidraw",
     Export: "내보내기",
@@ -155,6 +158,7 @@
     "Get More Themes": "더 많은 테마 받기",
     "Get personalized attention and support from our expert team":
       "고급 지식과 지원을 받으세요",
+    "Getting Started": "시작하기",
     Graph: "그래프",
     Grid: "그리드",
     "Have complex questions or issues? We're here to help.":
@@ -215,6 +219,8 @@
     "Make sure you use the same email you will use to log in.":
       "로그인할 때 사용할 같은 이메일을 사용하세요.",
     "Map Data": "데이터 지도",
+    "Market understanding and competitive landscape maintenance for SaaS product development":
+      "SaaS 제품 개발에 대한 시장 이해 및 경쟁 경제동화 유지",
     Medium: "중간",
     Method: "방법",
     Monospace: "Monospace",
@@ -251,10 +257,13 @@
     Permalinks: "퍼머링크",
     "Permanent Charts are a Pro Feature": "영구 차트는 프로 기능입니다",
     "Permanent Flowcharts": "영구 플로우차트",
+    Persistent: "끈기 있는",
     "Persistent Flowcharts": "영구 다이어그램",
     Playbook: "플레이북",
     "Pointer and container on same line": "같은 줄에 포인터와 컨테이너",
     Pricing: "가격",
+    "Process for corporate social responsibility initiatives development and implementation across company operations":
+      "기업 사회적 책임 사업 개발 및 회사 운영 전반에 걸쳐 구현 프로세스",
     "Processing Data": "데이터 처리",
     Prompt: "프롬프트",
     Public: "공용",
@@ -293,6 +302,7 @@
     Settings: "설정",
     Shape: "모양 ",
     "Sign Up": "가입",
+    "Sign Up Now": "지금 가입하세요",
     Size: "크기",
     Small: "작은",
     "Some classes are available to help style your flowchart":
@@ -305,7 +315,6 @@
     "Source/Target Arrow Shape": "소스/대상 화살표 모양",
     Spacing: "간격",
     "Special Attributes": "특별한 속성",
-    Standard: "표준",
     Start: "시작",
     "Start Over": "처음부터 다시 시작하기",
     Status: "상태",
@@ -319,6 +328,8 @@
     Submit: "보내다",
     Subscription: "구독",
     "Subscription will end": "구독이 종료될 예정입니다.",
+    "Supply chain analysis and optimization: cost reduction, efficiency improvement, and stakeholder collaboration":
+      "공급망 분석 및 최적화: 비용 감소, 효율 향상 및 이해관계자 협력",
     "Target Arrow": "타겟 화살표",
     "Target Column": "대상 열",
     "Target Delimiter": "대상 구분자",
@@ -370,11 +381,11 @@
     "Unknown Parsing Error": "알 수 없는 구문 분석 오류",
     "Unleash your creativity and streamline your workflow with Flowchart Fun Pro – starting at just $3/month!":
       "Flowchart Fun Pro를 사용하여 창의력을 발휘하고 작업흐름을 최적화하세요. $3/월부터 시작합니다!",
-    "Unlock the full potential of Flowchart Fun Pro and get unlimited access to all of our advanced features. Complete your subscription below and start creating amazing flowcharts today!":
-      "Flowchart Fun Pro의 전력을 잠금 해제하고 모든 고급 기능에 무한 액세스하십시오. 아래에 구독을 완료하고 오늘부터 놀라운 플로우 차트를 만들어 보십시오.",
     "Update Email": "이메일 업데이트",
     "Use AI to create flowcharts from data sets or algorithms":
       "데이터 집합 또는 알고리즘에서 플로우차트를 만들기 위해 AI를 사용하세요.",
+    "Use AI to generate a flowchart from a prompt. <0>Learn More</0>":
+      "AI를 사용하여 프롬프트에세이에서 플로차트를 생성합니다. <0>자세히 알아보기</0>",
     "Use classes to group nodes":
       "노드를 그룹화하기 위해 클래스를 사용하십시오.",
     "Use the attribute <0>href</0> to set a link on a node that opens in a new tab.":
@@ -391,6 +402,8 @@
       "시퀀스, 프로세스 및 워크플로우에 대해 이 파일을 사용하십시오.",
     User: "사용자",
     "View on Github": "Github에서 보기",
+    "Water evaporates from the Earth's surface, rises into the atmosphere and falls back down as precipitation. This water then runs off into rivers, lakes and oceans, where it again evaporates and is recycled back into the atmosphere.":
+      "물은 지구의 표면에서 증발하여 공기로 올라가 비로 내려오고, 그 물은 강과 호수, 바다로 흐르고 다시 증발하여 공기로 돌아가 재생됩니다.",
     "We use cookies to keep you logged in.":
       "귀하의 로그인 상태를 유지를 위해 쿠키를 사용합니다.",
     "We use magic links to log you in. Enter your email below to get started.":
@@ -412,11 +425,11 @@
       ],
     'You can also wrap text in "\\( \\)" to create an edge':
       '텍스트를 "\\( \\)"로 감싸서 가장자리를 만들 수도 있습니다.',
-    "You must log in to create a standard flowchart.":
-      "표준 다이어그램을 만들려면 로그인해야 합니다.",
+    "You must log in to create a persistent flowchart.":
+      "끈기 있는 플로우차트를 만들기 위해 로그인해야합니다.",
+    "You're almost there! Just one more step to unlock the full potential of <0>Flowchart Fun Pro</0>. Enter your payment details below to complete your subscription and start creating amazing flowcharts today.":
+      "거의 다 됐습니다! <0>Flowchart Fun Pro</0>의 전력을 풀어내는 마지막 한 단계만 남았습니다. 아래에 결제 정보를 입력하여 구독을 완료하고 오늘부터 놀라운 플로우 차트를 만들 수 있습니다.",
     "Your Charts": "당신의 차트",
-    "Your payment details are secure. You can cancel anytime.":
-      "귀하의 결제 정보는 안전합니다. 언제든지 취소할 수 있습니다.",
     "Your subscription is no longer active. If you want to create and edit hosted charts become a sponsor.":
       "귀하의 구독이 더 이상 활성 상태가 아닙니다. 호스트 차트를 작성 및 수정하려면 후원자가 되십시오.",
     "Zoom In": "확대",
