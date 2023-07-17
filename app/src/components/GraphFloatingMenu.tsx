@@ -1,13 +1,14 @@
-import { t } from "@lingui/macro";
-import { MagnifyingGlassMinus, MagnifyingGlassPlus } from "phosphor-react";
+import { t, Trans } from "@lingui/macro";
+import { ArrowsClockwise, MagnifyingGlass, Minus, Plus } from "phosphor-react";
 import { useCallback } from "react";
-import { FaBomb, FaRegSnowflake } from "react-icons/fa";
-import { MdFitScreen } from "react-icons/md";
+import { FaRegSnowflake } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 import { DEFAULT_GRAPH_PADDING } from "../lib/graphOptions";
+import { useGraphStore } from "../lib/useGraphStore";
 import { unfreezeDoc, useIsFrozen } from "../lib/useIsFrozen";
 import { useUnmountStore } from "../lib/useUnmountStore";
-import { Tooltip } from "./Shared";
+import { IconButton2, IconToggleButton, Tooltip2 } from "../ui/Shared";
 
 const ZOOM_STEP = 0.5;
 
@@ -32,62 +33,73 @@ export function GraphFloatingMenu() {
 
   const isFrozen = useIsFrozen();
 
-  return (
-    <div className="absolute bottom-4 left-4 flex bg-white border border-neutral-300 shadow rounded overflow-hidden">
-      <CustomIconButton
-        icon={<MagnifyingGlassMinus size={28} />}
-        label={t`Zoom Out`}
-        onClick={zoomOut}
-      />
-      <CustomIconButton
-        icon={<MagnifyingGlassPlus size={28} />}
-        label={t`Zoom In`}
-        onClick={zoomIn}
-      />
-      <CustomIconButton
-        icon={<MdFitScreen size={28} />}
-        onClick={fitGraph}
-        label={t`Fit Graph`}
-      />
-      <CustomIconButton
-        icon={<FaBomb size={22} />}
-        label={t`Reset`}
-        onClick={() => {
-          useUnmountStore.setState({
-            unmount: true,
-          });
-        }}
-      />
-      {isFrozen ? (
-        <CustomIconButton
-          icon={<FaRegSnowflake size={22} />}
-          label={t`Unfreeze`}
-          onClick={unfreezeDoc}
-        />
-      ) : null}
-    </div>
-  );
-}
+  const { push } = useHistory();
 
-function fitGraph() {
-  if (!window.__cy) return;
-  window.__cy.fit(undefined, DEFAULT_GRAPH_PADDING);
-}
+  const autoFit = useGraphStore((s) => s.autoFit);
 
-type CustomIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
-  icon: React.ReactNode;
-  label: string;
-};
-function CustomIconButton({ icon, label, ...props }: CustomIconButtonProps) {
   return (
-    <Tooltip label={label} aria-label={label} className={`slang-type size-0`}>
+    <div className="absolute bottom-4 right-4 flex bg-white border border-neutral-300 shadow-sm rounded-lg overflow-hidden gap-1 p-1 items-center dark:bg-neutral-600 dark:border-neutral-600">
+      <Tooltip2 content={t`Reset`}>
+        <IconButton2
+          size="xs"
+          aria-label={t`Reset`}
+          onClick={() => {
+            useUnmountStore.setState({
+              unmount: true,
+            });
+            useGraphStore.setState({
+              autoFit: true,
+            });
+          }}
+        >
+          <ArrowsClockwise size={16} />
+        </IconButton2>
+      </Tooltip2>
+      <Tooltip2 content={t`Zoom In`}>
+        <IconButton2 size="xs" onClick={zoomIn} aria-label={t`Zoom In`}>
+          <Plus size={16} />
+        </IconButton2>
+      </Tooltip2>
+      <Tooltip2 content={t`Zoom Out`}>
+        <IconButton2 size="xs" onClick={zoomOut} aria-label={t`Zoom Out`}>
+          <Minus size={16} />
+        </IconButton2>
+      </Tooltip2>
+      <Tooltip2 content={t`Lock Zoom to Graph`}>
+        <IconToggleButton
+          aria-label={t`Lock Zoom to Graph`}
+          size="xs"
+          pressed={autoFit}
+          onPressedChange={(pressed) => {
+            if (pressed && window.__cy) {
+              window.__cy.fit(undefined, DEFAULT_GRAPH_PADDING);
+            }
+            useGraphStore.setState({ autoFit: pressed });
+          }}
+        >
+          <MagnifyingGlass size={16} />
+        </IconToggleButton>
+      </Tooltip2>
+      <Tooltip2 content={t`Layout Frozen`}>
+        <IconToggleButton
+          aria-label={t`Layout Frozen`}
+          size="xs"
+          pressed={isFrozen}
+          onPressedChange={(pressed) => {
+            if (!pressed) {
+              unfreezeDoc();
+            }
+          }}
+        >
+          <FaRegSnowflake size={16} />
+        </IconToggleButton>
+      </Tooltip2>
       <button
-        className="w-9 h-9 grid content-center justify-center bg-white text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 focus:outline-none focus:shadow-none"
-        data-testid={label}
-        {...props}
+        onClick={() => push("/o")}
+        className="text-[12px] text-neutral-500 hover:text-neutral-600 cursor-pointer font-bold ml-4 px-2 flex gap-1 hover:scale-105 transition-transform dark:text-neutral-300 dark:hover:text-neutral-200"
       >
-        {icon}
+        <Trans>Send Feedback</Trans>
       </button>
-    </Tooltip>
+    </div>
   );
 }

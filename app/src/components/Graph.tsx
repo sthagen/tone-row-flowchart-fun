@@ -2,7 +2,6 @@ import { Core, EdgeSingular, NodeSingular } from "cytoscape";
 import coseBilkent from "cytoscape-cose-bilkent";
 import dagre from "cytoscape-dagre";
 import klay from "cytoscape-klay";
-import cytoscapeSvg from "cytoscape-svg";
 import { ParseError } from "graph-selector";
 import throttle from "lodash.throttle";
 import React, {
@@ -21,7 +20,6 @@ import { monacoMarkerErrorSeverity } from "../lib/constants";
 import { cytoscape } from "../lib/cytoscape";
 import { getElements } from "../lib/getElements";
 import { getLayout } from "../lib/getLayout";
-import { useCytoscapeStyle } from "../lib/getUserStyle";
 import { DEFAULT_GRAPH_PADDING } from "../lib/graphOptions";
 import { useBackgroundColor } from "../lib/graphThemes";
 import { isError } from "../lib/helpers";
@@ -31,6 +29,7 @@ import {
   useCytoscapeStyleImports,
 } from "../lib/preprocessCytoscapeStyle";
 import { useContextMenuState } from "../lib/useContextMenuState";
+import { useCytoscapeStyle } from "../lib/useCytoscapeStyle";
 import { Doc, useDoc, useParseErrorStore } from "../lib/useDoc";
 import { updateModelMarkers, useEditorStore } from "../lib/useEditorStore";
 import { useGraphStore } from "../lib/useGraphStore";
@@ -48,7 +47,6 @@ if (!cytoscape.prototype.hasInitialised) {
   cytoscape.use(dagre);
   cytoscape.use(klay);
   cytoscape.use(coseBilkent);
-  cytoscape.use(cytoscapeSvg);
   cytoscape.prototype.hasInitialised = true;
 }
 
@@ -179,9 +177,6 @@ function useInitializeGraph({
       cy.current = cytoscape({
         container: document.getElementById("cy"), // container to render in
         elements: [],
-        // TODO: shouldn't this load the user's style as well?
-        // TODO: not even loading the real theme... this seems sus
-        // style: buildStylesForGraph(original, getUserStyle(), bg),
         userZoomingEnabled: true,
         userPanningEnabled: true,
         wheelSensitivity: 0.2,
@@ -238,6 +233,11 @@ function useInitializeGraph({
       });
 
       cyCurrent.on("dragfree", handleDragFree);
+
+      // on zoom
+      cyCurrent.on("scrollzoom", () => {
+        useGraphStore.setState({ autoFit: false });
+      });
 
       document
         .getElementById("cy")
@@ -314,15 +314,21 @@ function getGraphUpdater({
       // Update
       cy.current.json({ elements });
 
+      // Determine whether to animate
       const shouldAnimate =
         isGraphInitialized.current &&
         elements.length < 200 &&
         isAnimationEnabled;
+
+      // Determine whether to fit
+      const autoFit = useGraphStore.getState().autoFit;
+
       cy.current
         .layout({
           animate: shouldAnimate,
           animationDuration: shouldAnimate ? 333 : 0,
           ...layout,
+          fit: autoFit,
           padding: DEFAULT_GRAPH_PADDING,
         })
         .run();
