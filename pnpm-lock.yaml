@@ -241,8 +241,8 @@ importers:
         specifier: ^4.1.17
         version: 4.1.17(react-dom@17.0.2)(react@17.0.2)
       graph-selector:
-        specifier: ^0.9.8
-        version: 0.9.8
+        specifier: ^0.9.10
+        version: 0.9.10
       gray-matter:
         specifier: ^4.0.2
         version: 4.0.3
@@ -255,6 +255,9 @@ importers:
       js-base64:
         specifier: ^3.7.5
         version: 3.7.5
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       lodash.throttle:
         specifier: ^4.1.1
         version: 4.1.1
@@ -388,6 +391,9 @@ importers:
       '@types/jest':
         specifier: ^29.0.0
         version: 29.1.2
+      '@types/js-cookie':
+        specifier: ^3.0.3
+        version: 3.0.3
       '@types/jsdom':
         specifier: ^20.0.1
         version: 20.0.1
@@ -5750,6 +5756,10 @@ packages:
       expect: 29.4.3
       pretty-format: 29.4.3
 
+  /@types/js-cookie@3.0.3:
+    resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
+    dev: true
+
   /@types/js-levenshtein@1.1.1:
     resolution: {integrity: sha512-qC4bCqYGy1y/NP7dDVr7KJarn+PbX1nSpwA7JXdu0HxT3QYjO8MJ+cntENtHFVy2dRAyBV23OZ6MxsW1AM1L8g==}
     dev: true
@@ -9560,8 +9570,8 @@ packages:
       '@tone-row/strip-comments': 2.0.6
     dev: false
 
-  /graph-selector@0.9.8:
-    resolution: {integrity: sha512-7erE3BMPcbu2yMii9oq0g3KFWA6ZSb9wiYZ0xfKG7Drv4UoVy8fx96NiytvTzQ+JAqMLn8Z+QgJlbSNPrh1Z/A==}
+  /graph-selector@0.9.10:
+    resolution: {integrity: sha512-PSNcjuxC+u7XWjdNRXKmCFwabNt9zrmu9QyccSWX5OLRsDcK8bH9JGAwfGZRRFjC+KTEAgZc4M+ibxrAAJGKfg==}
     dependencies:
       '@tone-row/strip-comments': 2.0.6
       html-entities: 2.3.3
@@ -11313,6 +11323,11 @@ packages:
 
   /js-base64@3.7.5:
     resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
+    dev: false
+
+  /js-cookie@3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
     dev: false
 
   /js-levenshtein@1.1.6:
