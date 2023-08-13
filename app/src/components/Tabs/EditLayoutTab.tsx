@@ -2,13 +2,13 @@ import { t, Trans } from "@lingui/macro";
 import produce from "immer";
 import { Palette } from "phosphor-react";
 import { FaRegSnowflake } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { GraphOptionsObject } from "../../lib/constants";
 import { defaultLayout, getLayout } from "../../lib/getLayout";
 import { directions, layouts } from "../../lib/graphOptions";
 import { hasOwnProperty } from "../../lib/helpers";
-import { useIsValidSponsor } from "../../lib/hooks";
+import { useCanEdit, useIsProUser } from "../../lib/hooks";
 import { useDoc } from "../../lib/useDoc";
 import { unfreezeDoc, useIsFrozen } from "../../lib/useIsFrozen";
 import { BasicSelect } from "../../ui/Select";
@@ -22,7 +22,8 @@ import {
 } from "./shared";
 
 export function EditLayoutTab() {
-  const isValidSponsor = useIsValidSponsor();
+  const isProUser = useIsProUser();
+  const canEdit = useCanEdit();
   const doc = useDoc();
   const layout = (
     hasOwnProperty(doc.meta, "layout") ? doc.meta.layout : {}
@@ -63,7 +64,7 @@ export function EditLayoutTab() {
     spacingFactor = layout.spacingFactor;
   }
 
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   if (isFrozen) return <FrozenLayout />;
 
@@ -72,6 +73,7 @@ export function EditLayoutTab() {
       <TabOptionsGrid>
         <OptionWithLabel label={t`Layout`}>
           <BasicSelect
+            disabled={!canEdit}
             value={layoutName}
             onValueChange={(name) => {
               useDoc.setState(
@@ -87,17 +89,16 @@ export function EditLayoutTab() {
                 "EditLayoutTab/layout"
               );
             }}
-            options={layouts
-              .filter((l) => l?.sponsorOnly === undefined || isValidSponsor)
-              .map((l) => ({
-                value: l.value,
-                label: l.label(),
-              }))}
+            options={layouts.map((l) => ({
+              value: l.value,
+              label: l.label(),
+            }))}
           />
         </OptionWithLabel>
         {["dagre"].includes(layoutName) && (
           <OptionWithLabel label={t`Direction`}>
             <BasicSelect
+              disabled={!canEdit}
               options={directions.map((d) => ({
                 value: d.value,
                 label: d.label(),
@@ -142,6 +143,7 @@ export function EditLayoutTab() {
           <OptionWithLabel label={t`Spacing`}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <input
+                disabled={!canEdit}
                 type="number"
                 value={spacingFactor}
                 step={0.1}
@@ -165,6 +167,7 @@ export function EditLayoutTab() {
                 }}
               />
               <Range
+                disabled={!canEdit}
                 defaultValue={[defaultLayout.spacingFactor as number]}
                 min={0.25}
                 max={2}
@@ -188,13 +191,13 @@ export function EditLayoutTab() {
           </OptionWithLabel>
         )}
       </TabOptionsGrid>
-      {!isValidSponsor && (
+      {!isProUser && (
         <Button2
           color="blue"
           size="md"
           rightIcon={<Palette size={20} />}
           className="ml-5 mr-1"
-          onClick={() => push("/pricing")}
+          onClick={() => navigate("/pricing")}
         >
           <Trans>Get More Layouts</Trans>
         </Button2>

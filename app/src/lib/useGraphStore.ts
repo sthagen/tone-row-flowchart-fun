@@ -5,12 +5,16 @@ import { GraphOptionsObject } from "./constants";
 type StoreGraph = {
   layout: GraphOptionsObject["layout"];
   elements: cytoscape.ElementDefinition[];
-  sponsorLayoutsLoaded: boolean;
   // The items above are used by the mermaid renderer
   // The items below are meant more for client-side state
   // related to the graph component
   /** Whether or not to fit the graph within bounds on render */
   autoFit: boolean;
+
+  /** View on the graph when auto-fit is false */
+  zoom?: number;
+  /** Pan on the graph when auto-fit is false */
+  pan?: cytoscape.Position;
 };
 
 /**
@@ -23,6 +27,5 @@ type StoreGraph = {
 export const useGraphStore = create<StoreGraph>(() => ({
   layout: {},
   elements: [],
-  sponsorLayoutsLoaded: false,
   autoFit: true,
 }));

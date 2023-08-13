@@ -13,65 +13,85 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/PaymentStepper.tsx:83
+#: src/components/PaymentStepper.tsx:81
 msgid "$3 per month"
 msgstr "월 3 달러"
 
-#: src/components/PaymentStepper.tsx:91
+#: src/components/PaymentStepper.tsx:92
 msgid "$30 per year"
 msgstr "연 30 달러"
 
-#: src/lib/getDefaultText.ts:9
-msgid "(before a colon creates a label)"
-msgstr "(레이블을 생성합니다)"
+#: src/pages/Pricing.tsx:64
+msgid "1 Temporary Flowchart"
+msgstr "1 일시적인 흐름도"
 
-#: src/components/Settings.tsx:107
+#: src/components/PaymentStepper.tsx:96
+msgid "2 Months Free"
+msgstr "2 개월 무료"
+
+#: src/pages/Charts.tsx:417
+msgid "<0><1>Click here</1></0> to migrate your temporary flowcharts to permanent charts."
+msgstr "<0><1>이곳을 클릭하세요</1></0> 임시 플로우차트를 영구적인 차트로 이전합니다."
+
+#: src/components/MigrateTempFlowchartsModal.tsx:35
+msgid "<0>Click the button below to migrate all of your temporary flowcharts into hosted ones.</0><1>Do not close this window. The page will refresh when the migration is complete.</1>"
+msgstr "<0>아래 버튼을 클릭하여 모든 임시 플로우차트를 호스팅하는 것으로 이전하세요.</0><1>이 창을 닫지 마십시오. 이전이 완료되면 페이지가 새로 고칩니다.</1>"
+
+#: src/components/Settings.tsx:108
 msgid "<0>Flowchart Fun</0> is an open source project made by <1>Tone Row</1>"
 msgstr "<0>Flowchart Fun</0>은 <1>Tone Row</1>가 만든 오픈 소스 프로젝트입니다."
+
+#: src/pages/LogIn.tsx:277
+msgid "<0>Sign In</0> / <1>Sign Up</1> with email and password"
+msgstr "<0>로그인</0> / <1>회원가입</1> 이메일과 비밀번호로"
+
+#: src/pages/Account.tsx:543
+msgid "<0>Starting August 28th you will need a subscription to create and edit charts. <1>Learn more</1>.</0>"
+msgstr "<0>8월 28일부터 차트를 만들고 편집하기 위해 구독이 필요합니다. <1>자세히 알아보기</1>.</0>"
+
+#: src/pages/Account.tsx:531
+msgid "<0>You currently have a free account.<1/><2>Learn about our Pro Features and subscribe on our pricing page</2>.</0>"
+msgstr "<0>현재 당신은 무료 계정을 가지고 있습니다. <1/><2>프로 기능에 대해 알아보고 우리 가격 페이지에서 구독하세요</2>.</0>"
 
 #: src/components/VersionCheck.tsx:22
 msgid "A new version of the app is available. Please reload to update."
 msgstr "새로운 버전의 앱이 사용 가능합니다. 업데이트하려면 다시로드하십시오."
 
-#: src/components/Settings.tsx:104
+#: src/components/Settings.tsx:105
 msgid "About"
 msgstr "소개"
 
-#: src/pages/Charts.tsx:113
+#: src/pages/Charts.tsx:119
 msgid "Access these charts from anywhere.<0/>Share and embed flowcharts that stay in sync."
 msgstr "어디서든 이 차트에 액세스하세요.<0/>동기화되어 유지되는 플로우차트를 공유하고 삽입하세요."
 
-#: src/pages/New.tsx:234
+#: src/pages/New.tsx:249
 msgid "Accessible from any device"
 msgstr "모든 장치에서 액세스 가능"
 
-#: src/components/Header.tsx:183
-#: src/components/Header.tsx:397
-#: src/pages/Account.tsx:108
+#: src/components/Header.tsx:182
+#: src/components/Header.tsx:406
+#: src/pages/Account.tsx:116
 msgid "Account"
 msgstr "계정"
 
-#: src/components/PaymentStepper.tsx:163
-msgid "Activate your account"
-msgstr "계정을 활성화하세요"
+#: src/components/PaymentStepper.tsx:161
+msgid "Activate your Account"
+msgstr "계정을 활성화하세요 "
 
-#: src/components/Tabs/EditorTabList.tsx:49
-msgid "Advanced"
-msgstr "고급의"
-
-#: src/pages/Account.tsx:273
+#: src/pages/Account.tsx:274
 msgid "Amount"
 msgstr "금액"
 
-#: src/components/Feedback.tsx:82
+#: src/components/Feedback.tsx:86
 msgid "An error occurred. Try resubmitting or email {0} directly."
 msgstr "오류가 발생하였습니다. 다시 제출하거나 {0}으로 직접 이메일을 보내주십시오."
 
-#: src/components/Settings.tsx:70
+#: src/components/Settings.tsx:71
 msgid "Appearance"
 msgstr "외관"
 
-#: src/components/Tabs/EditStyleTab.tsx:148
+#: src/components/Tabs/EditStyleTab.tsx:150
 msgid "Apply Style"
 msgstr "스타일 적용"
 
@@ -79,12 +99,11 @@ msgstr "스타일 적용"
 msgid "Attributes"
 msgstr "속성"
 
-#: src/pages/Pricing.tsx:56
-#: src/pages/Pricing.tsx:70
-msgid "Auto-Layouts"
-msgstr "자동 레이아웃"
+#: src/lib/graphOptions.ts:45
+msgid "August 2023"
+msgstr "2023년 8월"
 
-#: src/components/Feedback.tsx:105
+#: src/components/Feedback.tsx:109
 msgid "Back To Editor"
 msgstr "편집기로 돌아가기"
 
@@ -92,57 +111,64 @@ msgstr "편집기로 돌아가기"
 msgid "Basic Flowchart"
 msgstr "기본 플로우 차트"
 
-#: src/components/Settings.tsx:151
+#: src/components/Settings.tsx:170
 msgid "Become a Github Sponsor"
 msgstr "깃허브 스폰서가 되기"
 
-#: src/components/Settings.tsx:139
+#: src/components/Settings.tsx:158
 msgid "Become a Pro User"
 msgstr "프로 사용자가 되기"
 
-#: src/pages/New.tsx:318
+#: src/lib/getDefaultText.ts:4
+msgid "Begin Typing"
+msgstr "입력을 시작하세요."
+
+#: src/pages/Pricing.tsx:39
+msgid "Begin with a prompt like Customer Support Flowchart and Flowchart Fun will create a flowchart for you!"
+msgstr "고객 지원 흐름도와 같은 프롬프트를 시작하고 Flowchart Fun이 흐름도를 만들어 드릴 것입니다!"
+
+#: src/pages/New.tsx:339
 msgid "Begin with a simple example showing how <0>Flowchart Fun</0> works."
 msgstr "<0>Flowchart Fun</0>이 어떻게 작동하는지를 보여주는 간단한 예제로 시작하세요."
 
-#: src/pages/New.tsx:282
+#: src/pages/New.tsx:303
 msgid "Blank"
 msgstr "빈칸"
 
-#: src/components/Header.tsx:152
-#: src/components/Header.tsx:373
-#: src/pages/Blog.tsx:19
+#: src/components/Header.tsx:140
+#: src/components/Header.tsx:365
+#: src/pages/Blog.tsx:28
 msgid "Blog"
 msgstr "블로그"
 
-#: src/pages/Account.tsx:135
+#: src/pages/Account.tsx:144
 msgid "Book a Meeting"
 msgstr "미팅 예약"
 
-#: src/components/GraphContextMenu.tsx:463
-#: src/components/GraphContextMenu.tsx:559
+#: src/components/GraphContextMenu.tsx:506
 msgid "Border"
 msgstr "경계"
 
-#: src/lib/graphOptions.ts:36
-#: src/lib/graphOptions.ts:43
+#: src/lib/graphOptions.ts:34
+#: src/lib/graphOptions.ts:41
 msgid "Bottom to Top"
 msgstr "아래에서 위로"
 
-#: src/lib/graphOptions.ts:18
+#: src/lib/graphOptions.ts:16
 msgid "Breadthfirst"
 msgstr "폭 우선"
 
 #: src/components/ClearTextButton.tsx:26
 #: src/components/ImportDataDialog.tsx:719
 #: src/components/RenameButton.tsx:153
-#: src/pages/Account.tsx:295
-#: src/pages/Account.tsx:308
-#: src/pages/Account.tsx:381
-#: src/pages/Account.tsx:431
+#: src/pages/Account.tsx:297
+#: src/pages/Account.tsx:310
+#: src/pages/Account.tsx:383
+#: src/pages/Account.tsx:433
 msgid "Cancel"
 msgstr "취소"
 
-#: src/pages/Account.tsx:298
+#: src/pages/Account.tsx:300
 msgid "Cancel your subscription. Your hosted charts will become read-only."
 msgstr "구독을 취소하십시오. 귀하의 호스트 차트가 읽기 전용이 됩니다."
 
@@ -154,22 +180,30 @@ msgstr "일부 속성은 요소의 모양 또는 기능을 사용자 정의하�
 msgid "Change Email Address"
 msgstr "이메일 주소 변경"
 
-#: src/components/Header.tsx:162
-#: src/components/Header.tsx:379
-#: src/pages/Changelog.tsx:17
+#: src/components/Header.tsx:151
+#: src/components/Header.tsx:371
+#: src/pages/Changelog.tsx:26
 msgid "Changelog"
 msgstr "변경 로그"
 
-#: src/components/Header.tsx:95
-#: src/components/Header.tsx:351
+#: src/components/Header.tsx:96
+#: src/components/Header.tsx:343
 msgid "Charts"
 msgstr "차트"
 
-#: src/pages/LogIn.tsx:46
+#: src/pages/LogIn.tsx:85
 msgid "Check your email for a link to log in.<0/>You can close this window."
 msgstr "로그인할 링크가 들어있는 이메일을 확인하세요. 이 창은 닫을 수 있습니다."
 
-#: src/components/ThemePicker.tsx:68
+#: src/pages/LogIn.tsx:275
+msgid "Choose"
+msgstr "선택하세요"
+
+#: src/components/PaymentStepper.tsx:70
+msgid "Choose a Plan"
+msgstr "계획을 선택하세요 "
+
+#: src/components/ThemePicker.tsx:73
 msgid "Choose a Theme"
 msgstr "테마를 선택하세요"
 
@@ -177,21 +211,13 @@ msgstr "테마를 선택하세요"
 msgid "Choose from a variety of arrow shapes for the source and target of an edge. Shapes include triangle, triangle-tee, circle-triangle, triangle-cross, triangle-backcurve, vee, tee, square, circle, diamond, chevron, none. ."
 msgstr "에지의 소스와 목적지를 위한 다양한 화살표 모양을 선택합니다. 모양에는 삼각형, 삼각형-티, 원-삼각형, 삼각형-가위형, 삼각형-뒤곡선, 베이, 티, 사각형, 원, 다이아몬드, 쉐브론, 없음이 포함됩니다."
 
-#: src/components/PaymentStepper.tsx:75
-msgid "Choose the plan that's right for you and start creating amazing flowcharts with Flowchart Fun Pro"
-msgstr "당신에게 맞는 계획을 선택하고 Flowchart Fun Pro을 사용하여 놀라운 플로우차트를 만들어보세요."
-
-#: src/lib/graphOptions.ts:21
+#: src/lib/graphOptions.ts:19
 msgid "Circle"
 msgstr "원"
 
 #: src/components/LearnSyntaxDialog.tsx:135
 msgid "Classes"
 msgstr "클래스"
-
-#: src/lib/graphOptions.ts:56
-msgid "Clay"
-msgstr "점토"
 
 #: src/components/ClearTextButton.tsx:35
 msgid "Clear"
@@ -201,15 +227,11 @@ msgstr "지우다"
 msgid "Clear text?"
 msgstr "텍스트를 지우시겠습니까?"
 
-#: src/lib/getDefaultText.ts:7
-msgid "Click on \\nLearn Syntax\\nto learn more"
-msgstr "\\n문법 습득\\n을 클릭하여 더 배우십시오"
-
-#: src/components/ThemePicker.tsx:71
+#: src/components/ThemePicker.tsx:76
 msgid "Click to preview"
 msgstr "미리보기를 클릭하세요"
 
-#: src/components/CloneButton.tsx:25
+#: src/components/CloneButton.tsx:32
 msgid "Clone"
 msgstr "클론"
 
@@ -217,7 +239,7 @@ msgstr "클론"
 msgid "Close"
 msgstr "닫기"
 
-#: src/components/GraphContextMenu.tsx:289
+#: src/components/GraphContextMenu.tsx:332
 msgid "Color"
 msgstr "색상"
 
@@ -229,21 +251,26 @@ msgstr "색상에는 빨강, 주황, 노랑, 파랑, 보라, 검정, 흰색, 회
 msgid "Column"
 msgstr "열"
 
-#: src/lib/graphOptions.ts:55
-msgid "Comic Book"
-msgstr "만화책"
-
-#: src/components/Feedback.tsx:68
+#: src/components/Feedback.tsx:72
 msgid "Comment"
 msgstr "댓글 달기"
 
-#: src/lib/graphOptions.ts:20
+#: src/lib/graphOptions.ts:18
 msgid "Concentric"
 msgstr "동심"
 
 #: src/pages/Account.tsx:220
 msgid "Confirm New Email"
 msgstr "새 이메일 확인"
+
+#: src/pages/LogIn.tsx:236
+#: src/pages/LogIn.tsx:236
+msgid "Confirm your email address to sign in."
+msgstr "로그인하려면 이메일 주소를 확인하세요."
+
+#: src/lib/getDefaultText.ts:5
+msgid "Consider: Adding a Label"
+msgstr "레이블을 추가해 보는 것을 고려하세요."
 
 #: src/components/LearnSyntaxDialog.tsx:251
 msgid "Containers"
@@ -254,8 +281,8 @@ msgid "Containers are nodes that contain other nodes. They are declared using cu
 msgstr "컨테이너는 다른 노드를 포함하는 노드입니다. 중괄호를 사용하여 선언됩니다."
 
 #: src/components/ImportDataDialog.tsx:732
-#: src/components/PaymentStepper.tsx:107
-#: src/components/PaymentStepper.tsx:150
+#: src/components/PaymentStepper.tsx:108
+#: src/components/PaymentStepper.tsx:148
 msgid "Continue"
 msgstr "계속하기"
 
@@ -267,17 +294,25 @@ msgstr "이것을 호스팅 된 차트로 변환할까요?"
 msgid "Convert to hosted chart?"
 msgstr "호스팅 차트로 변환하시겠습니까?"
 
+#: src/pages/Charts.tsx:426
+msgid "Convert your temporary charts to permanent charts with one click by subscribing to <0>Flowchart Fun Pro</0> before August 28th."
+msgstr "8월 28일 전에 <0>플로우차트 펀 프로</0>에 가입하여 한 번의 클릭으로 임시 차트를 영구적인 차트로 변환하세요."
+
+#: src/components/Settings.tsx:144
+msgid "Cookie Policy"
+msgstr "쿠키 정책"
+
 #: src/components/ShareDialog.tsx:244
 #: src/components/ShareDialog.tsx:245
 #: src/components/ShareDialog.tsx:357
 msgid "Copy"
 msgstr "복사"
 
-#: src/components/GraphContextMenu.tsx:210
+#: src/components/GraphContextMenu.tsx:197
 msgid "Copy PNG Image"
 msgstr "PNG 이미지 복사"
 
-#: src/components/GraphContextMenu.tsx:171
+#: src/components/GraphContextMenu.tsx:158
 msgid "Copy SVG Code"
 msgstr "SVG 코드 복사"
 
@@ -285,28 +320,31 @@ msgstr "SVG 코드 복사"
 msgid "Copy your mermaid.js code or open it directly in the mermaid.js live editor."
 msgstr "mermaid.js 코드를 복사하거나 mermaid.js 라이브 편집기에서 직접 열어주세요."
 
-#: src/pages/Pricing.tsx:24
-#: src/pages/Pricing.tsx:73
+#: src/pages/Pricing.tsx:79
 msgid "Create Flowcharts from a Prompt with AI"
 msgstr "AI 프롬프트를 사용하여 다이어그램 생성"
 
-#: src/pages/New.tsx:305
+#: src/pages/New.tsx:326
 msgid "Create New Flowchart"
 msgstr "새로운 플로우차트 만들기"
 
-#: src/pages/New.tsx:177
+#: src/pages/New.tsx:192
 msgid "Create a New Flowchart"
 msgstr "새 다이어그램 만들기"
 
-#: src/pages/Pricing.tsx:42
-msgid "Create professional-quality visual aids for presentations or training materials"
-msgstr "프레젠테이션 또는 교육 자료를 위한 전문 품질의 시각적 지원 작성"
+#: src/pages/Pricing.tsx:104
+msgid "Create unlimited diagrams for just $3/month!"
+msgstr "3달러에 무한한 다이어그램을 만들어보세요!"
+
+#: src/pages/Pricing.tsx:37
+msgid "Create with AI"
+msgstr "AI로 만들기"
 
 #: src/components/LearnSyntaxDialog.tsx:158
 msgid "Creating an edge between two nodes is done by indenting the second node below the first"
 msgstr "두 노드 사이에 엣지를 만드는 것은 첫 번째 노드 아래에 두 번째 노드를 들여 쓰는 것으로 합니다."
 
-#: src/pages/Pricing.tsx:72
+#: src/pages/Pricing.tsx:78
 msgid "Custom Sharing Options"
 msgstr "커스텀 공유 옵션"
 
@@ -314,30 +352,38 @@ msgstr "커스텀 공유 옵션"
 msgid "Customer Portal"
 msgstr "고객 포털"
 
-#: src/components/Tabs/EditStyleTab.tsx:175
+#: src/components/Tabs/EditStyleTab.tsx:177
 msgid "Customize your theme by editing the <0>Cytoscape CSS</0> below. Our styling documentation is coming soon! In the meantime, the best resource is the <1>Cytoscape</1> documentation. Come ask questions in the <2>Discord</2> if you get stuck."
 msgstr "아래의 <0>Cytoscape CSS</0>를 편집하여 테마를 사용자 정의합니다. 스타일 문서는 곧 준비될 예정입니다! 일단은 최고의 자료는 <1>Cytoscape</1> 문서입니다. 막히면 <2>Discord</2>에 문의하세요."
 
-#: src/lib/graphOptions.ts:48
+#: src/lib/graphOptions.ts:47
 msgid "Dark"
 msgstr "다크"
 
-#: src/components/Settings.tsx:95
-#: src/components/Settings.tsx:98
+#: src/components/Settings.tsx:96
+#: src/components/Settings.tsx:99
 msgid "Dark Mode"
 msgstr "다크 모드"
 
-#: src/pages/Account.tsx:270
+#: src/pages/Pricing.tsx:77
+msgid "Data Import"
+msgstr "데이터 가져오기"
+
+#: src/pages/Account.tsx:271
 msgid "Date"
 msgstr "날짜"
 
-#: src/pages/New.tsx:249
+#: src/pages/New.tsx:265
 msgid "Deleted when browser data is cleared"
 msgstr "브라우저 데이터가 지워지면 삭제됨"
 
-#: src/pages/New.tsx:511
+#: src/pages/New.tsx:532
 msgid "Describe the flowchart you wish to create"
 msgstr "만들려는 다이어그램 설명"
+
+#: src/pages/Pricing.tsx:44
+msgid "Direct from your Data"
+msgstr "당신의 데이터에서 직접"
 
 #: src/components/Tabs/EditLayoutTab.tsx:99
 msgid "Direction"
@@ -347,36 +393,33 @@ msgstr "방향"
 msgid "Discard"
 msgstr "버리다"
 
-#: src/pages/Account.tsx:369
+#: src/pages/Account.tsx:371
 msgid "Do you want to cancel your subscription?"
 msgstr "구독을 취소하시겠습니까?"
 
-#: src/pages/Charts.tsx:293
+#: src/pages/Charts.tsx:290
 msgid "Do you want to delete this?"
 msgstr "본 항목을 삭제하시겠습니까?"
 
-#: src/components/Tabs/EditorTabList.tsx:21
+#: src/components/Tabs/EditorTabList.tsx:50
+#: src/components/Tabs/EditorTabList.tsx:51
 msgid "Document"
 msgstr "문서"
 
-#: src/pages/LogIn.tsx:99
-msgid "Don't have an account?"
-msgstr "계정이 없습니까?"
-
 #: src/components/ShareDialog.tsx:61
-#: src/components/ShareDialog.tsx:514
+#: src/components/ShareDialog.tsx:516
 msgid "Download"
 msgstr "다운로드"
 
-#: src/components/GraphContextMenu.tsx:118
+#: src/components/GraphContextMenu.tsx:105
 msgid "Download JPG"
 msgstr "JPG 다운로드"
 
-#: src/components/GraphContextMenu.tsx:95
+#: src/components/GraphContextMenu.tsx:82
 msgid "Download PNG"
 msgstr "PNG 다운로드"
 
-#: src/components/GraphContextMenu.tsx:138
+#: src/components/GraphContextMenu.tsx:125
 msgid "Download SVG"
 msgstr "SVG 다운로드"
 
@@ -391,14 +434,6 @@ msgstr "참조를 시작하여 여러 노드로부터 엣지를 그립니다."
 #: src/components/ImportDataDialog.tsx:246
 msgid "Drop the file here ..."
 msgstr "파일을 여기에 드롭하세요 ..."
-
-#: src/pages/Pricing.tsx:18
-msgid "Easily import existing flowcharts from other software"
-msgstr "다른 소프트웨어에서 기존 플로우 차트를 쉽게 가져오기"
-
-#: src/components/GraphContextMenu.tsx:552
-msgid "Edge"
-msgstr "가장자리"
 
 #: src/components/LearnSyntaxDialog.tsx:179
 msgid "Edge ID, Classes, Attributes"
@@ -462,17 +497,17 @@ msgstr "도착 노드 행에 간선"
 msgid "Editable"
 msgstr "편집 가능"
 
-#: src/components/Header.tsx:87
-#: src/components/Header.tsx:339
+#: src/components/Header.tsx:88
+#: src/components/Header.tsx:331
 #: src/components/MobileTabToggle.tsx:20
 msgid "Editor"
 msgstr "에디터"
 
-#: src/lib/graphOptions.ts:49
-msgid "Eggs"
-msgstr "달걀"
-
-#: src/components/Feedback.tsx:58
+#: src/components/Feedback.tsx:62
+#: src/pages/ForgotPassword.tsx:53
+#: src/pages/ForgotPassword.tsx:57
+#: src/pages/LogIn.tsx:149
+#: src/pages/LogIn.tsx:298
 msgid "Email"
 msgstr "이메일"
 
@@ -480,64 +515,71 @@ msgstr "이메일"
 msgid "Empty"
 msgstr "비어 있음"
 
-#: src/components/PaymentStepper.tsx:125
+#: src/components/PaymentStepper.tsx:126
 msgid "Enter your email"
 msgstr "이메일을 입력하세요"
+
+#: src/pages/LogIn.tsx:142
+msgid "Enter your email address and we'll send you a magic link to sign in."
+msgstr "이메일 주소를 입력하면 자동으로 로그인할 수 있는 링크를 보내드립니다."
+
+#: src/pages/ForgotPassword.tsx:37
+msgid "Enter your email address below and we'll send you a link to reset your password."
+msgstr "아래에 이메일 주소를 입력하면 비밀번호 재설정을 위한 링크를 보내드립니다."
 
 #: src/components/ImportDataDialog.tsx:556
 msgid "Equal To"
 msgstr "같음"
 
-#: src/pages/New.tsx:436
+#: src/pages/New.tsx:457
 msgid "Essay writing process flowchart, guiding students through brainstorming, outlining, drafting, and revising stages"
 msgstr "에세이 작성 과정 플로차트는 학생들을 초기 아이디어 생성, 개념 정리, 작성, 수정 단계를 거쳐 이끌어줍니다."
 
-#: src/pages/Pricing.tsx:64
-msgid "Everything in Free"
-msgstr "무료 플랜의 모든 것"
-
-#: src/lib/graphOptions.ts:50
+#: src/lib/graphOptions.ts:48
 msgid "Excalidraw"
 msgstr "Excalidraw"
 
-#: src/components/EditorWrapper.tsx:51
+#: src/components/EditorWrapper.tsx:52
 #: src/components/ShareDialog.tsx:52
 #: src/components/ShareDialog.tsx:149
 msgid "Export"
 msgstr "내보내기"
 
-#: src/pages/Pricing.tsx:40
-#: src/pages/Pricing.tsx:67
-msgid "Export High-Resolution Images"
-msgstr "고해상도 이미지 내보내기"
+#: src/pages/Pricing.tsx:53
+msgid "Export professional-quality flowcharts without watermarks to use in your presentations and documents"
+msgstr "발표 및 문서에서 사용할 수있는 전문가 수준의 플로우 차트를 무수신 마크 없이 내보내세요."
 
-#: src/pages/Pricing.tsx:68
-msgid "Export to SVG"
-msgstr "SVG로 내보내기"
-
-#: src/components/GraphContextMenu.tsx:252
+#: src/components/GraphContextMenu.tsx:239
 msgid "Extra Large"
 msgstr "엄청나게 큼"
 
-#: src/pages/New.tsx:515
+#: src/pages/New.tsx:536
 msgid "Extract"
 msgstr "발췌"
 
 #: src/components/Feedback.tsx:44
-#: src/components/Header.tsx:126
-#: src/components/Header.tsx:365
+#: src/components/Header.tsx:104
+#: src/components/Header.tsx:357
 msgid "Feedback"
 msgstr "피드백"
 
-#: src/components/Settings.tsx:125
+#: src/pages/Pricing.tsx:32
+msgid "Flowchart Fun Pro allows you to create, store, and distribute as many flowcharts as you need."
+msgstr "플로우 차트 펀 프로는 필요한 만큼 많은 플로우 차트를 만들고 저장하고 배포할 수 있습니다."
+
+#: src/components/Settings.tsx:132
 msgid "Follow Us on Twitter"
 msgstr "트위터에서 우리를 팔로우하기"
+
+#: src/pages/LogIn.tsx:338
+msgid "Forgot your password?"
+msgstr "비밀번호를 잊으셨나요?"
 
 #: src/components/Feedback.tsx:47
 msgid "Found a bug? Have a feature request? We would love to hear from you!"
 msgstr "버그를 발견했습니까? 기능 요청이 있습니까? 우리는 당신과의 소통을 사랑합니다!"
 
-#: src/pages/Pricing.tsx:51
+#: src/pages/Pricing.tsx:61
 msgid "Free"
 msgstr "무료"
 
@@ -545,19 +587,11 @@ msgstr "무료"
 msgid "Fullscreen"
 msgstr "전체 화면"
 
-#: src/lib/graphOptions.ts:54
-msgid "Futuristic"
-msgstr "미래 지향적"
-
-#: src/components/Tabs/EditLayoutTab.tsx:199
+#: src/components/Tabs/EditLayoutTab.tsx:202
 msgid "Get More Layouts"
 msgstr "더 많은 레이아웃을 보고 싶어요"
 
-#: src/pages/Pricing.tsx:34
-msgid "Get personalized attention and support from our expert team"
-msgstr "고급 지식과 지원을 받으세요"
-
-#: src/pages/New.tsx:272
+#: src/pages/New.tsx:293
 msgid "Getting Started"
 msgstr "시작하기"
 
@@ -565,20 +599,15 @@ msgstr "시작하기"
 msgid "Graph"
 msgstr "그래프"
 
-#: src/lib/graphOptions.ts:23
+#: src/lib/graphOptions.ts:21
 msgid "Grid"
 msgstr "그리드"
 
-#: src/pages/Account.tsx:124
-#: src/pages/Pricing.tsx:35
+#: src/pages/Account.tsx:133
 msgid "Have complex questions or issues? We're here to help."
 msgstr "복잡한 문제가 있나요? 여기에서 도와드리겠습니다."
 
-#: src/components/Header.tsx:104
-msgid "Help"
-msgstr "도움말"
-
-#: src/pages/Account.tsx:260
+#: src/pages/Account.tsx:261
 msgid "History"
 msgstr "기록"
 
@@ -594,17 +623,17 @@ msgstr "이 데이터에서 간선은 어떻게 선언됩니까?"
 msgid "ID's"
 msgstr "식별자"
 
-#: src/components/Settings.tsx:132
+#: src/pages/ForgotPassword.tsx:70
+msgid "If an account with that email exists, we've sent you an email with instructions on how to reset your password."
+msgstr "해당 이메일로 계정이 있다면 비밀번호 재설정을 위한 안내를 포함한 이메일을 보내드립니다."
+
+#: src/components/Settings.tsx:151
 msgid "If you enjoy using <0>Flowchart Fun</0>, please consider supporting the project"
 msgstr "<0>Flowchart Fun</0>을 사용하는 것을 즐기고 있다면, 프로젝트를 지원해 주시기 바랍니다."
 
 #: src/lib/parserErrors.tsx:21
 msgid "If you mean to create an edge, indent this line. If not, escape the colon with a backslash <0>\\:</0>"
 msgstr "만약 가장자리를 만들려면, 이 줄을 들여쓰기하십시오. 만약 그렇지 않다면, 콜론을 백슬래시로 이스케이프하십시오 <0>\\:</0>"
-
-#: src/pages/Pricing.tsx:55
-msgid "Image Export"
-msgstr "이미지 내보내기"
 
 #: src/components/LearnSyntaxDialog.tsx:380
 msgid "Images"
@@ -625,16 +654,11 @@ msgstr "CSV 파일에서 데이터를 가져옵니다."
 msgid "Import data from any CSV file and map it to a new flowchart. This is a great way to import data from other sources like Lucidchart, Google Sheets, and Visio."
 msgstr "CSV 파일에서 데이터를 가져와 새로운 플로우 차트로 매핑합니다. 이것은 Lucidchart, Google Sheets, Visio 등의 다른 소스에서 데이터를 가져오는 데 좋은 방법입니다."
 
-#: src/pages/Pricing.tsx:16
-#: src/pages/Pricing.tsx:69
-msgid "Import from Lucidchart, Visio, and other CSV files"
-msgstr "Lucidchart, Visio 및 기타 CSV 파일에서 가져오기"
-
 #: src/components/ShareDialog.tsx:433
 msgid "Import your diagram it into Microsoft Visio using one of these CSV files."
 msgstr "이러한 CSV 파일 중 하나를 사용하여 다이어그램을 Microsoft Visio로 가져옵니다."
 
-#: src/components/Layout.tsx:73
+#: src/components/Layout.tsx:85
 msgid "Important Changes are Coming to Flowchart Fun."
 msgstr "Flowchart Fun에는 중요한 변화가 오고 있습니다."
 
@@ -642,23 +666,15 @@ msgstr "Flowchart Fun에는 중요한 변화가 오고 있습니다."
 msgid "Importing data is a pro feature. You can upgrade to Flowchart Fun Pro for just $3/month or $30/year."
 msgstr "데이터 가져오기는 프로 기능입니다. Flowchart Fun Pro을 월 3 달러 또는 연 30 달러로 업그레이드 할 수 있습니다."
 
-#: src/pages/Pricing.tsx:43
-msgid "Impress your audience with high-quality images produced by Flowchart Fun"
-msgstr "Flowchart Fun으로 만든 고품질 이미지로 관객을 감탄시켜보세요"
-
-#: src/components/ShareDialog.tsx:466
+#: src/components/ShareDialog.tsx:468
 msgid "Include a title using a <0>title</0> attribute. To use Visio coloring, add a <1>roleType</1> attribute equal to one of the following:"
 msgstr "<0>title</0> 속성을 사용하여 제목을 포함시키십시오. Visio 색상을 사용하려면 다음 중 하나와 같은 <1>roleType</1> 속성을 추가하십시오:"
 
-#: src/lib/getDefaultText.ts:5
-msgid "Indenting creates an edge"
-msgstr "들여 쓰기는 가장자리를 만듭니다"
-
-#: src/components/Header.tsx:141
+#: src/components/Header.tsx:129
 msgid "Info"
 msgstr "정보"
 
-#: src/pages/New.tsx:510
+#: src/pages/New.tsx:531
 msgid "Instruct"
 msgstr "지시하다"
 
@@ -666,25 +682,26 @@ msgstr "지시하다"
 msgid "Is"
 msgstr "있다"
 
-#: src/components/Settings.tsx:38
+#: src/components/Settings.tsx:39
 msgid "Language"
 msgstr "언어"
 
-#: src/components/GraphContextMenu.tsx:247
+#: src/components/GraphContextMenu.tsx:234
 msgid "Large"
 msgstr "크다"
 
-#: src/components/Tabs/EditLayoutTab.tsx:73
-#: src/components/Tabs/EditorTabList.tsx:30
+#: src/components/Tabs/EditLayoutTab.tsx:74
+#: src/components/Tabs/EditorTabList.tsx:59
+#: src/components/Tabs/EditorTabList.tsx:60
 msgid "Layout"
 msgstr "레이아웃"
 
-#: src/components/GraphFloatingMenu.tsx:83
-#: src/components/GraphFloatingMenu.tsx:85
+#: src/components/GraphFloatingMenu.tsx:93
+#: src/components/GraphFloatingMenu.tsx:95
 msgid "Layout Frozen"
 msgstr "레이아웃 동결"
 
-#: src/components/Tabs/EditLayoutTab.tsx:211
+#: src/components/Tabs/EditLayoutTab.tsx:214
 msgid "Layout is Frozen"
 msgstr "레이아웃이 고정됨"
 
@@ -693,8 +710,9 @@ msgid "Leading References"
 msgstr "주목할만한 참고"
 
 #: src/components/ImportDataUnauthenticatedDialog.tsx:67
-#: src/components/Layout.tsx:75
-#: src/components/MightLoseWarning.tsx:37
+#: src/components/Layout.tsx:87
+#: src/components/MightLoseWarning.tsx:36
+#: src/components/PaywallModal.tsx:60
 msgid "Learn More"
 msgstr "더 알아보기"
 
@@ -703,25 +721,21 @@ msgstr "더 알아보기"
 msgid "Learn Syntax"
 msgstr "구문 배우기"
 
-#: src/pages/Charts.tsx:365
+#: src/pages/Charts.tsx:363
 msgid "Learn about Flowchart Fun Pro"
 msgstr "Flowchart Fun Pro에 대해 알아보기"
 
-#: src/lib/graphOptions.ts:34
-#: src/lib/graphOptions.ts:41
+#: src/lib/graphOptions.ts:32
+#: src/lib/graphOptions.ts:39
 msgid "Left to Right"
 msgstr "왼쪽에서 오른쪽으로"
 
-#: src/components/PaymentStepper.tsx:127
-msgid "Let's get started! Enter your email address below to create your Flowchart Fun account and start using our powerful features."
-msgstr "시작해볼까요? 아래 이메일 주소를 입력하여 Flowchart Fun 계정을 만들고 강력한 기능을 사용해보세요."
-
-#: src/lib/graphOptions.ts:47
+#: src/lib/graphOptions.ts:46
 msgid "Light"
 msgstr "라이트"
 
-#: src/components/Settings.tsx:87
-#: src/components/Settings.tsx:90
+#: src/components/Settings.tsx:88
+#: src/components/Settings.tsx:91
 msgid "Light Mode"
 msgstr "라이트 모드"
 
@@ -729,28 +743,26 @@ msgstr "라이트 모드"
 msgid "Link"
 msgstr "링크"
 
-#: src/components/ThemePicker.tsx:55
-#: src/components/ThemePicker.tsx:109
+#: src/components/ThemePicker.tsx:60
+#: src/components/ThemePicker.tsx:114
 msgid "Load Theme"
 msgstr "테마 불러오기"
 
-#: src/components/ThemePicker.tsx:90
+#: src/components/ThemePicker.tsx:95
 msgid "Loading a theme will erase any custom styles you have applied"
 msgstr "테마를 불러오면 사용자 정의 스타일이 모두 사라집니다."
 
-#: src/components/GraphFloatingMenu.tsx:68
-#: src/components/GraphFloatingMenu.tsx:70
+#: src/components/GraphFloatingMenu.tsx:78
+#: src/components/GraphFloatingMenu.tsx:80
 msgid "Lock Zoom to Graph"
 msgstr "그래프에 룩 줌을 고정하다"
 
-#: src/components/Header.tsx:201
-#: src/components/Header.tsx:421
-#: src/pages/LogIn.tsx:69
-#: src/pages/New.tsx:263
+#: src/components/Header.tsx:190
+#: src/components/Header.tsx:414
 msgid "Log In"
 msgstr "로그인"
 
-#: src/pages/Account.tsx:116
+#: src/pages/Account.tsx:124
 msgid "Log Out"
 msgstr "로그아웃"
 
@@ -758,7 +770,7 @@ msgstr "로그아웃"
 msgid "Log in to start creating flowcharts."
 msgstr "플로우 차트를 만들기 위해 로그인하세요."
 
-#: src/components/Settings.tsx:145
+#: src/components/Settings.tsx:164
 msgid "Make a One-Time Donation"
 msgstr "한 번 선물하기"
 
@@ -766,31 +778,35 @@ msgstr "한 번 선물하기"
 msgid "Make publicly accessible"
 msgstr "공개적으로 액세스 가능하게 만들기"
 
-#: src/components/PaymentStepper.tsx:132
+#: src/components/PaymentStepper.tsx:130
 msgid "Make sure you use the same email you will use to log in."
 msgstr "로그인할 때 사용할 같은 이메일을 사용하세요."
+
+#: src/pages/Account.tsx:516
+msgid "Manage Billing"
+msgstr "청구 관리"
 
 #: src/components/ImportDataDialog.tsx:384
 msgid "Map Data"
 msgstr "데이터 지도"
 
-#: src/pages/New.tsx:430
+#: src/pages/New.tsx:451
 msgid "Market understanding and competitive landscape maintenance for SaaS product development"
 msgstr "SaaS 제품 개발에 대한 시장 이해 및 경쟁 경제동화 유지"
 
-#: src/components/GraphContextMenu.tsx:243
+#: src/components/GraphContextMenu.tsx:230
 msgid "Medium"
 msgstr "중간"
 
-#: src/pages/New.tsx:499
+#: src/pages/New.tsx:520
 msgid "Method"
 msgstr "방법"
 
-#: src/lib/graphOptions.ts:51
-msgid "Monospace"
-msgstr "Monospace"
+#: src/components/MigrateTempFlowchartsModal.tsx:33
+msgid "Migrate Flowcharts"
+msgstr "플로우차트 이전"
 
-#: src/components/PaymentStepper.tsx:82
+#: src/components/PaymentStepper.tsx:80
 msgid "Monthly"
 msgstr "월간"
 
@@ -798,17 +814,13 @@ msgstr "월간"
 msgid "Multiple pointers on same line"
 msgstr "같은 줄에 여러 포인터"
 
-#: src/lib/graphOptions.ts:58
-msgid "Museum"
-msgstr "박물관"
-
-#: src/pages/New.tsx:181
+#: src/pages/New.tsx:196
 msgid "Name"
 msgstr "이름"
 
-#: src/components/Header.tsx:78
-#: src/components/Header.tsx:345
-#: src/pages/Charts.tsx:106
+#: src/components/Header.tsx:79
+#: src/components/Header.tsx:337
+#: src/pages/Charts.tsx:111
 msgid "New"
 msgstr "신규"
 
@@ -816,8 +828,8 @@ msgstr "신규"
 msgid "New Email"
 msgstr "새 이메일"
 
-#: src/pages/Account.tsx:170
-#: src/pages/Account.tsx:427
+#: src/pages/Account.tsx:167
+#: src/pages/Account.tsx:429
 msgid "Next charge"
 msgstr "다음 청구 금액"
 
@@ -825,7 +837,19 @@ msgstr "다음 청구 금액"
 msgid "No Edges"
 msgstr "노드 없음"
 
-#: src/components/GraphContextMenu.tsx:282
+#: src/pages/Pricing.tsx:76
+msgid "No Watermark!"
+msgstr "수신 마크 없음!"
+
+#: src/pages/Pricing.tsx:51
+msgid "No Watermarks"
+msgstr "물방울 없음"
+
+#: src/lib/getDefaultText.ts:8
+msgid "No: Option B"
+msgstr "아니요: 옵션 B"
+
+#: src/components/GraphContextMenu.tsx:325
 msgid "Node"
 msgstr "노드"
 
@@ -866,25 +890,24 @@ msgstr "노드는 점선, 점점선 또는 이중선으로 스타일링할 수 �
 msgid "Not Empty"
 msgstr "비어 있지 않음"
 
-#: src/pages/Pricing.tsx:75
+#: src/lib/getDefaultText.ts:10
+msgid "Now erase the text and try it yourself!"
+msgstr "지금 텍스트를 지우고 스스로 시도해 보세요!"
+
+#: src/pages/Pricing.tsx:81
 msgid "Office Hours"
 msgstr "근무 시간"
 
-#: src/pages/LogIn.tsx:54
+#: src/pages/LogIn.tsx:93
 msgid "Once in a while the magic link will end up in your spam folder. If you don't see it after a few minutes, check there or request a new link."
 msgstr "가끔 마술 링크가 스팸 폴더에 도착할 수도 있습니다. 몇 분 후에도 보이지 않으면 거기를 확인하거나 새로운 링크를 요청하십시오."
 
-#: src/pages/Account.tsx:121
-#: src/pages/Pricing.tsx:32
-#: src/pages/Pricing.tsx:74
+#: src/pages/Account.tsx:130
+#: src/pages/Pricing.tsx:80
 msgid "One-on-One Support"
 msgstr "일대일 지원"
 
-#: src/pages/Pricing.tsx:57
-msgid "One-time Share Links"
-msgstr "일회성 공유 링크"
-
-#: src/pages/Charts.tsx:154
+#: src/pages/Charts.tsx:165
 msgid "Only available on this device.<0/>Clearing your browser cache will erase them."
 msgstr "이 기기에서만 사용 가능합니다.<0/>브라우저 캐시를 지우면 삭제됩니다."
 
@@ -892,35 +915,47 @@ msgstr "이 기기에서만 사용 가능합니다.<0/>브라우저 캐시를 �
 msgid "Open Customer Portal"
 msgstr "고객 포털 열기"
 
-#: src/components/ShareDialog.tsx:453
+#: src/pages/Account.tsx:520
+msgid "Or, you can <0>create a new subscription</0>."
+msgstr "또는 <0>새로운 구독을 만들 수도 있습니다.</0>"
+
+#: src/components/ShareDialog.tsx:454
 msgid "Organization Chart"
 msgstr "조직도"
 
-#: src/pages/New.tsx:516
+#: src/pages/Pricing.tsx:65
+msgid "PNG & JPG Exports"
+msgstr "PNG 및 JPG 내보내기"
+
+#: src/pages/Pricing.tsx:75
+msgid "PNG, JPG, and SVG Exports"
+msgstr "PNG, JPG 및 SVG 내보내기"
+
+#: src/pages/LogIn.tsx:310
+msgid "Password"
+msgstr "비밀번호"
+
+#: src/lib/hooks.ts:78
+msgid "Past Due"
+msgstr "연체"
+
+#: src/pages/New.tsx:537
 msgid "Paste the information you wish to convert to a flowchart"
 msgstr "순서도로 변환하려는 정보를 붙여넣기"
 
-#: src/pages/Pricing.tsx:71
-msgid "Permalinks"
-msgstr "퍼머링크"
+#: src/pages/New.tsx:232
+msgid "Permanent"
+msgstr "영구적"
 
-#: src/pages/Charts.tsx:358
+#: src/pages/Charts.tsx:356
 msgid "Permanent Charts are a Pro Feature"
 msgstr "영구 차트는 프로 기능입니다"
 
-#: src/pages/Charts.tsx:111
+#: src/pages/Charts.tsx:117
 msgid "Permanent Flowcharts"
 msgstr "영구 플로우차트"
 
-#: src/pages/New.tsx:217
-msgid "Persistent"
-msgstr "끈기 있는"
-
-#: src/pages/Pricing.tsx:65
-msgid "Persistent Flowcharts"
-msgstr "영구 다이어그램"
-
-#: src/lib/graphOptions.ts:57
+#: src/lib/graphOptions.ts:49
 msgid "Playbook"
 msgstr "플레이북"
 
@@ -928,12 +963,13 @@ msgstr "플레이북"
 msgid "Pointer and container on same line"
 msgstr "같은 줄에 포인터와 컨테이너"
 
-#: src/components/Header.tsx:192
-#: src/components/Header.tsx:406
-msgid "Pricing"
-msgstr "가격"
+#: src/components/Header.tsx:167
+#: src/components/Header.tsx:420
+#: src/components/Settings.tsx:138
+msgid "Privacy Policy"
+msgstr "개인정보보호정책"
 
-#: src/pages/New.tsx:432
+#: src/pages/New.tsx:453
 msgid "Process for corporate social responsibility initiatives development and implementation across company operations"
 msgstr "기업 사회적 책임 사업 개발 및 회사 운영 전반에 걸쳐 구현 프로세스"
 
@@ -941,7 +977,11 @@ msgstr "기업 사회적 책임 사업 개발 및 회사 운영 전반에 걸쳐
 msgid "Processing Data"
 msgstr "데이터 처리"
 
-#: src/pages/New.tsx:287
+#: src/pages/Pricing.tsx:46
+msgid "Produce flowcharts directly from your data. Import from Lucidchart, Visio, and other CSV files."
+msgstr "데이터로 직접 흐름 도표를 생성합니다. Lucidchart, Visio 및 기타 CSV 파일에서 가져옵니다."
+
+#: src/pages/New.tsx:308
 msgid "Prompt"
 msgstr "프롬프트"
 
@@ -950,7 +990,7 @@ msgstr "프롬프트"
 msgid "Public"
 msgstr "공용"
 
-#: src/lib/graphOptions.ts:22
+#: src/lib/graphOptions.ts:20
 msgid "Random"
 msgstr "무작위"
 
@@ -999,44 +1039,48 @@ msgstr "페이지 새로 고침 "
 msgid "Reload to Update"
 msgstr "업데이트하려면 다시 로드하기 "
 
-#: src/pages/Pricing.tsx:66
-msgid "Remove Image Watermark"
-msgstr "이미지 워터마크 제거"
-
 #: src/components/RenameButton.tsx:97
 #: src/components/RenameButton.tsx:116
 #: src/components/RenameButton.tsx:156
 msgid "Rename"
 msgstr "이름 바꾸기"
 
+#: src/pages/LogIn.tsx:168
+msgid "Request Magic Link"
+msgstr "마법 링크 요청"
+
+#: src/pages/ForgotPassword.tsx:62
+msgid "Request Password Reset"
+msgstr "비밀번호 재설정 요청"
+
 #: src/components/GraphFloatingMenu.tsx:42
 #: src/components/GraphFloatingMenu.tsx:45
 msgid "Reset"
 msgstr "재설정"
 
-#: src/pages/Account.tsx:198
-#: src/pages/Account.tsx:417
-#: src/pages/Account.tsx:425
-#: src/pages/Account.tsx:439
+#: src/pages/ForgotPassword.tsx:34
+msgid "Reset Password"
+msgstr "비밀번호 재설정"
+
+#: src/pages/Account.tsx:195
+#: src/pages/Account.tsx:419
+#: src/pages/Account.tsx:427
+#: src/pages/Account.tsx:441
 msgid "Resume Subscription"
 msgstr "구독 재개"
 
-#: src/lib/graphOptions.ts:53
-msgid "Retro"
-msgstr "레트로"
-
-#: src/pages/Account.tsx:373
+#: src/pages/Account.tsx:375
 msgid "Return"
 msgstr "반품"
 
-#: src/lib/graphOptions.ts:35
-#: src/lib/graphOptions.ts:42
+#: src/lib/graphOptions.ts:33
+#: src/lib/graphOptions.ts:40
 msgid "Right to Left"
 msgstr "오른쪽에서 왼쪽으로"
 
-#: src/components/Header.tsx:169
-#: src/components/Header.tsx:385
-#: src/pages/Roadmap.tsx:16
+#: src/components/Header.tsx:159
+#: src/components/Header.tsx:377
+#: src/pages/Roadmap.tsx:25
 msgid "Roadmap"
 msgstr "로드맵"
 
@@ -1044,49 +1088,42 @@ msgstr "로드맵"
 msgid "Save"
 msgstr "구하다"
 
-#: src/components/PaymentStepper.tsx:95
-msgid "Save 20% (2 months free!)"
-msgstr "20% 할인 (2개월 무료!)"
-
-#: src/pages/Pricing.tsx:27
-msgid "Save time and automate certain tasks with this cutting-edge feature"
-msgstr "이 최신 기능으로 시간을 절약하고 일부 작업을 자동화하세요."
-
-#: src/pages/Pricing.tsx:19
-msgid "Save time and streamline your workflow by importing data from other sources"
-msgstr "다른 소스에서 데이터를 가져와 작업흐름을 최적화하여 시간을 절약하세요."
-
-#: src/components/PaymentStepper.tsx:72
-msgid "Select your plan!"
-msgstr "귀하의 계획을 선택하세요!"
-
-#: src/components/GraphFloatingMenu.tsx:101
+#: src/components/GraphFloatingMenu.tsx:111
 msgid "Send Feedback"
 msgstr "피드백 보내기"
 
-#: src/components/Header.tsx:176
-#: src/components/Header.tsx:390
-#: src/components/Settings.tsx:34
+#: src/components/Header.tsx:175
+#: src/components/Header.tsx:382
+#: src/components/Settings.tsx:35
 msgid "Settings"
 msgstr "설정"
 
-#: src/components/GraphContextMenu.tsx:351
+#: src/components/GraphContextMenu.tsx:394
 msgid "Shape"
 msgstr "모양 "
 
-#: src/components/PaymentStepper.tsx:274
+#: src/pages/LogIn.tsx:108
+#: src/pages/LogIn.tsx:329
+msgid "Sign In"
+msgstr "로그인"
+
+#: src/components/PaymentStepper.tsx:267
 msgid "Sign Up"
 msgstr "가입"
 
-#: src/pages/LogIn.tsx:104
-msgid "Sign Up Now"
-msgstr "지금 가입하세요"
+#: src/pages/LogIn.tsx:136
+msgid "Sign in with <0>GitHub</0>"
+msgstr "<0>GitHub</0>으로 로그인"
 
-#: src/components/GraphContextMenu.tsx:418
+#: src/pages/LogIn.tsx:121
+msgid "Sign in with <0>Google</0>"
+msgstr "<0>Google</0>으로 로그인"
+
+#: src/components/GraphContextMenu.tsx:461
 msgid "Size"
 msgstr "크기"
 
-#: src/components/GraphContextMenu.tsx:238
+#: src/components/GraphContextMenu.tsx:225
 msgid "Small"
 msgstr "작은"
 
@@ -1097,10 +1134,6 @@ msgstr "스타일링하기 위한 몇 가지 클래스가 이용 가능합니다
 #: src/components/OnlyInEnglish.tsx:20
 msgid "Sorry! This page is only available in English."
 msgstr "죄송합니다! 이 페이지는 영어로만 제공됩니다."
-
-#: src/components/GraphContextMenu.tsx:601
-msgid "Source Arrow"
-msgstr "소스 화살표"
 
 #: src/components/ImportDataDialog.tsx:485
 #: src/components/ImportDataDialog.tsx:521
@@ -1115,7 +1148,7 @@ msgstr "소스 구분자"
 msgid "Source/Target Arrow Shape"
 msgstr "소스/대상 화살표 모양"
 
-#: src/components/Tabs/EditLayoutTab.tsx:142
+#: src/components/Tabs/EditLayoutTab.tsx:143
 msgid "Spacing"
 msgstr "간격"
 
@@ -1123,15 +1156,19 @@ msgstr "간격"
 msgid "Special Attributes"
 msgstr "특별한 속성"
 
-#: src/pages/Account.tsx:182
+#: src/pages/Account.tsx:179
 msgid "Start"
 msgstr "시작"
+
+#: src/components/MigrateTempFlowchartsModal.tsx:54
+msgid "Start Migration"
+msgstr "이전 시작"
 
 #: src/components/ImportDataDialog.tsx:281
 msgid "Start Over"
 msgstr "처음부터 다시 시작하기"
 
-#: src/pages/Account.tsx:161
+#: src/pages/Account.tsx:158
 msgid "Status"
 msgstr "상태"
 
@@ -1139,19 +1176,16 @@ msgstr "상태"
 msgid "Store any data associated to a node"
 msgstr "노드에 관련된 모든 데이터 저장하기"
 
-#: src/pages/New.tsx:226
+#: src/pages/New.tsx:241
 msgid "Stored in the cloud"
 msgstr "클라우드에 저장"
 
-#: src/pages/New.tsx:246
+#: src/pages/New.tsx:262
 msgid "Stored on this computer"
 msgstr "이 컴퓨터에 저장됨"
 
-#: src/pages/Pricing.tsx:128
-msgid "Streamline your workflow and simplify your process visualization with Flowchart Fun. Subscribe now and take advantage of our powerful Pro features!"
-msgstr "Flowchart Fun을 사용하여 작업흐름을 최적화하고 프로 기능을 이용하여 프로세스 시각화를 단순화하세요. 지금 구독하고 우리의 강력한 프로 기능을 이용하세요!"
-
-#: src/components/Tabs/EditorTabList.tsx:39
+#: src/components/Tabs/EditorTabList.tsx:68
+#: src/components/Tabs/EditorTabList.tsx:69
 msgid "Style"
 msgstr "스타일"
 
@@ -1159,31 +1193,22 @@ msgstr "스타일"
 msgid "Style Classes"
 msgstr "스타일 클래스"
 
-#: src/components/Feedback.tsx:77
+#: src/components/Feedback.tsx:81
 #: src/components/ImportDataDialog.tsx:581
-#: src/pages/LogIn.tsx:95
 msgid "Submit"
 msgstr "보내다"
 
-#: src/pages/Account.tsx:501
-msgid "Subscribe"
-msgstr "구독"
-
-#: src/pages/Account.tsx:156
+#: src/pages/Account.tsx:153
 msgid "Subscription"
 msgstr "구독"
 
-#: src/pages/Account.tsx:193
+#: src/pages/Account.tsx:190
 msgid "Subscription will end"
 msgstr "구독이 종료될 예정입니다."
 
-#: src/pages/New.tsx:434
+#: src/pages/New.tsx:455
 msgid "Supply chain analysis and optimization: cost reduction, efficiency improvement, and stakeholder collaboration"
 msgstr "공급망 분석 및 최적화: 비용 감소, 효율 향상 및 이해관계자 협력"
-
-#: src/components/GraphContextMenu.tsx:640
-msgid "Target Arrow"
-msgstr "타겟 화살표"
 
 #: src/components/ImportDataDialog.tsx:442
 #: src/components/ImportDataDialog.tsx:528
@@ -1194,19 +1219,22 @@ msgstr "대상 열"
 msgid "Target Delimiter"
 msgstr "대상 구분자"
 
-#: src/pages/New.tsx:242
+#: src/pages/New.tsx:257
 msgid "Temporary"
 msgstr "임시"
 
 #: src/components/MightLoseSponsorTrigger.tsx:21
-#: src/components/MightLoseWarning.tsx:19
+#: src/components/MightLoseWarning.tsx:17
 msgid "Temporary Flowchart Warning"
 msgstr "임시 흐름도 경고"
 
-#: src/pages/Charts.tsx:152
-#: src/pages/Pricing.tsx:54
+#: src/pages/Charts.tsx:163
 msgid "Temporary Flowcharts"
 msgstr "임시 다이어그램"
+
+#: src/pages/Charts.tsx:413
+msgid "Temporary Flowcharts are going away soon!"
+msgstr "일시적인 플로우차트가 곧 사라집니다!"
 
 #: src/components/LearnSyntaxDialog.tsx:301
 msgid "Text Sizes"
@@ -1224,7 +1252,7 @@ msgstr "한 줄에 있는 텍스트는 텍스트를 레이블로 하는 노드�
 msgid "Text sizes include small, regular, large, and extra-large."
 msgstr "텍스트 사이즈는 작게, 일반, 크게, 그리고 엑스트라 크게가 있습니다."
 
-#: src/components/Feedback.tsx:102
+#: src/components/Feedback.tsx:106
 msgid "Thank you for your feedback!"
 msgstr "피드백을 해주셔서 감사합니다!"
 
@@ -1252,7 +1280,7 @@ msgstr "여러 개의 목표 노드를 구분하기 위해 사용되는 구분 �
 msgid "The possible shapes are:"
 msgstr "가능한 모양은 다음과 같습니다:"
 
-#: src/components/Tabs/EditStyleTab.tsx:69
+#: src/components/Tabs/EditStyleTab.tsx:70
 msgid "Theme Editor"
 msgstr "테마 편집기"
 
@@ -1260,15 +1288,11 @@ msgstr "테마 편집기"
 msgid "There are no edges in this data"
 msgstr "이 데이터에는 엣지가 없습니다."
 
-#: src/pages/Charts.tsx:296
+#: src/pages/Charts.tsx:293
 msgid "This action cannot be undone."
 msgstr "이 작업은 취소할 수 없습니다."
 
-#: src/lib/getDefaultText.ts:4
-msgid "This app works by typing"
-msgstr "이 앱은 타이핑으로 작동합니다"
-
-#: src/components/MightLoseWarning.tsx:26
+#: src/components/MightLoseWarning.tsx:24
 msgid "This document is only saved on this computer. If you want a way to store documents and access them wherever you go try our Pro plan for only $3/month!"
 msgstr "이 문서는 이 컴퓨터에만 저장됩니다. 문서를 저장하고 어디서든 접근할 수 있는 방법이 필요하면 저희 프로 플랜을 3달러에 체험해보세요!"
 
@@ -1280,7 +1304,7 @@ msgstr "이 기능은 프로 사용자에게만 제공됩니다. <0>프로 사�
 msgid "This is a temporary chart, it will be deleted when you clear your browser cache."
 msgstr "이것은 임시 차트로, 브라우저 캐시를 지우면 삭제됩니다."
 
-#: src/components/ShareDialog.tsx:523
+#: src/components/ShareDialog.tsx:525
 msgid "Tip"
 msgstr "팁"
 
@@ -1304,8 +1328,12 @@ msgstr "이것을 수정하려면 포인터를 다음 줄로 이동하십시오"
 msgid "To fix this start the container <0/> on a different line"
 msgstr "이것을 수정하려면 컨테이너 <0/>을 다른 줄에 시작하십시오"
 
-#: src/lib/graphOptions.ts:33
-#: src/lib/graphOptions.ts:40
+#: src/pages/LogIn.tsx:185
+msgid "To learn more about why we require you to log in, please read <0>this blog post</0>."
+msgstr "왜 로그인을 해야하는지 자세히 알아보려면 <0>이 블로그 글</0>을 읽어보세요."
+
+#: src/lib/graphOptions.ts:31
+#: src/lib/graphOptions.ts:38
 msgid "Top to Bottom"
 msgstr "위에서 아래로"
 
@@ -1321,11 +1349,11 @@ msgstr "두 개의 간선이 같은 ID를 가지고 있습니다"
 msgid "Two nodes have the same ID"
 msgstr "두 개의 노드가 같은 ID를 가지고 있습니다"
 
-#: src/pages/New.tsx:203
+#: src/pages/New.tsx:218
 msgid "Type"
 msgstr "유형"
 
-#: src/components/Tabs/EditLayoutTab.tsx:216
+#: src/components/Tabs/EditLayoutTab.tsx:219
 msgid "Unfreeze"
 msgstr "녹이다"
 
@@ -1333,19 +1361,32 @@ msgstr "녹이다"
 msgid "Unique text value to identify a node"
 msgstr "노드를 식별하기 위한 고유한 텍스트 값"
 
+#: src/lib/hooks.ts:82
+msgid "Unknown"
+msgstr "알 수 없음"
+
 #: src/lib/parserErrors.tsx:60
 msgid "Unknown Parsing Error"
 msgstr "알 수 없는 구문 분석 오류"
 
-#: src/pages/Pricing.tsx:89
-msgid "Unleash your creativity and streamline your workflow with Flowchart Fun Pro – starting at just $3/month!"
-msgstr "Flowchart Fun Pro를 사용하여 창의력을 발휘하고 작업흐름을 최적화하세요. $3/월부터 시작합니다!"
+#: src/pages/Pricing.tsx:30
+msgid "Unlimited Flowcharts"
+msgstr "무제한 흐름 도표"
+
+#: src/pages/Pricing.tsx:74
+msgid "Unlimited Permanent Flowcharts"
+msgstr "무제한 영구 플로차트"
+
+#: src/lib/hooks.ts:80
+msgid "Unpaid"
+msgstr "미납"
 
 #: src/pages/Account.tsx:206
 msgid "Update Email"
 msgstr "이메일 업데이트"
 
-#: src/pages/Account.tsx:143
+#: src/components/Header.tsx:117
+#: src/components/Header.tsx:390
 msgid "Upgrade to Pro"
 msgstr "프로로 업그레이드"
 
@@ -1353,13 +1394,13 @@ msgstr "프로로 업그레이드"
 msgid "Upload your File"
 msgstr "파일을 업로드하세요."
 
-#: src/pages/Pricing.tsx:26
-msgid "Use AI to create flowcharts from data sets or algorithms"
-msgstr "데이터 집합 또는 알고리즘에서 플로우차트를 만들기 위해 AI를 사용하세요."
-
-#: src/pages/New.tsx:327
+#: src/pages/New.tsx:348
 msgid "Use AI to generate a flowchart from a prompt. <0>Learn More</0>"
 msgstr "AI를 사용하여 프롬프트에세이에서 플로차트를 생성합니다. <0>자세히 알아보기</0>"
+
+#: src/lib/getDefaultText.ts:7
+msgid "Use an ID to Connect"
+msgstr "ID를 사용하여 연결하세요."
 
 #: src/components/LearnSyntaxDialog.tsx:138
 msgid "Use classes to group nodes"
@@ -1381,29 +1422,33 @@ msgstr "노드의 너비와 높이를 명시적으로 설정하려면 <0>w</0> �
 msgid "Use the customer portal to change your billing information."
 msgstr "청구 정보를 변경하려면 고객 포털을 사용하십시오."
 
-#: src/components/ShareDialog.tsx:461
+#: src/components/ShareDialog.tsx:463
 msgid "Use this file for org charts, hierarchies, and other organizational structures."
 msgstr "조직도, 계층 구조 및 기타 조직 구조를 위해 이 파일을 사용하십시오."
 
-#: src/components/ShareDialog.tsx:449
+#: src/components/ShareDialog.tsx:450
 msgid "Use this file for sequences, processes, and workflows."
 msgstr "시퀀스, 프로세스 및 워크플로우에 대해 이 파일을 사용하십시오."
 
-#: src/pages/Account.tsx:112
+#: src/pages/Account.tsx:120
 msgid "User"
 msgstr "사용자"
 
-#: src/components/Settings.tsx:119
+#: src/components/Settings.tsx:126
 msgid "View on Github"
 msgstr "Github에서 보기"
 
-#: src/pages/New.tsx:440
+#: src/pages/Pricing.tsx:96
+msgid "Visualize Your Ideas in a Flash with <0>Flowchart Fun Pro</0>"
+msgstr "<0>Flowchart Fun Pro</0>로 여러분의 생각을 빠르게 시각화하세요"
+
+#: src/pages/New.tsx:461
 msgid "Water evaporates from the Earth's surface, rises into the atmosphere and falls back down as precipitation. This water then runs off into rivers, lakes and oceans, where it again evaporates and is recycled back into the atmosphere."
 msgstr "물은 지구의 표면에서 증발하여 공기로 올라가 비로 내려오고, 그 물은 강과 호수, 바다로 흐르고 다시 증발하여 공기로 돌아가 재생됩니다."
 
-#: src/pages/LogIn.tsx:72
-msgid "We use magic links to log you in. Enter your email below to get started."
-msgstr "우리는 마법 링크를 사용하여 로그인합니다. 아래에 이메일을 입력하여 시작하십시오."
+#: src/pages/Pricing.tsx:66
+msgid "Watermarked Images"
+msgstr "워터마크 된 이미지"
 
 #: src/components/WelcomeMessage.tsx:24
 msgid "Welcome to Flowchart Fun Pro!"
@@ -1417,11 +1462,15 @@ msgstr "너비와 높이"
 msgid "Would you like to continue?"
 msgstr "계속하시겠습니까?"
 
-#: src/components/PaymentStepper.tsx:90
+#: src/components/PaymentStepper.tsx:91
 msgid "Yearly"
 msgstr "연간"
 
-#: src/pages/New.tsx:197
+#: src/lib/getDefaultText.ts:6
+msgid "Yes: Option A"
+msgstr "예: 옵션 A"
+
+#: src/pages/New.tsx:212
 msgid "You already have a flowchart with this name."
 msgstr "이 이름을 가진 다이어그램이 이미 있습니다."
 
@@ -1429,36 +1478,36 @@ msgstr "이 이름을 가진 다이어그램이 이미 있습니다."
 msgid "You are about to add {numNodes} nodes and {numEdges} edges to your graph."
 msgstr "그래프에 {numNodes}개의 노드와 {numEdges}개의 간선을 추가하려고 합니다."
 
-#: src/lib/getDefaultText.ts:8
-msgid "You can also wrap text in \"\\( \\)\" to create an edge"
-msgstr "텍스트를 \"\\( \\)\"로 감싸서 가장자리를 만들 수도 있습니다."
+#: src/pages/New.tsx:278
+msgid "You can create unlimited permanent flowcharts with <0>Flowchart Fun Pro</0>."
+msgstr "<0>Flowchart Fun Pro</0>으로 무제한 영구적인 플로차트를 만들 수 있습니다."
 
-#: src/pages/New.tsx:261
-msgid "You must log in to create a persistent flowchart."
-msgstr "끈기 있는 플로우차트를 만들기 위해 로그인해야합니다."
+#: src/pages/LogIn.tsx:182
+msgid "You need to log in to access this page."
+msgstr "페이지에 접근하려면 로그인해야합니다."
 
-#: src/components/PaymentStepper.tsx:165
-msgid "You're almost there! Just one more step to unlock the full potential of <0>Flowchart Fun Pro</0>. Enter your payment details below to complete your subscription and start creating amazing flowcharts today."
-msgstr "거의 다 됐습니다! <0>Flowchart Fun Pro</0>의 전력을 풀어내는 마지막 한 단계만 남았습니다. 아래에 결제 정보를 입력하여 구독을 완료하고 오늘부터 놀라운 플로우 차트를 만들 수 있습니다."
-
-#: src/pages/Charts.tsx:99
+#: src/pages/Charts.tsx:104
 msgid "Your Charts"
 msgstr "당신의 차트"
 
-#: src/pages/Account.tsx:146
-msgid "Your subscription is no longer active. If you want to create and edit permanent charts upgrade to Pro."
-msgstr "귀하의 구독이 더 이상 활성화되지 않습니다. 영구 차트를 만들고 편집하려면 Pro로 업그레이드하십시오."
+#: src/pages/Charts.tsx:380
+msgid "Your charts are read-only because your account is no longer active. Visit your <0>account</0> page to learn more. You can <1>upgrade to pro</1> to regain editing access to your charts"
+msgstr "계정이 더 이상 활성화되지 않아서 차트는 읽기 전용입니다. 자세한 내용은 <0>계정</0> 페이지를 방문하세요. 차트 편집 권한을 되찾으려면 <1>프로로 업그레이드</1>할 수 있습니다."
+
+#: src/pages/Account.tsx:502
+msgid "Your subscription is <0>{statusDisplay}</0>."
+msgstr "귀하의 구독 상태는 <0>{statusDisplay}</0>입니다."
 
 #: src/components/GraphFloatingMenu.tsx:58
-#: src/components/GraphFloatingMenu.tsx:59
+#: src/components/GraphFloatingMenu.tsx:62
 msgid "Zoom In"
 msgstr "확대"
 
-#: src/components/GraphFloatingMenu.tsx:63
-#: src/components/GraphFloatingMenu.tsx:64
+#: src/components/GraphFloatingMenu.tsx:68
+#: src/components/GraphFloatingMenu.tsx:72
 msgid "Zoom Out"
 msgstr "축소하기"
 
-#: src/lib/getDefaultText.ts:6
-msgid "any text: before a colon creates a label"
-msgstr "콜론 앞의 모든 텍스트는: 레이블을 생성합니다"
+#: src/pages/LogIn.tsx:209
+msgid "or"
+msgstr "또는"

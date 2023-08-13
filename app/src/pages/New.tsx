@@ -1,7 +1,7 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { t, Trans } from "@lingui/macro";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { Session } from "@supabase/gotrue-js";
+import { Session } from "@supabase/supabase-js";
 import { decompressFromEncodedURIComponent as decompress } from "lz-string";
 import {
   ChatTeardropText,
@@ -20,7 +20,7 @@ import {
   useState,
 } from "react";
 import { useMutation } from "react-query";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { AppContext } from "../components/AppContext";
 import Loading from "../components/Loading";
@@ -28,7 +28,7 @@ import { Warning } from "../components/Warning";
 import { getDefaultChart } from "../lib/getDefaultChart";
 import { getFunFlowchartName } from "../lib/getFunFlowchartName";
 import { slugify, titleToLocalStorageKey } from "../lib/helpers";
-import { useIsValidCustomer } from "../lib/hooks";
+import { useIsProUser } from "../lib/hooks";
 import { makeChart, queryClient } from "../lib/queries";
 import { languages } from "../locales/i18n";
 import { Button2, Page } from "../ui/Shared";
@@ -36,7 +36,7 @@ import { PageTitle } from "../ui/Typography";
 
 export default function M() {
   const { customerIsLoading, session, checkedSession } = useContext(AppContext);
-  const validCustomer = useIsValidCustomer();
+  const isProUser = useIsProUser();
   const { graphText = window.location.hash.slice(1) } = useParams<{
     graphText: string;
   }>();
@@ -64,7 +64,7 @@ export default function M() {
       customerIsLoading={customerIsLoading}
       session={session}
       checkedSession={checkedSession}
-      validCustomer={validCustomer}
+      isProUser={isProUser}
       templateText={templateText}
     />
   );
@@ -74,17 +74,17 @@ const New = memo(function New({
   customerIsLoading,
   session,
   checkedSession,
-  validCustomer,
+  isProUser,
   templateText,
 }: {
   customerIsLoading: boolean;
   session: Session | null;
   checkedSession: boolean;
-  validCustomer: boolean;
+  isProUser: boolean;
   templateText: string | null;
 }) {
   const defaultDoc = getDefaultChart();
-  const { replace } = useHistory();
+  const navigate = useNavigate();
 
   const userId = session?.user?.id;
 
@@ -93,7 +93,7 @@ const New = memo(function New({
     getFunFlowchartName(language as keyof typeof languages)
   );
   const [type, setType] = useState<"regular" | "local">(
-    validCustomer ? "regular" : "local"
+    isProUser ? "regular" : "local"
   );
   const [start, setStart] = useState<"blank" | "prompt">("blank");
 
@@ -102,7 +102,9 @@ const New = memo(function New({
     retry: false,
     onSuccess: (response: any) => {
       queryClient.invalidateQueries(["auth", "hostedCharts"]);
-      replace(`/u/${response.data[0].id}`);
+      navigate(`/u/${response.data[0].id}`, {
+        replace: true,
+      });
     },
   });
 
@@ -110,12 +112,12 @@ const New = memo(function New({
   const safeName = slugify(name.trim());
   const showWarning = isTemporaryType;
 
-  const tryingToCreateRegular = type === "regular" && !validCustomer;
+  const tryingToCreatePermanent = type === "regular" && !isProUser;
   const alreadyUsedName =
     type === "local" &&
     !!safeName &&
     !!window.localStorage.getItem(titleToLocalStorageKey(safeName));
-  const createDisabled = !name || tryingToCreateRegular || alreadyUsedName;
+  const createDisabled = !name || tryingToCreatePermanent || alreadyUsedName;
 
   const [parent] = useAutoAnimate();
 
@@ -126,6 +128,17 @@ const New = memo(function New({
         onSubmit={(e) => {
           e.preventDefault();
           if (customerIsLoading || !checkedSession) return;
+          /**
+           * Uncomment this when we want to show the paywall modal
+           */
+          // if (!isProUser) {
+          //   usePaywallModalStore.setState({
+          //     open: true,
+          //     title: t`Get Unlimited Flowcharts`,
+          //     content: t`Flowchart Fun Pro gives you unlimited flowcharts, unlimited collaborators, and unlimited storage for just $3/month or $30/year.`,
+          //   });
+          //   return;
+          // }
 
           const formData = new FormData(e.currentTarget);
           const type = formData.get("type") as "regular" | "local";
@@ -166,7 +179,9 @@ const New = memo(function New({
             case "local": {
               const newKey = titleToLocalStorageKey(safeName);
               window.localStorage.setItem(newKey, templateText ?? defaultDoc);
-              replace(`/${safeName}`);
+              navigate(`/${safeName}`, {
+                replace: true,
+              });
               break;
             }
           }
@@ -214,7 +229,7 @@ const New = memo(function New({
               <div className="grid gap-4 sm:grid-cols-2 focus-within:ring-4 ring-neutral-200 dark:ring-neutral-800 rounded">
                 <TypeToggle
                   value="regular"
-                  title={t`Persistent`}
+                  title={t`Permanent`}
                   description={
                     <>
                       <span className="text-sm flex items-start justify-center">
@@ -240,6 +255,7 @@ const New = memo(function New({
                 <TypeToggle
                   value="local"
                   title={t`Temporary`}
+                  disabled={isProUser}
                   description={
                     <>
                       <span className="text-sm flex items-center">
@@ -255,12 +271,17 @@ const New = memo(function New({
               </div>
             </RadioGroup.Root>
           </div>
-          {tryingToCreateRegular && (
+          {tryingToCreatePermanent && (
             <div className="justify-items-center grid">
               <Warning>
-                <Trans>You must log in to create a persistent flowchart.</Trans>{" "}
-                <Link className="underline" to="/l">
-                  <Trans>Log In</Trans>
+                <Link to="/pricing">
+                  <Trans>
+                    You can create unlimited permanent flowcharts with{" "}
+                    <span className="underline underline-offset-2">
+                      Flowchart Fun Pro
+                    </span>
+                    .
+                  </Trans>
                 </Link>
               </Warning>
             </div>
@@ -350,7 +371,7 @@ function TypeToggle({
 } & Parameters<typeof RadioGroup.Item>[0]) {
   return (
     <RadioGroup.Item {...rest} asChild>
-      <button className="bg-neutral-100 border-neutral-100 p-2 py-4 sm:p-3 sm:py-6 rounded grid justify-items-center content-center gap-2 dark:bg-neutral-700 data-[state=checked]:bg-neutral-200 dark:data-[state=checked]:bg-neutral-600 data-[state=checked]:border-neutral-400 border-solid border border-b-2 transition duration-200 ease-in-out outline-none focus:shadow-none focus:outline-none hover:border-neutral-200 dark:border-neutral-800 dark:data-[state=checked]:border-neutral-500 dark:hover:border-neutral-400">
+      <button className="bg-neutral-100 border-neutral-100 p-2 py-4 sm:p-3 sm:py-6 rounded grid justify-items-center content-center gap-2 dark:bg-neutral-700 data-[state=checked]:bg-neutral-200 dark:data-[state=checked]:bg-neutral-600 data-[state=checked]:border-neutral-400 border-solid border border-b-2 transition duration-200 ease-in-out outline-none focus:shadow-none focus:outline-none hover:border-neutral-200 dark:border-neutral-800 dark:data-[state=checked]:border-neutral-500 dark:hover:border-neutral-400 disabled:cursor-not-allowed disabled:opacity-50">
         <span className="text-2xl mb-3">{title}</span>
         {icon}
         <div className="mt-5 text-center grid gap-2 justify-items-center pb-3">

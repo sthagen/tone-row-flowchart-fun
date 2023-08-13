@@ -10,14 +10,14 @@ import {
   FolderOpen,
   Gear,
   Info,
-  Lightning,
   Notebook,
   PencilLine,
   Plus,
-  Question,
   Signpost,
   TreeStructure,
   User,
+  Lock,
+  RocketLaunch,
 } from "phosphor-react";
 import {
   ButtonHTMLAttributes,
@@ -32,7 +32,7 @@ import {
 import { Link, LinkProps, useLocation } from "react-router-dom";
 
 import { DISCORD_URL } from "../lib/constants";
-import { useIsValidCustomer } from "../lib/hooks";
+import { useIsLoggedIn, useIsProUser } from "../lib/hooks";
 import { track } from "../lib/track";
 import { useLastChart } from "../lib/useLastChart";
 import { ReactComponent as BrandSvg } from "./brand.svg";
@@ -41,7 +41,6 @@ export const Header = memo(function SharedHeader() {
   const { pathname } = useLocation();
   const isSponsorPage = pathname === "/pricing";
   const isChartsPage = pathname === "/y";
-  const isHelpPage = pathname === "/h" || pathname === "/o";
   const isSettingsPage = pathname === "/s";
   const isAccountPage = pathname === "/a";
   const isFeedbackPage = pathname === "/o";
@@ -51,18 +50,20 @@ export const Header = memo(function SharedHeader() {
   const isRoadmapPage = pathname === "/roadmap";
   const isSignUpPage = pathname === "/i";
   const isNewPage = pathname === "/n";
+  const isPrivacyPolicyPage = pathname === "/privacy-policy";
   const isInfoPage = isBlogPage || isChangelogPage || isRoadmapPage;
   const isEditor =
     !isSponsorPage &&
     !isChartsPage &&
-    !isHelpPage &&
+    !isFeedbackPage &&
     !isSettingsPage &&
     !isAccountPage &&
     !isInfoPage &&
     !isLogInPage &&
     !isSignUpPage &&
     !isNewPage;
-  const isValidCustomer = useIsValidCustomer();
+  const isLoggedIn = useIsLoggedIn();
+  const isProUser = useIsProUser();
   const lastChart = useLastChart((state) => state.lastChart);
   return (
     <>
@@ -98,43 +99,30 @@ export const Header = memo(function SharedHeader() {
                   aria-current={isChartsPage ? "page" : undefined}
                 />
               </NavigationMenu.Item>
-              <DropdownMenu.Root modal={false}>
-                <DropdownMenu.Trigger asChild>
-                  <HeaderButton
-                    label={t`Help`}
-                    aria-current={isHelpPage ? "page" : undefined}
-                    icon={<Question weight="light" height={22} width={22} />}
-                  />
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content
-                  align="start"
-                  className="shared-header__dropdown bg-neutral-50 shadow dark:bg-neutral-900"
-                >
-                  <DropdownMenu.Item asChild>
-                    <HeaderLink
-                      label="Discord"
-                      icon={
-                        <DiscordLogo weight="light" height={22} width={22} />
-                      }
-                      href={DISCORD_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    />
-                  </DropdownMenu.Item>
-                  <DropdownMenu.Item asChild>
-                    <HeaderClientLink
-                      label={t`Feedback`}
-                      icon={<Chat weight="light" height={22} width={22} />}
-                      aria-current={isFeedbackPage ? "page" : undefined}
-                      to="/o"
-                    />
-                  </DropdownMenu.Item>
-                </DropdownMenu.Content>
-              </DropdownMenu.Root>
+              <NavigationMenu.Item asChild>
+                <HeaderClientLink
+                  label={t`Feedback`}
+                  icon={<Chat weight="light" height={22} width={22} />}
+                  aria-current={isFeedbackPage ? "page" : undefined}
+                  to="/o"
+                />
+              </NavigationMenu.Item>
             </nav>
           </NavigationMenu.List>
           <NavigationMenu.List asChild>
             <nav className="flex items-center gap-1">
+              {!isProUser ? (
+                <HeaderClientLink
+                  to="/pricing"
+                  label={t`Upgrade to Pro`}
+                  className="!text-purple-600 hover:!bg-purple-50/50 !pl-3 !pr-4 aria-[current=page]:bg-purple-50/50 dark:!text-purple-300 dark:hover:!bg-purple-500/20 dark:aria-[current=page]:!bg-purple-500/20"
+                  icon={<RocketLaunch weight="light" height={22} width={22} />}
+                  aria-current={isSponsorPage ? "page" : undefined}
+                  onClick={() => {
+                    track("sponsor", "click");
+                  }}
+                />
+              ) : null}
               <DropdownMenu.Root modal={false}>
                 <DropdownMenu.Trigger asChild>
                   <HeaderButton
@@ -150,6 +138,7 @@ export const Header = memo(function SharedHeader() {
                   <DropdownMenu.Item asChild>
                     <HeaderClientLink
                       label={t`Blog`}
+                      aria-current={isBlogPage ? "page" : undefined}
                       icon={
                         <PencilLine weight="light" height={22} width={22} />
                       }
@@ -160,6 +149,7 @@ export const Header = memo(function SharedHeader() {
                     <HeaderClientLink
                       to="/changelog"
                       label={t`Changelog`}
+                      aria-current={isChangelogPage ? "page" : undefined}
                       icon={<Notebook weight="light" height={22} width={22} />}
                     />
                   </DropdownMenu.Item>
@@ -167,7 +157,16 @@ export const Header = memo(function SharedHeader() {
                     <HeaderClientLink
                       to="/roadmap"
                       label={t`Roadmap`}
+                      aria-current={isRoadmapPage ? "page" : undefined}
                       icon={<Signpost weight="light" height={22} width={22} />}
+                    />
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild>
+                    <HeaderClientLink
+                      to="/privacy-policy"
+                      label={t`Privacy Policy`}
+                      aria-current={isPrivacyPolicyPage ? "page" : undefined}
+                      icon={<Lock weight="light" height={22} width={22} />}
                     />
                   </DropdownMenu.Item>
                 </DropdownMenu.Content>
@@ -178,7 +177,7 @@ export const Header = memo(function SharedHeader() {
                 aria-current={isSettingsPage ? "page" : undefined}
                 to="/s"
               />
-              {isValidCustomer ? (
+              {isLoggedIn ? (
                 <HeaderClientLink
                   label={t`Account`}
                   icon={<User weight="light" height={22} width={22} />}
@@ -186,23 +185,12 @@ export const Header = memo(function SharedHeader() {
                   to="/a"
                 />
               ) : (
-                <>
-                  <HeaderClientLink
-                    to="/pricing"
-                    label={t`Pricing`}
-                    icon={<Lightning weight="light" height={22} width={22} />}
-                    aria-current={isSponsorPage ? "page" : undefined}
-                    onClick={() => {
-                      track("sponsor", "click");
-                    }}
-                  />
-                  <HeaderClientLink
-                    to="/l"
-                    label={t`Log In`}
-                    icon={<User weight="light" height={22} width={22} />}
-                    aria-current={isLogInPage ? "page" : undefined}
-                  />
-                </>
+                <HeaderClientLink
+                  to="/l"
+                  label={t`Log In`}
+                  icon={<User weight="light" height={22} width={22} />}
+                  aria-current={isLogInPage ? "page" : undefined}
+                />
               )}
             </nav>
           </NavigationMenu.List>
@@ -219,6 +207,7 @@ export const Header = memo(function SharedHeader() {
         isRoadmapPage={isRoadmapPage}
         isEditor={isEditor}
         isLogInPage={isLogInPage}
+        isPrivacyPolicyPage={isPrivacyPolicyPage}
       />
     </>
   );
@@ -296,6 +285,7 @@ function MobileHeader({
   isRoadmapPage,
   isEditor,
   isLogInPage,
+  isPrivacyPolicyPage,
 }: {
   isSponsorPage: boolean;
   isChartsPage: boolean;
@@ -307,11 +297,13 @@ function MobileHeader({
   isRoadmapPage: boolean;
   isEditor: boolean;
   isLogInPage: boolean;
+  isPrivacyPolicyPage: boolean;
 }) {
   const lastChart = useLastChart((s) => s.lastChart);
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const isValidCustomer = useIsValidCustomer();
+  const isProUser = useIsProUser();
+  const isLoggedIn = useIsLoggedIn();
 
   useEffect(() => {
     setOpen(false);
@@ -392,7 +384,24 @@ function MobileHeader({
               aria-current={isSettingsPage ? "page" : undefined}
               to="/s"
             />
-            {isValidCustomer ? (
+            {!isProUser ? (
+              <HeaderClientLink
+                to="/pricing"
+                label={t`Upgrade to Pro`}
+                icon={<RocketLaunch weight="light" height={22} width={22} />}
+                aria-current={isSponsorPage ? "page" : undefined}
+                onClick={() => {
+                  // track event with gtm
+                  if (window?.dataLayer)
+                    window.dataLayer.push({
+                      event: "sponsor",
+                      action: "click",
+                      label: "mobile-header",
+                    });
+                }}
+              />
+            ) : null}
+            {isLoggedIn ? (
               <HeaderClientLink
                 label={t`Account`}
                 icon={<User weight="light" height={22} width={22} />}
@@ -400,30 +409,20 @@ function MobileHeader({
                 to="/a"
               />
             ) : (
-              <>
-                <HeaderClientLink
-                  to="/pricing"
-                  label={t`Pricing`}
-                  icon={<Lightning weight="light" height={22} width={22} />}
-                  aria-current={isSponsorPage ? "page" : undefined}
-                  onClick={() => {
-                    // track event with gtm
-                    if (window?.dataLayer)
-                      window.dataLayer.push({
-                        event: "sponsor",
-                        action: "click",
-                        label: "mobile-header",
-                      });
-                  }}
-                />
-                <HeaderClientLink
-                  to="/l"
-                  label={t`Log In`}
-                  icon={<User weight="light" height={22} width={22} />}
-                  aria-current={isLogInPage ? "page" : undefined}
-                />
-              </>
+              <HeaderClientLink
+                to="/l"
+                label={t`Log In`}
+                icon={<User weight="light" height={22} width={22} />}
+                aria-current={isLogInPage ? "page" : undefined}
+              />
             )}
+            <HeaderClientLink
+              label={t`Privacy Policy`}
+              icon={<Lock weight="light" height={22} width={22} />}
+              aria-current={isPrivacyPolicyPage ? "page" : undefined}
+              className="mobile-only"
+              to="/privacy-policy"
+            />
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

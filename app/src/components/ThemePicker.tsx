@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { create } from "zustand";
 
-import { validThemes } from "../lib/graphOptions";
+import { themes } from "../lib/graphOptions";
 import { Button2 } from "../ui/Shared";
+import { useCanEdit } from "../lib/hooks";
 
 export const usePreviewTheme = create<{ cytoscapeStyle?: string }>(
   (_set) => ({})
@@ -34,6 +35,7 @@ export function ThemePicker({
       },
     }
   );
+  const canEdit = useCanEdit();
   return (
     <Popover.Root
       modal
@@ -50,7 +52,10 @@ export function ThemePicker({
         }
       }}
     >
-      <Popover.Trigger className="text-xs p-3 pr-5 pl-4 rounded-md bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 flex active:opacity-90 items-center space-x-1">
+      <Popover.Trigger
+        className="text-xs p-3 pr-5 pl-4 rounded-md bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 flex active:opacity-90 items-center space-x-1"
+        disabled={!canEdit}
+      >
         <PaintBrush size={16} className="mr-2" />
         <Trans>Load Theme</Trans>
       </Popover.Trigger>
@@ -72,7 +77,7 @@ export function ThemePicker({
             </p>
           </div>
           <div className="grid overflow-auto">
-            {validThemes.map((theme) => (
+            {themes.map((theme) => (
               <button
                 key={theme.value}
                 className="text-left text-xs p-2 rounded w-full hover:bg-neutral-300 active:bg-neutral-300 dark:hover:bg-neutral-800 dark:active:bg-neutral-800 focus:bg-neutral-200 dark:focus:bg-neutral-800 focus:outline-none data-[active=true]:bg-neutral-400 dark:data-[active=true]:bg-neutral-700"

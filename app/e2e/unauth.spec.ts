@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { openExportDialog } from "./openExportDialog";
-import { BASE_URL, changeEditorText, goToPath, goToTab } from "./utils";
+import { BASE_URL, goToPath, goToTab } from "./utils";
 
 /*
 Run single test file
@@ -11,401 +11,212 @@ pnpm playwright test e2e/unauth.spec.ts --headed --project=chromium
 // Run in parallel
 test.describe.configure({ mode: "parallel" });
 
-test.describe("unauth", () => {
-  test.beforeEach(async ({ page }) => {
-    await goToPath(page);
+test.beforeEach(async ({ page }) => {
+  await goToPath(page);
+});
+
+test("Download PNG", async ({ page }) => {
+  await openExportDialog(page);
+  // Click [aria-label="Download PNG"]
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator('[aria-label="Download PNG"]').click(),
+  ]);
+
+  expect(download.suggestedFilename()).toBe("flowchart-fun.png");
+});
+
+test("Download JPG", async ({ page }) => {
+  await openExportDialog(page);
+  // Click [aria-label="Download JPG"]
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator('[aria-label="Download JPG"]').click(),
+  ]);
+
+  expect(download.suggestedFilename()).toBe("flowchart-fun.jpg");
+});
+
+test("Copy Fullscreen Link", async ({ page }) => {
+  await openExportDialog(page);
+
+  // Expect input to have the correct value
+  await expect(
+    page.locator('text=FullscreenCopy >> input[type="text"]')
+  ).toHaveValue(
+    `${BASE_URL}/f#EIUw5glgdgBAKgTwA7TAKBjAwgeygZwgBMQAnALhgEEijUYBDGAGQYCMQAbDTGATRD5KAeSQAXCHmo9eMAKr4QjWAEkAIjDE5seKCADGYmAGJ9ug2JkwAcjhHjJsYFcwAKU+cMBKF71sB3GDIGRU0ACyUxEAAPIwYoIk1SBBgIIwQcAFdSRU4AMwBCNDQAXjKytABvHgAifQQtfH0GJBAAZTEEThAayhqAAQgAWyQcUiNszlcAHRqwsTEkIQB6Zby8MXwAOjAcHDBulohtsyHl-Xx8ACYAfjyGIYhOBBKVYABZAGoABW7oz7a8SE-jA836ABYAAyQgDcAFZoQAyOj4JCcBgvfD+FqzLww6ZQAkAEjYDH0AGswKQsglKP4wmkQPioESzJwxpRjABmACMULhbGZRPWUDEADEHk8EJRZm93jBfjEYICCLMADQwfBAgC0ilIEDyQtIICInJAADYuQBOcHmoVjeJgECcvLghhXc08oUILjs-wunn3LmC4lUkAgKCcq4MK1EAAchuJbE4mWdJnNkPNIDyduJSGyaLTxnNRDdAHZ9EKw9KTHkriaTcyCSanTBKgTMP5iGIwpQeUhoszMPpsgA3EC6zrdSgcABeEDIQ80DFITrE2pX1P8urCLTTYn1ju6S840AnbI5MGTZPJS-wWVI+gnm5w24vFCv6IpS7EK7XG9ILdtXfGcv1vDsYHRDhOEoIgGF-VwoK4PEIKiWJtVJCkqRpIhgJwdkPxJG9sMyBIfxiddMMpalSNwnAkDJNIay9VCKIw4iaISbUGNoVBKDhJcRXXe5HmeShhQ2CVRIQQSNl1CBZzTPlmQAXwJAlyH0BlOCIbpLgAbXwXdWgAdW7MIAF02wgrsiB7WD4IYVwjL3My7LCFCoDUwlIy0p5dMEfBDOMkAAAkQAgUExCs9tYBgCJIvmByEJc1pwsSsRPO8jS-J0vSgrQsR3j-aA+Bi1j0KGEqoG1Gs4IQwritXUqsvU3ztICgzGuqgANcq4sK7UquamromSpzupGnrWp8zSOvy6y4qQmCYHqpzls8zAhO1ESpXEoSpKlcj0P8UgWjpM6kGO9cquibVbPsmAeQRJcHt7GArmhJcEqivsvog7bCEUvtcwGtjRwYU8wEjGAn1FRcKvXXcoZhuGolIE8z21H6kqerZwTvELKGNQwjyZCCqJIriQJgIlqyXGnWXwsYlzYMYSFIPCCPE99WfZsh7vMygrj50gOcnLo03vU8iFk0V7oi36YARWECWyqBlgAKk15Vf3GGBNeWHL5sC-ToAAfRIMMlAAHieiz9KyMRLfAY0lAAPhgSF+swNmxYFt7KFVuLUrTTiiBJ38oAOcm4sp8OucvOm3agBnmY-elGVUtqtZ1uAyEeKBIYNo32v8-LHcyZ2rbdmA7Z5B2LZr8MYE973Ft9-nOcDr3Cb3YmcMjsnWY4nDE8I41ZYgmnM6ibOfNzmBgDOqA-OjkvjfL02m9dlu28bqAXetuuPodp2j9rz2G47zUidWiAHjwKe49H2jx-E5NUzT7mYFn2PMBxmIYW-045d0Fu5IO10hrVVqsLeeBJF7vDIJAde2tS5zS3gZHex8r5nyrhfPeXs8HV13rbU+i11YYLyoFLY75zaTxvvHMejNJ7f0vH-eeVDOonHTubB00clCxV9q-am6dxL8KdGwjODI55q03tQy4tDeE+k4H6RhIjcKMxUX6ThuVuFKIIuba2sAhFXg0e-WmxipF0hkbHbyXD8oGLGObT+giKbmMZq46xv9bG6JNoouh+ZSCFnUVhBOjMgmFm8RwuRZcFE8MMdWUJ1FmFiMscaGSsT5H6NDvQiwZMb6h2Jvk6Ox5YkOJobk8OQ9SluJDnfapJSY5+MwdsXJvoIBLDqZgIpQRVGdMUC0+JWxckHgfrUwpd8xnD3KXoxxuTWiigYLsExEFemLN-CsoZOSQrmwiNEZZUhTG9P2Yc1Osz-FtN2REcQZzJn93iiAW5WyLmtJGbsnApMVn3NaJQT5my8DbPmbs-AesflSz1kCypuzSSAS4OCmcm4uBQsUbkugj8EgIvvhi5+9i5nQr3Obcc3Tb4POJSiq5hLSBhBwEMNmxAsXUtpfS3F2TgVUoytqJldKcAMuOQ0zl3KWUUveYSzZWLNkiqqWPGpMdGUyqaWUrybKCWtHNiOdcsruhYo1VyxVdiVWophTgBYtKuUKtJhM-lDy2amqGOat+WqDVxJ2YSswq8GDjmxjEO51rfmwzwM0L1pyXnKpdY4v2HNzZQDwCSyNAcha9wpmA0FktKDS2ICK+NpBzYZsSKY7N4DHoi2Tf7Tmqbpyanwpm15wzs2WxCBEfNpbxY9xLaAstEtK1wSMo2Wt+j61EBNVEZtHbW2JvbZ3TtFa0xDoWH2sNhqgr+B9r-RNa1XD+Bmku-Slkb6APGq4Dy8C9BECdFsU8ehc3VtHZgS9E4Z3ppvfPFsIAL1nktsOk0N971dtnV+1lp7z33obb229kEsaPtWo2hd3lX1bD1v+F8-hzbTKtahP8IB1zIZ3A8tDzTYnwcQ1hgCW5UOHlqdqKIJLiPYcAq+XD-r8PdCo+GF9Z6320dI6+dVEBHwseYzRzDdGgK9P0Hx-QAmKMEbDUR4T3GUOCeAtSS4N8uM4d6Up-QKn8DsfPep+jinpMsaoiOUg441PyY01M4zE5TNjmdXJ1cJHkNEpbqYgzom77ksIxxhDVnDOofcxh5zImGOabY75-TAWyP4AAI6ZBXEJ0LCnGNSwS0lvTnGYs8fE-x5LSHDNpcoHlyTjm-OeZ4+ioYT9LMpesw86rT8sv+fq4FrSIBRzUlWQNHL24xMRC64CqL2W2tkZjXoOrhWvMPIm+V8995shPgU+R8ZcrjkPmWw1pjtmWuLcfM+QLSnqOFM24dmbO21sCci7Jvz+2tvtYk1Jq7JL7vnfC3fUrz2Zm3YW2dlbWmdOnaW+9-rNmXvKZwJcPb-3XNKfs+Z17sOiuads+xCkZnxww5Byt4lwODupd6T537b63sA+CyHZHF39w3bg3dqnPH4uJeNPjh71P00ZeNNjgnrmvtI5x9ttMfPuds6qw-GrmKNsC5R3fJrZERsjIZyhjrQ2es9KV8V2Gg3usi9B9G2NrPQea7mye8gDFjSihvjxOg0c-qi3FlBvN9uE0QI+s7zmjNebuLCakn+REfe0SgRDFGlAtBXQBnJXaYlaYHUlM8E87AuCHo2t4pmBE5briBkpK0Ww4QDigcNFBsCYDagElkyM5uIxiCcTmv+ySqaaLSTEsNZukuihr0YjJ9fwlpOTiATJYaahoBUqUcoJQgA`
+  );
+
+  await page.locator('[aria-label="Copy Fullscreen"]').click();
+  // await expect(page.locator('[data-testid="Copied Fullscreen"]')).toBeVisible();
+});
+
+test("Copy With-Editor Link", async ({ page }) => {
+  await openExportDialog(page);
+
+  // Expect input to have the correct value
+  await expect(
+    page.locator('text=FullscreenCopy >> input[type="text"]')
+  ).toHaveValue(
+    `${BASE_URL}/f#EIUw5glgdgBAKgTwA7TAKBjAwgeygZwgBMQAnALhgEEijUYBDGAGQYCMQAbDTGATRD5KAeSQAXCHmo9eMAKr4QjWAEkAIjDE5seKCADGYmAGJ9ug2JkwAcjhHjJsYFcwAKU+cMBKF71sB3GDIGRU0ACyUxEAAPIwYoIk1SBBgIIwQcAFdSRU4AMwBCNDQAXjKytABvHgAifQQtfH0GJBAAZTEEThAayhqAAQgAWyQcUiNszlcAHRqwsTEkIQB6Zby8MXwAOjAcHDBulohtsyHl-Xx8ACYAfjyGIYhOBBKVYABZAGoABW7oz7a8SE-jA836ABYAAyQgDcAFZoQAyOj4JCcBgvfD+FqzLww6ZQAkAEjYDH0AGswKQsglKP4wmkQPioESzJwxpRjABmACMULhbGZRPWUDEADEHk8EJRZm93jBfjEYICCLMADQwfBAgC0ilIEDyQtIICInJAADYuQBOcHmoVjeJgECcvLghhXc08oUILjs-wunn3LmC4lUkAgKCcq4MK1EAAchuJbE4mWdJnNkPNIDyduJSGyaLTxnNRDdAHZ9EKw9KTHkriaTcyCSanTBKgTMP5iGIwpQeUhoszMPpsgA3EC6zrdSgcABeEDIQ80DFITrE2pX1P8urCLTTYn1ju6S840AnbI5MGTZPJS-wWVI+gnm5w24vFCv6IpS7EK7XG9ILdtXfGcv1vDsYHRDhOEoIgGF-VwoK4PEIKiWJtVJCkqRpIhgJwdkPxJG9sMyBIfxiddMMpalSNwnAkDJNIay9VCKIw4iaISbUGNoVBKDhJcRXXe5HmeShhQ2CVRIQQSNl1CBZzTPlmQAXwJAlyH0BlOCIbpLgAbXwXdWgAdW7MIAF02wgrsiB7WD4IYVwjL3My7LCFCoDUwlIy0p5dMEfBDOMkAAAkQAgUExCs9tYBgCJIvmByEJc1pwsSsRPO8jS-J0vSgrQsR3j-aA+Bi1j0KGEqoG1Gs4IQwritXUqsvU3ztICgzGuqgANcq4sK7UquamromSpzupGnrWp8zSOvy6y4qQmCYHqpzls8zAhO1ESpXEoSpKlcj0P8UgWjpM6kGO9cquibVbPsmAeQRJcHt7GArmhJcEqivsvog7bCEUvtcwGtjRwYU8wEjGAn1FRcKvXXcoZhuGolIE8z21H6kqerZwTvELKGNQwjyZCCqJIriQJgIlqyXGnWXwsYlzYMYSFIPCCPE99WfZsh7vMygrj50gOcnLo03vU8iFk0V7oi36YARWECWyqBlgAKk15Vf3GGBNeWHL5sC-ToAAfRIMMlAAHieiz9KyMRLfAY0lAAPhgSF+swNmxYFt7KFVuLUrTTiiBJ38oAOcm4sp8OucvOm3agBnmY-elGVUtqtZ1uAyEeKBIYNo32v8-LHcyZ2rbdmA7Z5B2LZr8MYE973Ft9-nOcDr3Cb3YmcMjsnWY4nDE8I41ZYgmnM6ibOfNzmBgDOqA-OjkvjfL02m9dlu28bqAXetuuPodp2j9rz2G47zUidWiAHjwKe49H2jx-E5NUzT7mYFn2PMBxmIYW-045d0Fu5IO10hrVVqsLeeBJF7vDIJAde2tS5zS3gZHex8r5nyrhfPeXs8HV13rbU+i11YYLyoFLY75zaTxvvHMejNJ7f0vH-eeVDOonHTubB00clCxV9q-am6dxL8KdGwjODI55q03tQy4tDeE+k4H6RhIjcKMxUX6ThuVuFKIIuba2sAhFXg0e-WmxipF0hkbHbyXD8oGLGObT+giKbmMZq46xv9bG6JNoouh+ZSCFnUVhBOjMgmFm8RwuRZcFE8MMdWUJ1FmFiMscaGSsT5H6NDvQiwZMb6h2Jvk6Ox5YkOJobk8OQ9SluJDnfapJSY5+MwdsXJvoIBLDqZgIpQRVGdMUC0+JWxckHgfrUwpd8xnD3KXoxxuTWiigYLsExEFemLN-CsoZOSQrmwiNEZZUhTG9P2Yc1Osz-FtN2REcQZzJn93iiAW5WyLmtJGbsnApMVn3NaJQT5my8DbPmbs-AesflSz1kCypuzSSAS4OCmcm4uBQsUbkugj8EgIvvhi5+9i5nQr3Obcc3Tb4POJSiq5hLSBhBwEMNmxAsXUtpfS3F2TgVUoytqJldKcAMuOQ0zl3KWUUveYSzZWLNkiqqWPGpMdGUyqaWUrybKCWtHNiOdcsruhYo1VyxVdiVWophTgBYtKuUKtJhM-lDy2amqGOat+WqDVxJ2YSswq8GDjmxjEO51rfmwzwM0L1pyXnKpdY4v2HNzZQDwCSyNAcha9wpmA0FktKDS2ICK+NpBzYZsSKY7N4DHoi2Tf7Tmqbpyanwpm15wzs2WxCBEfNpbxY9xLaAstEtK1wSMo2Wt+j61EBNVEZtHbW2JvbZ3TtFa0xDoWH2sNhqgr+B9r-RNa1XD+Bmku-Slkb6APGq4Dy8C9BECdFsU8ehc3VtHZgS9E4Z3ppvfPFsIAL1nktsOk0N971dtnV+1lp7z33obb229kEsaPtWo2hd3lX1bD1v+F8-hzbTKtahP8IB1zIZ3A8tDzTYnwcQ1hgCW5UOHlqdqKIJLiPYcAq+XD-r8PdCo+GF9Z6320dI6+dVEBHwseYzRzDdGgK9P0Hx-QAmKMEbDUR4T3GUOCeAtSS4N8uM4d6Up-QKn8DsfPep+jinpMsaoiOUg441PyY01M4zE5TNjmdXJ1cJHkNEpbqYgzom77ksIxxhDVnDOofcxh5zImGOabY75-TAWyP4AAI6ZBXEJ0LCnGNSwS0lvTnGYs8fE-x5LSHDNpcoHlyTjm-OeZ4+ioYT9LMpesw86rT8sv+fq4FrSIBRzUlWQNHL24xMRC64CqL2W2tkZjXoOrhWvMPIm+V8995shPgU+R8ZcrjkPmWw1pjtmWuLcfM+QLSnqOFM24dmbO21sCci7Jvz+2tvtYk1Jq7JL7vnfC3fUrz2Zm3YW2dlbWmdOnaW+9-rNmXvKZwJcPb-3XNKfs+Z17sOiuads+xCkZnxww5Byt4lwODupd6T537b63sA+CyHZHF39w3bg3dqnPH4uJeNPjh71P00ZeNNjgnrmvtI5x9ttMfPuds6qw-GrmKNsC5R3fJrZERsjIZyhjrQ2es9KV8V2Gg3usi9B9G2NrPQea7mye8gDFjSihvjxOg0c-qi3FlBvN9uE0QI+s7zmjNebuLCakn+REfe0SgRDFGlAtBXQBnJXaYlaYHUlM8E87AuCHo2t4pmBE5briBkpK0Ww4QDigcNFBsCYDagElkyM5uIxiCcTmv+ySqaaLSTEsNZukuihr0YjJ9fwlpOTiATJYaahoBUqUcoJQgA`
+  );
+});
+
+test("Open mermaid.live link", async ({ page }) => {
+  await openExportDialog(page);
+
+  const page1Promise = page.waitForEvent("popup");
+  await page.getByTestId("Mermaid Live").click();
+  const page1 = await page1Promise;
+  await expect(page1.getByText('["Begin Typing"]')).toBeVisible({
+    timeout: 15 * 1000,
   });
+});
 
-  test.only("View Pricing Page", async ({ page }) => {
-    await goToTab(page, "Charts");
+test("Change Language", async ({ page }) => {
+  await goToTab(page, "Settings");
+  // Click [aria-label="Select Language\: Deutsch"]
+  await page.locator('[aria-label="Select Language\\: Deutsch"]').click();
 
-    // click test id "to-pricing"
-    await page.getByTestId("to-pricing").click();
+  // Expect to find a button with the text "Einstellungen"
+  await expect(
+    page.getByRole("heading", { name: "Einstellungen" })
+  ).toBeVisible();
+});
 
-    // Expect test id pricing-page-title to be visible
-    await expect(
-      page.locator('[data-testid="pricing-page-title"]')
-    ).toBeVisible();
+test("Change Appearance", async ({ page }) => {
+  await goToTab(page, "Settings");
+  await page.locator('[aria-label="Dark Mode"]').click();
+  // get value of css custom property --color-background
+  const [background, foreground] = await page.evaluate(() => {
+    return [
+      getComputedStyle(document.body).getPropertyValue("--color-background"),
+      getComputedStyle(document.body).getPropertyValue("--color-foreground"),
+    ];
   });
+  expect(background.trim()).toBe("#0f0f0f");
+  expect(foreground.trim()).toBe("rgb(250, 250, 250)");
+});
 
-  test("Create New Local Chart", async ({ page }) => {
-    await goToTab(page, "New");
+test("Submit Feedback", async ({ page }) => {
+  // click button with text "Feedback"
+  await page.locator('a:has-text("Feedback")').first().click();
 
-    await page.getByRole("link", { name: "New" }).click();
-    await page.getByPlaceholder("Untitled").click();
-    await page.getByPlaceholder("Untitled").press("Meta+a");
-    await page.getByPlaceholder("Untitled").fill("My New Chart");
-    await page
-      .getByRole("radio", {
-        name: "Temporary Stored on this computer Deleted when browser data is cleared",
-      })
-      .click();
-    await page.getByRole("button", { name: "Create" }).click();
-    await expect(page).toHaveURL(`${BASE_URL}/my-new-chart`);
-  });
+  // Click [data-testid="message"]
+  await page.locator('[data-testid="message"]').click();
 
-  test("Open a Chart", async ({ page }) => {
-    await goToTab(page, "Charts");
-    await page.click('a:has-text("/")');
-    await expect(page).toHaveURL(`${BASE_URL}/`);
-  });
+  // Fill [data-testid="message"]
+  await page.locator('[data-testid="message"]').fill("This is a test");
 
-  test("Clone a Chart", async ({ page }) => {
-    await goToTab(page, "Charts");
+  // Click [data-testid="email"]
+  await page.locator('[data-testid="email"]').click();
+  // Fill [data-testid="email"]
+  await page.locator('[data-testid="email"]').fill("test@test.com");
 
-    // click element with aria label "Clone"
-    await page.getByRole("button", { name: "Copy flowchart: /" }).click();
+  await page.locator('button:has-text("Submit")').click();
+  // Click text=Thank you for your feedback!
+  await expect(page.locator("text=Thank you for your feedback!")).toBeVisible();
+});
 
-    await expect(page).toHaveURL(`${BASE_URL}/-1`);
+test("Manipulate Editor Code", async ({ page }) => {
+  // Type in editor
 
-    await expect(page.locator("text=-1")).toBeVisible();
-  });
+  // Click text=This app works by typing >> nth=0
+  await page.locator("text=Begin Typing").first().click();
+  // Press a with modifiers
+  await page
+    .locator(
+      '[aria-label="Editor content\\;Press Alt\\+F1 for Accessibility Options\\."]'
+    )
+    .press("Meta+a");
+  await page
+    .locator(
+      '[aria-label="Editor content\\;Press Alt\\+F1 for Accessibility Options\\."]'
+    )
+    .type("hello world");
 
-  test("Delete a chart", async ({ page }) => {
-    await goToTab(page, "New");
+  await expect(
+    page.locator('div[role="code"] >> text=hello world')
+  ).toBeVisible();
 
-    await page.getByPlaceholder("Untitled").click();
-    await page.getByPlaceholder("Untitled").press("Meta+a");
-    await page.getByPlaceholder("Untitled").fill("to delete");
-    await page.getByRole("button", { name: "Create" }).click();
+  // Resize Editor/Graph
 
-    await goToTab(page, "Charts");
+  await page.getByTestId("Editor Tab: Layout").click();
 
-    await page
-      .getByRole("button", { name: "Delete flowchart: /to-delete" })
-      .click();
-    await page.getByRole("button", { name: "Delete" }).click();
+  // Contract Graph
 
-    // expect "delete-me" NOT to be in the document
-    await expect(page.locator("text=to-delete")).not.toBeVisible();
-  });
+  // Expand Graph
 
-  test("Create a New Local Chart", async ({ page }) => {
-    await changeEditorText(page, "1");
+  // Change Graph Options Layout Direction
+  await page
+    .locator('button[role="combobox"]:has-text("Top to Bottom")')
+    .click();
+  await page.locator('div[role="option"]:has-text("Left to Right")').click();
 
-    expect(new URL(page.url()).pathname).toBe("/");
+  // Change Graph Options Layout
+  await page.locator('button[role="combobox"]:has-text("Dagre")').click();
+  await page.locator('div[role="option"]:has-text("Klay")').click();
 
-    await page.getByRole("link", { name: "New" }).click();
-    await page.getByPlaceholder("Untitled").click();
-    await page.getByPlaceholder("Untitled").fill("a-b-c-d-e");
-
-    await page
-      .getByRole("radio", {
-        name: "Temporary Stored on this computer Deleted when browser data is cleared",
-      })
-      .click();
-
-    await page.getByRole("button", { name: "Create" }).click();
-
-    // Make sure we're on the new chart
-    expect(new URL(page.url()).pathname).toBe("/a-b-c-d-e");
-
-    // Expect text to be reset
-    await expect(
-      page.locator("text=before a colon creates a label").first()
-    ).toBeVisible();
-  });
-
-  test("Creating a new chart from a template immediatetly creates a local chart", async ({
-    page,
-    browserName,
-  }) => {
-    if (browserName === "firefox") {
-      // Firefox has a weird bug, most likely due to the "#" in the URL
-      return;
-    }
-    await page.goto(BASE_URL);
-    // go to url
-    await page.goto(
-      `${BASE_URL}/n#C4ewBARgpmCWB2ZgAsYBMQGMCuBbK8wAUALxllEDeRYYARAA4CGATgM5Qt0Bc9A5iyYNkAWg4AbKJlBciAX1LkSQA`
-    );
-
-    // expect "to be in the document" to be in the document
-    await expect(
-      page.locator("text=to be in the document").first()
-    ).toBeVisible();
-
-    // expect the url to contain "temp" in it
-    expect(page.url()).toContain("temp");
-  });
-
-  test("Rename chart", async ({ page }) => {
-    // Click [aria-label="Rename"]
-    await page.locator('[aria-label="Rename"]').click();
-    // Fill input[name="name"]
-    await page.locator('input[name="name"]').fill("my new chart");
-    // Click button:has-text("Rename")
-    await page.locator('button:has-text("Rename")').click();
-    await expect(page).toHaveURL(`${BASE_URL}/my-new-chart`);
-    // Click text=my-new-chart
-    await expect(page.locator("text=my-new-chart")).toBeVisible();
-    // Click [aria-label="Rename"]
-    await page.locator('[aria-label="Rename"]').click();
-    // Press a with modifiers
-    await page.locator('input[name="name"]').press("Meta+a");
-    // Fill input[name="name"]
-    await page.locator('input[name="name"]').fill("cool chart");
-    // Click button:has-text("Rename")
-    await page.locator('button:has-text("Rename")').click();
-    await expect(page).toHaveURL(`${BASE_URL}/cool-chart`);
-    // Click text=cool-chart
-    await expect(page.locator("text=cool-chart")).toBeVisible();
-  });
-
-  test("Download PNG", async ({ page }) => {
-    await openExportDialog(page);
-    // Click [aria-label="Download PNG"]
-    const [download] = await Promise.all([
-      page.waitForEvent("download"),
-      page.locator('[aria-label="Download PNG"]').click(),
-    ]);
-
-    expect(download.suggestedFilename()).toBe("flowchart-fun.png");
-  });
-
-  test("Download JPG", async ({ page }) => {
-    await openExportDialog(page);
-    // Click [aria-label="Download JPG"]
-    const [download] = await Promise.all([
-      page.waitForEvent("download"),
-      page.locator('[aria-label="Download JPG"]').click(),
-    ]);
-
-    expect(download.suggestedFilename()).toBe("flowchart-fun.jpg");
-  });
-
-  test("Copy Fullscreen Link", async ({ page }) => {
-    try {
-      await openExportDialog(page);
-
-      // Expect input to have the correct value
-      await expect(
-        page.locator('text=FullscreenCopy >> input[type="text"]')
-      ).toHaveValue(
-        `${BASE_URL}/f#CoCwlgzgBAhgDnKB3A9gJwNbQEYE8oAuucYAdgOYBQUUAkqQCYCmpBZ5UAxmkzAU9BhQANmQyEUhEEy4BXND1YiyTarFL5+ADwIAuKNiYAzdDKGcUwlKS48+A2CJiHhagMJ3+j0aXEMwPJwEwviyEOxSMkxaMEFOLoTRBGo0ohgyBOAQ+gAUoJCwCMjoWAaaxOwAlClQANqcYQQoALZ0ACIAulDoNTR4sAz+FOpQAKQArABCtG0TbeoMUDxGTIqcEZl8vTTK6VKQuQ0QTa0zlVAA9BdQAJooslwwNjDCEJJhMuEUwkwAtD4yCzNZosAgQSgXABUlB6zVkwjYAMoQJBrHBlAAEjAAG4yIyyUgAQiggB4NwCR+5RIRcgA`
-      );
-
-      await Promise.all([
-        // Expect Checkmark to be in view
-        expect(page.locator('[data-testid="Copied Fullscreen"]')).toMatch(""),
-        page.locator('[aria-label="Copy Fullscreen"]').click(),
-      ]);
-    } catch {
-      // Take Screenshot
-      await page.screenshot({ path: "ERROR.png" });
-    }
-  });
-
-  test("Copy With-Editor Link", async ({ page }) => {
-    try {
-      await openExportDialog(page);
-
-      // Expect input to have the correct value
-      await expect(
-        page.locator('text=FullscreenCopy >> input[type="text"]')
-      ).toHaveValue(
-        `${BASE_URL}/f#CoCwlgzgBAhgDnKB3A9gJwNbQEYE8oAuucYAdgOYBQUUAkqQCYCmpBZ5UAxmkzAU9BhQANmQyEUhEEy4BXND1YiyTarFL5+ADwIAuKNiYAzdDKGcUwlKS48+A2CJiHhagMJ3+j0aXEMwPJwEwviyEOxSMkxaMEFOLoTRBGo0ohgyBOAQ+gAUoJCwCMjoWAaaxOwAlClQANqcYQQoALZ0ACIAulDoNTR4sAz+FOpQAKQArABCtG0TbeoMUDxGTIqcEZl8vTTK6VKQuQ0QTa0zlVAA9BdQAJooslwwNjDCEJJhMuEUwkwAtD4yCzNZosAgQSgXABUlB6zVkwjYAMoQJBrHBlAAEjAAG4yIyyUgAQiggB4NwCR+5RIRcgA`
-      );
-
-      await Promise.all([
-        // Expect Checkmark to be in view
-        expect(
-          page.locator('[data-testid="Copied With Editor"]')
-        ).toBeVisible(),
-        page.locator('[aria-label="Copy With Editor"]').click(),
-      ]);
-    } catch {
-      // Take Screenshot
-      await page.screenshot({ path: "ERROR.png" });
-    }
-  });
-
-  test("Copy Mermaid JS Code", async ({ page }) => {
-    try {
-      await openExportDialog(page);
-
-      await Promise.all([
-        expect(
-          page.locator('[data-testid="Copied Mermaid Code"]')
-        ).toBeVisible(),
-        page.locator('[aria-label="Copy Mermaid Code"]').click(),
-      ]);
-    } catch {
-      // Take Screenshot
-      await page.screenshot({ path: "ERROR.png" });
-    }
-  });
-
-  test("Open mermaid.live link", async ({ page }) => {
-    await openExportDialog(page);
-
-    const page1Promise = page.waitForEvent("popup");
-    await page.getByTestId("Mermaid Live").click();
-    const page1 = await page1Promise;
-    await expect(page1.getByText('["This app works by typing"]')).toBeVisible({
-      timeout: 15 * 1000,
+  // Right Click on Graph & Download PNG
+  await page
+    .locator("#cy canvas")
+    .first()
+    .click({
+      button: "right",
+      position: {
+        x: 440,
+        y: 74,
+      },
     });
-  });
+  // Click text=Download PNG
+  const [png] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator("text=Download PNG").click(),
+  ]);
 
-  test("Change Language", async ({ page }) => {
-    await goToTab(page, "Settings");
-    // Click [aria-label="Select Language\: Deutsch"]
-    await page.locator('[aria-label="Select Language\\: Deutsch"]').click();
+  expect(png.suggestedFilename()).toBe("flowchart-fun.png");
 
-    // Expect to find a button with the text "Einstellungen"
-    await expect(
-      page.getByRole("heading", { name: "Einstellungen" })
-    ).toBeVisible();
-  });
-
-  test("Change Appearance", async ({ page }) => {
-    await goToTab(page, "Settings");
-    await page.locator('[aria-label="Dark Mode"]').click();
-    // get value of css custom property --color-background
-    const [background, foreground] = await page.evaluate(() => {
-      return [
-        getComputedStyle(document.body).getPropertyValue("--color-background"),
-        getComputedStyle(document.body).getPropertyValue("--color-foreground"),
-      ];
+  // Right Click on Graph & Download JPG
+  await page
+    .locator("#cy canvas")
+    .first()
+    .click({
+      button: "right",
+      position: {
+        x: 267,
+        y: 297,
+      },
     });
-    expect(background.trim()).toBe("#0f0f0f");
-    expect(foreground.trim()).toBe("rgb(250, 250, 250)");
-  });
+  // Click text=Download JPG
+  const [jpg] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator("text=Download JPG").click(),
+  ]);
 
-  test("Submit Feedback", async ({ page }) => {
-    // click button with text "Help"
-    await page.locator('button:has-text("Help")').click();
+  expect(jpg.suggestedFilename()).toBe("flowchart-fun.jpg");
+});
 
-    // click button with text "Feedback"
-    await page.locator('a:has-text("Feedback")').first().click();
+test("Export to Visio CSV", async ({ page }) => {
+  await openExportDialog(page);
+  await page.getByRole("tab", { name: "Visio" }).click();
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.getByTestId("Visio Flowchart").click(),
+  ]);
+  expect(download.suggestedFilename()).toBe("flowchart-fun-visio-flow.csv");
+  const [download1] = await Promise.all([
+    page.waitForEvent("download"),
+    page.getByTestId("Visio Org Chart").click(),
+  ]);
+  expect(download1.suggestedFilename()).toBe("flowchart-fun-visio-org.csv");
+});
 
-    // Click [data-testid="message"]
-    await page.locator('[data-testid="message"]').click();
+test("Can follow Import Data to pricing page", async ({ page }) => {
+  await page.getByRole("button", { name: "Import Data" }).click();
 
-    // Fill [data-testid="message"]
-    await page.locator('[data-testid="message"]').fill("This is a test");
+  // Click on getByRole('button', { name: 'Learn More' })
+  await page.getByRole("button", { name: "Learn More" }).click();
 
-    // Click [data-testid="email"]
-    await page.locator('[data-testid="email"]').click();
-    // Fill [data-testid="email"]
-    await page.locator('[data-testid="email"]').fill("test@test.com");
-
-    await page.locator('button:has-text("Submit")').click();
-    // Click text=Thank you for your feedback!
-    await expect(
-      page.locator("text=Thank you for your feedback!")
-    ).toBeVisible();
-  });
-
-  test("Manipulate Editor Code", async ({ page }) => {
-    try {
-      // Type in editor
-
-      // Click text=This app works by typing >> nth=0
-      await page.locator("text=This app works by typing").first().click();
-      // Press a with modifiers
-      await page
-        .locator(
-          '[aria-label="Editor content\\;Press Alt\\+F1 for Accessibility Options\\."]'
-        )
-        .press("Meta+a");
-      await page
-        .locator(
-          '[aria-label="Editor content\\;Press Alt\\+F1 for Accessibility Options\\."]'
-        )
-        .type("hello world");
-
-      await expect(
-        page.locator('div[role="code"] >> text=hello world')
-      ).toBeVisible();
-
-      // Resize Editor/Graph
-
-      await page.getByTestId("Editor Tab: Layout").click();
-
-      // Contract Graph
-
-      // Expand Graph
-
-      // Change Graph Options Layout Direction
-      await page
-        .locator('button[role="combobox"]:has-text("Top to Bottom")')
-        .click();
-      await page
-        .locator('div[role="option"]:has-text("Left to Right")')
-        .click();
-
-      // Change Graph Options Layout
-      await page.locator('button[role="combobox"]:has-text("Dagre")').click();
-      await page.locator('div[role="option"]:has-text("Klay")').click();
-
-      // Change Graph Options Theme
-      await page.getByTestId("Editor Tab: Style").click();
-      await page.locator('button[role="combobox"]:has-text("Light")').click();
-      await page.locator('div[role="option"]:has-text("Dark")').click();
-
-      // Right Click on Graph & Download PNG
-      await page
-        .locator("#cy canvas")
-        .first()
-        .click({
-          button: "right",
-          position: {
-            x: 440,
-            y: 74,
-          },
-        });
-      // Click text=Download PNG
-      const [png] = await Promise.all([
-        page.waitForEvent("download"),
-        page.locator("text=Download PNG").click(),
-      ]);
-
-      expect(png.suggestedFilename()).toBe("flowchart.png");
-
-      // Right Click on Graph & Download JPG
-      await page
-        .locator("#cy canvas")
-        .first()
-        .click({
-          button: "right",
-          position: {
-            x: 267,
-            y: 297,
-          },
-        });
-      // Click text=Download JPG
-      const [jpg] = await Promise.all([
-        page.waitForEvent("download"),
-        page.locator("text=Download JPG").click(),
-      ]);
-
-      expect(jpg.suggestedFilename()).toBe("flowchart.jpg");
-    } catch {
-      // Take Screenshot
-      await page.screenshot({ path: "ERROR.png" });
-    }
-  });
-
-  test("Export to Visio CSV", async ({ page }) => {
-    await openExportDialog(page);
-    await page.getByRole("tab", { name: "Visio" }).click();
-    const [download] = await Promise.all([
-      page.waitForEvent("download"),
-      page.getByTestId("Visio Flowchart").click(),
-    ]);
-    expect(download.suggestedFilename()).toBe("flowchart-fun-visio-flow.csv");
-    const [download1] = await Promise.all([
-      page.waitForEvent("download"),
-      page.getByTestId("Visio Org Chart").click(),
-    ]);
-    expect(download1.suggestedFilename()).toBe("flowchart-fun-visio-org.csv");
-  });
-
-  test("Can follow Import Data to pricing page", async ({ page }) => {
-    await page.getByRole("button", { name: "Import Data" }).click();
-    await page.getByRole("link", { name: "Learn More" }).click();
-    // expect to be on /pricing page
-    expect(new URL(page.url()).pathname).toBe("/pricing");
-  });
+  // expect to be on /pricing page
+  expect(new URL(page.url()).pathname).toBe("/pricing");
 });

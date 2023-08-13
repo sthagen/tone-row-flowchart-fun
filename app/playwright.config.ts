@@ -13,8 +13,8 @@ dotenv.config({ path: envPath });
 
 const config: PlaywrightTestConfig = {
   testDir: "e2e",
-  workers: 6,
   timeout: 120000,
+  workers: 12,
   use: {
     acceptDownloads: true,
     viewport: {
@@ -22,11 +22,12 @@ const config: PlaywrightTestConfig = {
       height: 1080,
     },
     // Development
-    headless: isDebug ? false : true,
+    // headless: isDebug ? false : true,
     launchOptions: {
       slowMo: isDebug ? 500 : 0,
     },
   },
+  maxFailures: 3,
   projects: isDebug
     ? [
         {

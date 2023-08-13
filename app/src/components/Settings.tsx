@@ -8,6 +8,7 @@ import { Button2, Page, Section } from "../ui/Shared";
 import { PageTitle, SectionTitle } from "../ui/Typography";
 import { AppContext } from "./AppContext";
 import styles from "./Settings.module.css";
+import { DISCORD_URL } from "../lib/constants";
 
 const Settings = memo(() => {
   const { updateUserSettings, mode, language } = useContext(AppContext);
@@ -103,7 +104,7 @@ const Settings = memo(() => {
         <SectionTitle>
           <Trans>About</Trans>
         </SectionTitle>
-        <p className="text-sm md:text-base leading-normal">
+        <p className="text-sm md:text-base md:leading-normal">
           <Trans>
             <span>Flowchart Fun</span> is an open source project made by{" "}
             <a href="https://tone-row.com" className="font-bold text-blue-500">
@@ -113,40 +114,58 @@ const Settings = memo(() => {
         </p>
         <Section>
           <a
+            href={DISCORD_URL}
+            className="text-xs opacity-60 hover:opacity-100"
+          >
+            Discord
+          </a>
+          <a
             href="https://github.com/tone-row/flowchart-fun"
-            className="text-sm opacity-60 hover:opacity-100"
+            className="text-xs opacity-60 hover:opacity-100"
           >
             <Trans>View on Github</Trans>
           </a>
           <a
             href="https://twitter.com/tone_row_"
-            className="text-sm opacity-60 hover:opacity-100"
+            className="text-xs opacity-60 hover:opacity-100"
           >
             <Trans>Follow Us on Twitter</Trans>
           </a>
+          <Link
+            to="/privacy-policy"
+            className="text-xs opacity-60 hover:opacity-100"
+          >
+            <Trans>Privacy Policy</Trans>
+          </Link>
+          <Link
+            to="/cookie-policy"
+            className="text-xs opacity-60 hover:opacity-100"
+          >
+            <Trans>Cookie Policy</Trans>
+          </Link>
         </Section>
       </Section>
       <Section>
         <SectionTitle>Support</SectionTitle>
-        <p className="text-sm md:text-base leading-normal">
+        <p className="text-sm md:text-base md:leading-normal">
           <Trans>
             If you enjoy using <span>Flowchart Fun</span>, please consider
             supporting the project
           </Trans>
         </p>
         <Section>
-          <Link to="/pricing" className="text-sm opacity-60 hover:opacity-100">
+          <Link to="/pricing" className="text-xs opacity-60 hover:opacity-100">
             <Trans>Become a Pro User</Trans>
           </Link>
           <a
             href="https://opencollective.com/tone-row/donate"
-            className="text-sm opacity-60 hover:opacity-100"
+            className="text-xs opacity-60 hover:opacity-100"
           >
             <Trans>Make a One-Time Donation</Trans>
           </a>
           <a
             href="https://github.com/sponsors/tone-row"
-            className="text-sm opacity-60 hover:opacity-100"
+            className="text-xs opacity-60 hover:opacity-100"
           >
             <Trans>Become a Github Sponsor</Trans>
           </a>

@@ -22,7 +22,7 @@ export function PaymentStepper() {
   const session = useSession();
   const sessionEmail = session?.user?.email;
   const [plan, setPlan] = useState<null | "yearly" | "monthly">(() => {
-    return window.location.hash === "#annually" ? "yearly" : "monthly";
+    return window.location.hash === "#annually" ? "yearly" : null;
   });
   const [confirmPlan, setConfirmPlan] = useState(false);
 
@@ -55,29 +55,27 @@ export function PaymentStepper() {
   let step = "one";
   if (confirmPlan) step = "two";
   if (
+    confirmPlan &&
     subscriptionDetails.data?.subscriptionId &&
     subscriptionDetails.data?.clientSecret
   )
     step = "three";
 
   return (
-    <div className="pt-12 pb-16 z-10 dark:bg-gradient-to-t dark:from-blue-600/0 dark:to-blue-700/30">
-      <div
-        className="overflow-hidden max-w-[560px] mx-auto grid justify-center px-4 gap-4"
-        ref={parent}
-      >
+    <div className={"z-10 overflow-hidden p-4 w-full"}>
+      <div className={"grid gap-6 max-w-3xl mx-auto"} ref={parent}>
         {step === "one" && (
-          <>
+          <div className="h-full grid gap-4">
             <Title>
-              <Trans>Select your plan!</Trans>
+              <Trans>Choose a Plan</Trans>
             </Title>
-            <Description>
-              {t`Choose the plan that's right for you and start creating amazing flowcharts with Flowchart Fun Pro`}
-            </Description>
-            <div className="grid items-center content-center justify-center gap-4 mt-6 md:grid-flow-col md:items-stretch">
+            <div className="w-full grid grid-rows-2 gap-2">
               <PlanButton
                 aria-current={plan === "monthly" ? "true" : "false"}
-                onClick={() => setPlan("monthly")}
+                aria-pressed={plan === "monthly" ? "true" : "false"}
+                onClick={() => {
+                  setPlan("monthly");
+                }}
                 className="mr-2 aria-[current=true]:text-blue-500"
                 title={t`Monthly`}
                 price={t`$3 per month`}
@@ -85,14 +83,17 @@ export function PaymentStepper() {
               />
               <PlanButton
                 aria-current={plan === "yearly" ? "true" : "false"}
-                onClick={() => setPlan("yearly")}
+                aria-pressed={plan === "yearly" ? "true" : "false"}
+                onClick={() => {
+                  setPlan("yearly");
+                }}
                 className="aria-[current=true]:text-blue-500"
                 title={t`Yearly`}
                 price={t`$30 per year`}
                 data-testid="yearly-plan-button"
                 extra={
-                  <span className="text-xs text-neutral-800 p-2 justify-self-center bg-yellow-300 rounded font-bold mt-2">
-                    <Trans>Save 20% (2 months free!)</Trans>
+                  <span className="!text-[14px] uppercase bg-yellow-300 py-2 px-3 text-neutral-900 rounded font-bold absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[22px] transform whitespace-nowrap transition-transform group-aria-pressed:scale-[1.1] group-aria-pressed:translate-y-[18px] group-aria-pressed:rotate-[3deg]">
+                    <Trans>2 Months Free</Trans>
                   </span>
                 }
               />
@@ -100,13 +101,13 @@ export function PaymentStepper() {
             <Button2
               onClick={() => setConfirmPlan(true)}
               disabled={plan === null}
-              className="mt-4 justify-self-center"
+              className="mt-8"
               rightIcon={<ArrowRight size={16} />}
               color="blue"
             >
               <Trans>Continue</Trans>
             </Button2>
-          </>
+          </div>
         )}
         {step === "two" && (
           <form
@@ -124,51 +125,40 @@ export function PaymentStepper() {
             <Title>
               <Trans>Enter your email</Trans>
             </Title>
-            <Description>{t`Let's get started! Enter your email address below to create your Flowchart Fun account and start using our powerful features.`}</Description>
-            <div className="grid gap-2">
-              <p
-                className={`text-[13px] justify-self-center text-neutral-600 dark:text-neutral-400`}
-              >
+            <div className="grid gap-4">
+              <Description>
                 {t`Make sure you use the same email you will use to log in.`}
-              </p>
+              </Description>
               <input
                 type="email"
                 name="email"
                 data-testid="email-input"
-                className="border border-neutral-400 font-mono rounded p-4 max-w-[360px] w-full justify-self-center focus:outline-none focus:border-blue-500 dark:border-neutral-700 dark:focus:border-blue-500 dark:bg-neutral-800/50 dark:text-neutral-50"
+                className="border border-neutral-400 font-mono rounded p-4 w-full justify-self-center focus:outline-none focus:border-blue-500 dark:border-neutral-700 dark:focus:border-blue-500 dark:bg-neutral-800/50 dark:text-neutral-50"
                 autoComplete="off"
                 required
               />
             </div>
             <Button2
               disabled={subscriptionDetails.isLoading}
-              className="mt-4 justify-self-center"
+              className="mt-4"
               rightIcon={<ArrowRight size={16} />}
               color="blue"
               isLoading={subscriptionDetails.isLoading}
             >
               <Trans>Continue</Trans>
             </Button2>
-            {subscriptionDetails.error && (
+            {subscriptionDetails.error ? (
               <div className="justify-self-center">
                 <Warning>
                   {(subscriptionDetails.error as Error).message}
                 </Warning>
               </div>
-            )}
+            ) : null}
           </form>
         )}
         {step === "three" && (
           <div className="grid gap-4">
-            <Title>{t`Activate your account`}</Title>
-            <Description className="mb-4">
-              <Trans>
-                You&apos;re almost there! Just one more step to unlock the full
-                potential of <span>Flowchart Fun Pro</span>. Enter your payment
-                details below to complete your subscription and start creating
-                amazing flowcharts today.
-              </Trans>
-            </Description>
+            <Title>{t`Activate your Account`}</Title>
             <PaymentForm
               clientSecret={subscriptionDetails.data?.clientSecret || ""}
             />
@@ -192,10 +182,10 @@ function PlanButton({
   return (
     <button
       {...props}
-      className="border w-[260px] border-solid p-4 py-12 grid gap-2 rounded-lg content-start border-b-4 border-neutral-700 dark:border-0 dark:border-neutral-800 dark:bg-neutral-800/90 focus:outline-none aria-[current=true]:scale-105 transition-transform aria-[current=true]:border-blue-500 aria-[current=true]:bg-blue-50/50 aria-[current=true]:dark:border-blue-300 aria-[current=true]:dark:bg-gradient-to-b aria-[current=true]:dark:from-blue-500 aria-[current=true]:dark:to-blue-700 text-neutral-800 dark:text-neutral-300 aria-[current=true]:text-blue-600 aria-[current=true]:dark:text-neutral-100 hover:shadow-lg dark:hover:shadow-none hover:shadow-neutral-100 dark:hover:shadow-neutral-800/50 aria-[current=true]:hover:shadow-none"
+      className="group border w-full shadow-sm border-solid border-neutral-300 p-4 py-6 grid gap-1 rounded-xl content-start dark:border-0 dark:border-neutral-800 dark:bg-neutral-800/90 focus:outline-none hover:scale-[1.025] aria-[current=true]:scale-105 transition-transform aria-[current=true]:border-blue-400 aria-[current=true]:bg-blue-50 aria-[current=true]:shadow-md aria-[current=true]:shadow-blue-600/20 aria-[current=true]:dark:border-blue-300 aria-[current=true]:dark:bg-gradient-to-b aria-[current=true]:dark:from-blue-500 aria-[current=true]:dark:to-blue-700 text-neutral-800 dark:text-neutral-300 aria-[current=true]:text-blue-600 aria-[current=true]:dark:text-neutral-100 relative"
     >
-      <h2 className={`text-xl font-bold`}>{title}</h2>
-      <span className="text-xl">{price}</span>
+      <h2 className={`text-base font-bold -mt-1`}>{title}</h2>
+      <span className="text-base">{price}</span>
       {extra}
     </button>
   );
@@ -207,6 +197,7 @@ function PaymentForm({ clientSecret }: { clientSecret: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
   const mode = useLightOrDarkMode();
+  const session = useSession();
 
   useEffect(() => {
     if (!stripe) return;
@@ -231,7 +222,9 @@ function PaymentForm({ clientSecret }: { clientSecret: string }) {
 
     setLoading(true);
 
-    const returnUrl = `${window.location.origin}/l#success`;
+    const returnUrl = session
+      ? `${window.location.origin}/`
+      : `${window.location.origin}/l#success`;
 
     const { error } = await stripe.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
@@ -313,7 +306,7 @@ async function getSubscriptionDetails(
 
 function Title({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-center text-4xl font-bold text-neutral-800 dark:text-neutral-100 text-wrap-balance">
+    <h2 className="text-base font-bold text-neutral-600 dark:text-neutral-100 text-wrap-balance leading-tight flex items-center justify-center gap-4">
       {children}
     </h2>
   );
@@ -328,7 +321,7 @@ function Description({
 }) {
   return (
     <p
-      className={`text-center text-neutral-800 dark:text-neutral-100 leading-[1.6] ${className}`}
+      className={`text-neutral-600 dark:text-neutral-100 leading-normal ${className}`}
     >
       {children}
     </p>

@@ -3,6 +3,7 @@ import * as Toggle from "@radix-ui/react-toggle";
 import { TooltipContentProps } from "@radix-ui/react-tooltip";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import cx from "classnames";
+import classNames from "classnames";
 import { HandWaving, Warning } from "phosphor-react";
 import { forwardRef, ReactNode } from "react";
 
@@ -26,14 +27,27 @@ export const Section = ({
 
 export const Page = ({
   children,
+  size = "md",
+  className = "",
   ...props
-}: { children?: ReactNode } & React.DetailedHTMLProps<
+}: {
+  children?: ReactNode;
+  size?: "sm" | "md";
+  className?: string;
+} & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >) => {
   return (
     <div
-      className="px-4 py-8 content-start grid max-w-3xl w-full mx-auto grid gap-10"
+      className={classNames(
+        "px-4 py-16 content-start grid w-full mx-auto grid",
+        {
+          "max-w-xl gap-2": size === "sm",
+          "max-w-3xl gap-10": size === "md",
+        },
+        className
+      )}
       {...props}
     >
       {children}
@@ -97,34 +111,25 @@ type NoticeStyle = "warning" | "info";
 export function Notice({
   children,
   style = "warning",
-  boxProps = {},
 }: {
   children: ReactNode;
   style?: NoticeStyle;
-  boxProps?: BoxProps;
 }) {
   const Icon = style === "warning" ? Warning : HandWaving;
-  const { as = "div", ...rest } = boxProps;
   return (
-    <Box
+    <div
       data-style={style}
-      p={2}
-      px={3}
-      pr={4}
-      rad={1}
-      self="normal start"
-      flow="column"
-      content="start"
-      items="center stretch"
-      gap={2}
-      className={styles.CancelNotice}
-      color="palette-black-0"
-      as={as}
-      {...rest}
+      className={cx(
+        "py-3 pl-2 pr-4 flex items-center gap-2 rounded-md text-sm",
+        {
+          "bg-yellow-100 text-yellow-700": style === "warning",
+          "bg-blue-100 text-blue-700": style === "info",
+        }
+      )}
     >
       <Icon size={smallIconSize} />
       <span className="text-sm">{children}</span>
-    </Box>
+    </div>
   );
 }
 
@@ -149,7 +154,7 @@ const button2Colors = {
 
 const pSize = {
   xs: "p-2 text-[12px]",
-  sm: "p-3 text-xs",
+  sm: "p-3 text-sm",
   md: "p-4 text-sm",
   lg: "p-5 text-base",
 };
@@ -194,7 +199,7 @@ export const Button2 = forwardRef<
   ) => {
     return (
       <button
-        className={`flex items-center justify-center gap-3 ${button2Classes} ${pxButtonSize[
+        className={`flex items-center justify-center gap-3 whitespace-nowrap ${button2Classes} ${pxButtonSize[
           size
         ](!!leftIcon, !!rightIcon)} ${button2Colors[color]}
       ${pSize[size]} ${focusClasses} ${className}
@@ -362,3 +367,41 @@ export const popoverContentProps: PopoverContentProps = {
   sideOffset: 10,
   className: popoverContentClasses,
 };
+
+export function InputWithLabel({
+  label,
+  inputProps,
+}: {
+  label: string;
+  inputProps: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
+}) {
+  return (
+    <input
+      className="p-4 mt-1 border bg-background dark:bg-[#0f0f0f] border-gray-300 rounded-lg hover:border-gray-400 focus:outline-none focus:ring focus:ring-neutral-400 focus:ring-opacity-25 focus:ring-offset-1 dark:text-neutral-50"
+      placeholder={label}
+      {...inputProps}
+    />
+  );
+}
+
+export function P({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p
+      className={cx(
+        "text-center text-neutral-500 leading-normal dark:text-neutral-400 mb-3",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+}

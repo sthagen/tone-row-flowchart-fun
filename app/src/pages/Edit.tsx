@@ -1,7 +1,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import throttle from "lodash.throttle";
-import { lazy, memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 import { ClearTextButton } from "../components/ClearTextButton";
 import EditorError from "../components/EditorError";
@@ -10,23 +10,22 @@ import { EditorWrapper } from "../components/EditorWrapper";
 import { EditWrapper } from "../components/EditWrapper";
 import Main from "../components/Main";
 import { EditLayoutTab } from "../components/Tabs/EditLayoutTab";
-import { EditMetaTab } from "../components/Tabs/EditMetaTab";
 import { EditorTabList } from "../components/Tabs/EditorTabList";
-const EditStyleTab = lazy(() => import("../components/Tabs/EditStyleTab"));
+
+import { OnChange } from "@monaco-editor/react";
 
 import { TextEditor } from "../components/TextEditor";
 import { getDefaultChart } from "../lib/getDefaultChart";
 import { titleToLocalStorageKey } from "../lib/helpers";
-import { useIsValidSponsor } from "../lib/hooks";
 import { prepareChart } from "../lib/prepareChart/prepareChart";
 import { Doc, docToString, useDoc } from "../lib/useDoc";
 import { useEditorStore } from "../lib/useEditorStore";
 import { useTrackLastChart } from "../lib/useLastChart";
 import styles from "./Edit.module.css";
+import { useTabsStore } from "../lib/useTabsStore";
+import EditStyleTab from "../components/Tabs/EditStyleTab";
 
 const Edit = memo(function Edit({ workspace }: { workspace: string }) {
-  const isValidSponsor = useIsValidSponsor();
-
   const storeDoc = useMemo(() => {
     return throttle(
       (doc: Doc) => {
@@ -42,21 +41,33 @@ const Edit = memo(function Edit({ workspace }: { workspace: string }) {
 
   useEffect(() => useDoc.subscribe(storeDoc), [storeDoc]);
 
-  const onChange = useCallback(
+  const onChange = useCallback<OnChange>(
     (value) => useDoc.setState({ text: value ?? "" }, false, "Edit/text"),
     []
   );
 
-  const { url } = useRouteMatch();
+  const url = useLocation().pathname;
   useTrackLastChart(url);
 
   const text = useDoc((d) => d.text);
+  const selectedTab = useTabsStore((s) => s.selectedTab);
+  useEffect(() => {
+    return () => {
+      useTabsStore.setState({ selectedTab: "Document" });
+    };
+  }, []);
 
   return (
     <EditWrapper>
       <Main>
         <EditorWrapper>
-          <Tabs.Root defaultValue="Document" className={styles.Tabs}>
+          <Tabs.Root
+            value={selectedTab}
+            className={styles.Tabs}
+            onValueChange={(selectedTab) =>
+              useTabsStore.setState({ selectedTab })
+            }
+          >
             <EditorTabList />
             <Tabs.Content value="Document">
               <EditorOptions>
@@ -69,11 +80,6 @@ const Edit = memo(function Edit({ workspace }: { workspace: string }) {
             <Tabs.Content value="Style">
               <EditStyleTab />
             </Tabs.Content>
-            {isValidSponsor && (
-              <Tabs.Content value="Advanced">
-                <EditMetaTab />
-              </Tabs.Content>
-            )}
           </Tabs.Root>
         </EditorWrapper>
         <ClearTextButton

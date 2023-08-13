@@ -1,7 +1,4 @@
 import { Core, EdgeSingular, NodeSingular } from "cytoscape";
-import coseBilkent from "cytoscape-cose-bilkent";
-import dagre from "cytoscape-dagre";
-import klay from "cytoscape-klay";
 import { ParseError } from "graph-selector";
 import throttle from "lodash.throttle";
 import React, {
@@ -23,7 +20,7 @@ import { getLayout } from "../lib/getLayout";
 import { DEFAULT_GRAPH_PADDING } from "../lib/graphOptions";
 import { useBackgroundColor } from "../lib/graphThemes";
 import { isError } from "../lib/helpers";
-import { getAnimationSettings } from "../lib/hooks";
+import { getAnimationSettings, useCanEdit } from "../lib/hooks";
 import {
   preprocessCytoscapeStyle,
   useCytoscapeStyleImports,
@@ -37,17 +34,11 @@ import { Box } from "../slang";
 import { getNodePositionsFromCy } from "./getNodePositionsFromCy";
 import styles from "./Graph.module.css";
 import { GRAPH_CONTEXT_MENU_ID, GraphContextMenu } from "./GraphContextMenu";
+import classNames from "classnames";
 declare global {
   interface Window {
     __cy?: cytoscape.Core;
   }
-}
-
-if (!cytoscape.prototype.hasInitialised) {
-  cytoscape.use(dagre);
-  cytoscape.use(klay);
-  cytoscape.use(coseBilkent);
-  cytoscape.prototype.hasInitialised = true;
 }
 
 const isAnimationEnabled = getAnimationSettings();
@@ -73,8 +64,10 @@ const Graph = memo(function Graph({ shouldResize }: { shouldResize: number }) {
     return () => window.removeEventListener("resize", debouncedResize.callback);
   }, [debouncedResize]);
 
+  const canEdit = useCanEdit();
+
   // Initialize Graph
-  useInitializeGraph({ cy, cyErrorCatcher });
+  useInitializeGraph({ cy, cyErrorCatcher, canEdit });
 
   const throttleStyle = useMemo(
     () => getStyleUpdater({ cy, cyErrorCatcher }),
@@ -112,19 +105,22 @@ const Graph = memo(function Graph({ shouldResize }: { shouldResize: number }) {
     return unsubscribe;
   }, [throttleUpdate]);
 
-  // Update Graph when Sponsor Layouts Load
-  const sponsorLayoutsLoaded = useGraphStore(
-    useCallback((store) => store.sponsorLayoutsLoaded, [])
-  );
-  useEffect(() => {
-    if (sponsorLayoutsLoaded) throttleUpdate();
-  }, [throttleUpdate, sponsorLayoutsLoaded]);
-
   const { show } = useContextMenu({ id: GRAPH_CONTEXT_MENU_ID });
 
   useEffect(() => {
     if (initResizeNumber !== shouldResize) handleResize();
   }, [handleResize, initResizeNumber, shouldResize]);
+
+  // On unmount reset graph store
+  useEffect(() => {
+    return () => {
+      useGraphStore.setState({
+        autoFit: true,
+        zoom: undefined,
+        pan: undefined,
+      });
+    };
+  }, []);
 
   return (
     <Box
@@ -132,7 +128,7 @@ const Graph = memo(function Graph({ shouldResize }: { shouldResize: number }) {
       overflow="hidden"
       style={{ background: bg }}
       onContextMenu={show}
-      className={[styles.GraphContainer, "graph"].join(" ")}
+      className={classNames(styles.GraphContainer, "graph rounded")}
     >
       <Box id="cy" overflow="hidden" />
       <GraphContextMenu />
@@ -166,13 +162,16 @@ function handleDragFree() {
 function useInitializeGraph({
   cyErrorCatcher,
   cy,
+  canEdit,
 }: {
   cyErrorCatcher: React.MutableRefObject<cytoscape.Core | undefined>;
   cy: React.MutableRefObject<cytoscape.Core | undefined>;
+  canEdit: boolean;
 }) {
   useEffect(() => {
     try {
       cyErrorCatcher.current = cytoscape();
+
       // const bg = (useDoc.getState().meta?.background as string) ?? original.bg;
       cy.current = cytoscape({
         container: document.getElementById("cy"), // container to render in
@@ -181,11 +180,23 @@ function useInitializeGraph({
         userPanningEnabled: true,
         wheelSensitivity: 0.2,
         boxSelectionEnabled: true,
-        // autoungrabify: true,
+        zoom: useGraphStore.getState().zoom,
+        pan: useGraphStore.getState().pan,
+        autounselectify: !canEdit,
+        autoungrabify: !canEdit,
       });
       window.__cy = cy.current;
       const cyCurrent = cy.current;
       const errorCyCurrent = cyErrorCatcher.current;
+
+      // Turn on grid guide
+      // @ts-ignore
+      // cy.current.gridGuide({
+      //   snapToGridDuringDrag: true,
+      //   snapToGridOnRelease: false,
+      //   gridSpacing: 10,
+      //   resize: true,
+      // });
 
       // Hover Events
       const handleMouseOut = () => {
@@ -239,6 +250,15 @@ function useInitializeGraph({
         useGraphStore.setState({ autoFit: false });
       });
 
+      // whenever the viewport is changed at all
+      cyCurrent.on("viewport", (e) => {
+        if (!useGraphStore.getState().autoFit) {
+          const zoom = e.target.zoom();
+          const pan = e.target.pan();
+          useGraphStore.setState({ zoom, pan });
+        }
+      });
+
       document
         .getElementById("cy")
         ?.addEventListener("mouseout", handleMouseOut);
@@ -271,7 +291,7 @@ function useInitializeGraph({
       this.removeClass("edgeHovered");
       useEditorStore.setState({ hoverLineNumber: undefined });
     }
-  }, [cy, cyErrorCatcher]);
+  }, [canEdit, cy, cyErrorCatcher]);
 }
 
 /**

@@ -1,42 +1,48 @@
 import { t, Trans } from "@lingui/macro";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { ArrowSquareOut } from "phosphor-react";
-import React, { ReactNode, useCallback, useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { ArrowSquareOut, Info, Warning } from "phosphor-react";
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { useMutation } from "react-query";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const customerPortalLink = process.env.REACT_APP_STRIPE_CUSTOMER_PORTAL ?? "";
 
 import { AppContext } from "../components/AppContext";
 import Loading from "../components/Loading";
 import { formatCents, formatDate } from "../lib/helpers";
-import {
-  createSubscription,
-  queryClient,
-  useOrderHistory,
-} from "../lib/queries";
+import { queryClient, useOrderHistory } from "../lib/queries";
 import { supabase } from "../lib/supabaseClient";
 import { Box } from "../slang";
 import { Content, Overlay } from "../ui/Dialog";
 import { Button2, Input, Notice, Page, Section } from "../ui/Shared";
 import { Description, Label, PageTitle, SectionTitle } from "../ui/Typography";
 import styles from "./Account.module.css";
+import {
+  useIsProUser,
+  useSubscriptionStatusDisplay,
+  useCanSalvageSubscription,
+} from "../lib/hooks";
 
 export default function Account() {
   const { customer, session, customerIsLoading } = useContext(AppContext);
   const [cancelModal, setCancelModal] = useState(false);
   const [resumeModal, setResumeModal] = useState(false);
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const signOut = useCallback(() => {
     (async () => {
       if (!supabase) return;
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
       queryClient.removeQueries(["auth"]);
-      push("/");
+      navigate("/");
     })();
-  }, [push]);
+  }, [navigate]);
   const { data: invoices = [] } = useOrderHistory(
     customer?.customerId,
     customer?.subscription?.id
@@ -100,6 +106,8 @@ export default function Account() {
     })();
   });
 
+  const isProUser = useIsProUser();
+
   if (customerIsLoading) return <Loading />;
 
   return (
@@ -116,91 +124,83 @@ export default function Account() {
           <Trans>Log Out</Trans>
         </Button2>
       </Section>
-      <Section>
-        <SectionTitle>
-          <Trans>One-on-One Support</Trans>
-        </SectionTitle>
-        <p className="text-neutral-500 text-sm">
-          <Trans>
-            Have complex questions or issues? We&apos;re here to help.
-          </Trans>
-        </p>
-        <a
-          className="flex gap-2 text-xs text-blue-500 items-center"
-          href="https://calendly.com/tone-row/flowchart-fun"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>
-            <Trans>Book a Meeting</Trans>
-          </span>
-          <ArrowSquareOut size={16} />
-        </a>
-      </Section>
-      {subscription?.status === "canceled" && (
+      {isProUser ? (
         <Section>
           <SectionTitle>
-            <Trans>Upgrade to Pro</Trans>
+            <Trans>One-on-One Support</Trans>
           </SectionTitle>
-          <p className="text-sm leading-normal">
+          <p className="text-neutral-500 text-sm">
             <Trans>
-              Your subscription is no longer active. If you want to create and
-              edit permanent charts upgrade to Pro.
+              Have complex questions or issues? We&apos;re here to help.
             </Trans>
           </p>
-          <BecomeASponsor />
+          <a
+            className="flex gap-2 text-xs text-blue-500 items-center"
+            href="https://calendly.com/tone-row/flowchart-fun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Trans>Book a Meeting</Trans>
+            </span>
+            <ArrowSquareOut size={16} />
+          </a>
         </Section>
-      )}
-      <Section>
-        <SectionTitle>
-          <Trans>Subscription</Trans>
-        </SectionTitle>
-        <div className="grid gap-5">
-          <div className="grid gap-1">
-            <Label size="xs">
-              <Trans>Status</Trans>
-            </Label>
-            <InfoCell className="uppercase">{subscription?.status}</InfoCell>
+      ) : null}
+      {isProUser ? (
+        <Section>
+          <SectionTitle>
+            <Trans>Subscription</Trans>
+          </SectionTitle>
+          <div className="grid gap-5">
+            <div className="grid gap-1">
+              <Label size="xs">
+                <Trans>Status</Trans>
+              </Label>
+              <InfoCell className="uppercase">{subscription?.status}</InfoCell>
+            </div>
+            {subscription?.current_period_end &&
+              !subscription?.cancel_at_period_end &&
+              subscription?.status === "active" && (
+                <div className="grid gap-1">
+                  <Label size="xs">
+                    <Trans>Next charge</Trans>
+                  </Label>
+                  <InfoCell>
+                    {formatDate(subscription?.current_period_end.toString())}
+                  </InfoCell>
+                </div>
+              )}
+            {!subscription?.cancel_at_period_end &&
+              subscription?.created &&
+              subscription?.status === "active" && (
+                <div className="grid gap-1">
+                  <Label size="xs">
+                    <Trans>Start</Trans>
+                  </Label>
+                  <InfoCell>
+                    {formatDate(subscription.created.toString())}
+                  </InfoCell>
+                </div>
+              )}
           </div>
-          {subscription?.current_period_end &&
-            !subscription?.cancel_at_period_end &&
-            subscription?.status === "active" && (
-              <div className="grid gap-1">
-                <Label size="xs">
-                  <Trans>Next charge</Trans>
-                </Label>
-                <InfoCell>
-                  {formatDate(subscription?.current_period_end.toString())}
-                </InfoCell>
-              </div>
-            )}
-          {!subscription?.cancel_at_period_end &&
-            subscription?.created &&
-            subscription?.status === "active" && (
-              <div className="grid gap-1">
-                <Label size="xs">
-                  <Trans>Start</Trans>
-                </Label>
-                <InfoCell>
-                  {formatDate(subscription.created.toString())}
-                </InfoCell>
-              </div>
-            )}
-        </div>
-        {subscription?.cancel_at_period_end && (
-          <Box flow="column" content="start" gap={4}>
-            <Notice>
-              <Trans>Subscription will end</Trans>{" "}
-              {formatDate(subscription.current_period_end.toString())}
-            </Notice>
-            <ConfirmResume isOpen={resumeModal} onOpenChange={setResumeModal}>
-              <Button2 onClick={() => setResumeModal(true)}>
-                <Trans>Resume Subscription</Trans>
-              </Button2>
-            </ConfirmResume>
-          </Box>
-        )}
-      </Section>
+          {subscription?.cancel_at_period_end && (
+            <div className="flex gap-4 justify-start items-center">
+              <Notice>
+                <Trans>Subscription will end</Trans>{" "}
+                {formatDate(subscription.current_period_end.toString())}
+              </Notice>
+              <ConfirmResume isOpen={resumeModal} onOpenChange={setResumeModal}>
+                <Button2 onClick={() => setResumeModal(true)}>
+                  <Trans>Resume Subscription</Trans>
+                </Button2>
+              </ConfirmResume>
+            </div>
+          )}
+        </Section>
+      ) : (
+        <SubscriptionOptions />
+      )}
       <Section>
         <SectionTitle>
           <Trans>Update Email</Trans>
@@ -232,7 +232,7 @@ export default function Account() {
           )}
         </Box>
       </Section>
-      {customerPortalLink && (
+      {isProUser && customerPortalLink ? (
         <Section>
           <SectionTitle>
             <Trans>Customer Portal</Trans>
@@ -254,39 +254,41 @@ export default function Account() {
             <ArrowSquareOut size={16} />
           </a>
         </Section>
-      )}
-      <Section>
-        <SectionTitle>
-          <Trans>History</Trans>
-        </SectionTitle>
-        <Box as="table" className={styles.InvoicesTable} rad={1}>
-          <colgroup>
-            <col width="50%" />
-            <col width="50%" />
-          </colgroup>
-          <thead>
-            <tr>
-              <Td>
-                <Trans>Date</Trans>
-              </Td>
-              <Td>
-                <Trans>Amount</Trans>
-              </Td>
-            </tr>
-          </thead>
-          <tbody>
-            {invoices &&
-              invoices.map((invoice) => (
-                <tr key={invoice.id}>
-                  <Td className="whitespace-nowrap">
-                    {formatDate(invoice.created.toString())}
-                  </Td>
-                  <Td>{formatCents(invoice.amount_paid)}</Td>
-                </tr>
-              ))}
-          </tbody>
-        </Box>
-      </Section>
+      ) : null}
+      {isProUser ? (
+        <Section>
+          <SectionTitle>
+            <Trans>History</Trans>
+          </SectionTitle>
+          <Box as="table" className={styles.InvoicesTable} rad={1}>
+            <colgroup>
+              <col width="50%" />
+              <col width="50%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <Td>
+                  <Trans>Date</Trans>
+                </Td>
+                <Td>
+                  <Trans>Amount</Trans>
+                </Td>
+              </tr>
+            </thead>
+            <tbody>
+              {invoices &&
+                invoices.map((invoice) => (
+                  <tr key={invoice.id}>
+                    <Td className="whitespace-nowrap">
+                      {formatDate(invoice.created.toString())}
+                    </Td>
+                    <Td>{formatCents(invoice.amount_paid)}</Td>
+                  </tr>
+                ))}
+            </tbody>
+          </Box>
+        </Section>
+      ) : null}
       {!subscription?.cancel_at_period_end &&
         subscription?.created &&
         subscription?.status === "active" && (
@@ -444,66 +446,6 @@ function ConfirmResume({
   );
 }
 
-function BecomeASponsor() {
-  const stripe = useStripe();
-  const elements = useElements();
-  const { customer, theme } = useContext(AppContext);
-  const { handleSubmit } = useForm();
-  const submit = useMutation("becomeASponsor", async () => {
-    if (!stripe || !elements || !customer?.customerId) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
-    }
-    const cardElement = elements.getElement(CardElement);
-    if (!cardElement) throw new Error("No Card Element Found");
-
-    const { error: createPaymentError, paymentMethod } =
-      await stripe.createPaymentMethod({
-        type: "card",
-        card: cardElement,
-      });
-    if (createPaymentError) throw createPaymentError;
-    if (!paymentMethod) throw new Error("No Payment Method");
-    const { error: createSubscriptionError } = await createSubscription({
-      customerId: customer.customerId,
-      paymentMethodId: paymentMethod.id,
-      subscriptionType: "monthly", // Need to fix this
-    });
-    if (createSubscriptionError) throw createSubscriptionError;
-    queryClient.resetQueries(["auth"]);
-  });
-  return (
-    <Box
-      as="form"
-      onSubmit={handleSubmit(() => submit.mutate())}
-      template="none / minmax(0, 1fr) auto auto"
-      content="normal start"
-      flow="column"
-      gap={2}
-    >
-      <Box p={2} px={3} rad={1} className={styles.CardEl}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                color: theme.foreground,
-                backgroundColor: theme.background,
-                fontFamily:
-                  "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-                fontSize: "16px",
-              },
-            },
-          }}
-        />
-      </Box>
-      <Button2 type="submit" isLoading={submit.isLoading}>
-        <Trans>Subscribe</Trans>
-      </Button2>
-    </Box>
-  );
-}
-
 function InfoCell({
   children,
   className = "",
@@ -512,4 +454,109 @@ function InfoCell({
   className?: string;
 }) {
   return <p className={`text-sm mt-1 ${className}`}>{children}</p>;
+}
+
+/**
+ * Upgrade to Pro
+ * A friendly notice that the user should upgrade to a subscription.
+ * That they will need one after August 28th. That they can learn more
+ * from our blog post. To learn more about Pro Features on our pricing page.
+ */
+function SubscriptionOptions() {
+  const canSalvageSubscription = useCanSalvageSubscription();
+  const statusDisplay = useSubscriptionStatusDisplay();
+  const returnUrl = useMemo(() => window.location.href, []);
+  const customerId = useContext(AppContext).customer?.customerId;
+  const manageBillingMutation = useMutation(
+    async () => {
+      // Post to /api/create-customer-portal-session
+      const response = await fetch("/api/create-customer-portal-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ customerId, returnUrl }),
+      });
+
+      const { url } = await response.json();
+
+      return url;
+    },
+    {
+      onSuccess: (url) => {
+        // Redirect to the url
+        window.location.href = url;
+      },
+    }
+  );
+
+  return (
+    <Section>
+      <SectionTitle>Subscription</SectionTitle>
+      <div className="grid gap-4">
+        {canSalvageSubscription ? (
+          <div className="grid gap-4 justify-start justify-items-start">
+            <p className="flex items-center gap-2">
+              <Warning className="w-5 h-5" />
+              <span>
+                <Trans>
+                  Your subscription is{" "}
+                  <span className="lowercase">{statusDisplay}</span>.
+                </Trans>
+              </span>
+            </p>
+            <form method="POST" action="/api/create-customer-portal-session">
+              <Button2
+                color="blue"
+                onClick={() => {
+                  manageBillingMutation.mutate();
+                }}
+                isLoading={manageBillingMutation.isLoading}
+              >
+                <Trans>Manage Billing</Trans>
+              </Button2>
+            </form>
+            <p>
+              <Trans>
+                Or, you can{" "}
+                <Link to="/pricing" className="underline underline-offset-2">
+                  create a new subscription
+                </Link>
+                .
+              </Trans>
+            </p>
+          </div>
+        ) : (
+          <>
+            <Trans>
+              <p className="text-sm leading-normal">
+                You currently have a free account.
+                <br />
+                <Link to="/pricing" className="text-blue-500">
+                  Learn about our Pro Features and subscribe on our pricing page
+                </Link>
+                .
+              </p>
+            </Trans>
+            <div className="flex items-center gap-2 text-blue-500 bg-blue-100 p-4 rounded-md border-l-4 border-blue-500">
+              <Info size={24} />
+              <Trans>
+                <p className="text-sm leading-normal">
+                  Starting August 28th you will need a subscription to create
+                  and edit charts.{" "}
+                  <Link
+                    to="/blog/post/important-changes-coming"
+                    className="underline"
+                  >
+                    Learn more
+                  </Link>
+                  .
+                </p>
+              </Trans>
+            </div>
+          </>
+        )}
+      </div>
+    </Section>
+  );
 }
