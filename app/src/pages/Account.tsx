@@ -1,6 +1,6 @@
 import { t, Trans } from "@lingui/macro";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowSquareOut, Info, Warning } from "phosphor-react";
+import { ArrowSquareOut, Warning } from "phosphor-react";
 import React, {
   ReactNode,
   useCallback,
@@ -28,6 +28,7 @@ import {
   useSubscriptionStatusDisplay,
   useCanSalvageSubscription,
 } from "../lib/hooks";
+import { sendLoopsEvent } from "../lib/sendLoopsEvent";
 
 export default function Account() {
   const { customer, session, customerIsLoading } = useContext(AppContext);
@@ -346,8 +347,11 @@ function ConfirmCancel({
   children: ReactNode;
 }) {
   const [loading, setLoading] = useState(false);
-  const { customer } = useContext(AppContext);
+  const { customer, session } = useContext(AppContext);
+  const email = session?.user?.email;
+
   async function cancelSubscription() {
+    if (!email) return;
     if (customer?.subscription) {
       setLoading(true);
       await fetch("/api/cancel-subscription", {
@@ -361,6 +365,7 @@ function ConfirmCancel({
       setLoading(false);
       onOpenChange(false);
     }
+    sendLoopsEvent({ email, eventName: "cancel_subscription" });
   }
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
@@ -538,22 +543,6 @@ function SubscriptionOptions() {
                 .
               </p>
             </Trans>
-            <div className="flex items-center gap-2 text-blue-500 bg-blue-100 p-4 rounded-md border-l-4 border-blue-500">
-              <Info size={24} />
-              <Trans>
-                <p className="text-sm leading-normal">
-                  Starting August 28th you will need a subscription to create
-                  and edit charts.{" "}
-                  <Link
-                    to="/blog/post/important-changes-coming"
-                    className="underline"
-                  >
-                    Learn more
-                  </Link>
-                  .
-                </p>
-              </Trans>
-            </div>
           </>
         )}
       </div>
