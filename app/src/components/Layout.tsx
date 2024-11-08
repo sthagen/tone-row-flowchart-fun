@@ -1,7 +1,6 @@
 import cx from "classnames";
-import { X } from "phosphor-react";
-import { lazy, memo, ReactNode, Suspense } from "react";
-import { Link } from "react-router-dom";
+import { X, Wrench } from "phosphor-react";
+import { lazy, memo, ReactNode, Suspense, useState } from "react";
 
 import { useFullscreen, useIsEditorView } from "../lib/hooks";
 import { Box } from "../slang";
@@ -10,12 +9,19 @@ import { Header } from "./Header";
 import styles from "./Layout.module.css";
 import Loading from "./Loading";
 import { VersionCheck } from "./VersionCheck";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Overlay, Content } from "../ui/Dialog";
+import { Trans, t } from "@lingui/macro";
 const PaywallModal = lazy(() => import("./PaywallModal"));
 
 const Layout = memo(({ children }: { children: ReactNode }) => {
   const isFullscreen = useFullscreen();
+  const [bannerDismissed, setBannerDismissed] = useState(false);
   let [showBanner, message, messageType] = getShowBannerAndMessage();
   const isEditorView = useIsEditorView();
+
+  // Don't show banner if it's been dismissed or if in fullscreen
+  showBanner = showBanner && !bannerDismissed;
 
   // fullscreen disables banners
   if (isFullscreen) {
@@ -39,9 +45,9 @@ const Layout = memo(({ children }: { children: ReactNode }) => {
             })}
           >
             <span className="text-sm text-center py-4">{message}</span>
-            <Link to="/">
+            <button onClick={() => setBannerDismissed(true)}>
               <X size={24} />
-            </Link>
+            </button>
           </div>
         ) : null}
         {isFullscreen ? null : <Header />}
