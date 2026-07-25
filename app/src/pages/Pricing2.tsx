@@ -1,10 +1,12 @@
 import classNames from "classnames";
 import { Trans, t } from "@lingui/macro";
-import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { ReactNode, useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { Link, useLocation } from "react-router-dom";
 import { Checkout } from "../components/Checkout";
 import FAQ from "../components/FAQ";
 import { useFadeIn } from "../lib/useFadeIn";
+import { TONE_ROW_URL, toneRowProjects } from "../lib/toneRowProjects";
 import {
   Sparkle,
   Export,
@@ -146,8 +148,23 @@ function CodeExample() {
 }
 
 export default function Pricing2() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash === "#pass") {
+      document
+        .getElementById("pass")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [hash]);
   return (
     <div className="overflow-hidden">
+      <Helmet>
+        <title>{t`Pricing`} - Flowchart Fun</title>
+        <meta
+          name="description"
+          content={t`Upgrade to Flowchart Fun Pro for unlimited hosted charts, watermark-free high-resolution exports, AI editing, and more. $4/month billed yearly.`}
+        />
+      </Helmet>
       {/* Hero */}
       <header className="relative bg-white dark:bg-[#0c0c0c] bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-900/20 dark:to-[#0c0c0c] pt-12 pb-16 md:pt-16 md:pb-20 overflow-hidden">
         <img
@@ -377,6 +394,50 @@ export default function Pricing2() {
           <p className="text-center text-sm text-neutral-500 dark:text-neutral-400 mt-6">
             <Trans>$48/year (save 33%) · Cancel anytime</Trans>
           </p>
+
+          {/* One-time 30-Day Pass ticket */}
+          <div
+            id="pass"
+            className="relative mt-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 grid sm:grid-cols-[1fr_auto] scroll-mt-24"
+          >
+            <span className="absolute -top-2.5 left-6 bg-[#FFCD1F] text-neutral-900 text-[11px] font-bold uppercase tracking-wider rounded-full px-3 py-0.5">
+              <Trans>One-time</Trans>
+            </span>
+            <div className="p-6">
+              <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">
+                <Trans>Just need it for one project?</Trans>
+              </h3>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-[48ch]">
+                <Trans>
+                  The 30-Day Pass unlocks everything in Pro with a single
+                  payment. No subscription, no auto-renew, nothing to cancel —
+                  it simply ends.
+                </Trans>
+              </p>
+            </div>
+            <div className="relative border-t-2 sm:border-t-0 sm:border-l-2 border-dashed border-neutral-300 dark:border-neutral-700 p-6 flex flex-col items-center justify-center gap-2 sm:min-w-[220px] text-center">
+              <div className="text-2xl font-bold text-neutral-900 dark:text-white">
+                $9{" "}
+                <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                  · <Trans>30 days</Trans>
+                </span>
+              </div>
+              <button
+                className="rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+                data-session-activity="Pricing: Pass Ticket"
+                onClick={() => {
+                  document
+                    .getElementById("checkout")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <Trans>Get a 30-Day Pass</Trans>
+              </button>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
+                <Trans>One payment. Never renews.</Trans>
+              </p>
+            </div>
+          </div>
         </Container>
       </FadeIn>
 
@@ -401,6 +462,41 @@ export default function Pricing2() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
+        <Container className="my-0 grid gap-4">
+          <p>
+            <Trans>
+              Flowchart Fun is an open source project made by{" "}
+              <a
+                href={TONE_ROW_URL}
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Tone&nbsp;Row
+              </a>
+            </Trans>
+          </p>
+          <p className="flex flex-wrap justify-center gap-x-3 gap-y-1">
+            <span>
+              <Trans>More from Tone Row:</Trans>
+            </span>
+            {toneRowProjects.map((project) => (
+              <span key={project.name}>
+                <a
+                  href={project.href}
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {project.name}
+                </a>{" "}
+                <span className="text-neutral-400 dark:text-neutral-500">
+                  — {project.description()}
+                </span>
+              </span>
+            ))}
+          </p>
+        </Container>
+      </footer>
     </div>
   );
 }

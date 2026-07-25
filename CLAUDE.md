@@ -176,7 +176,7 @@ Routes use short paths (defined in `app/src/components/Router.tsx`):
 - Local file support
 - Priority support
 
-Pro access is determined by Stripe subscription status (`active` or `trialing`) via `useHasProAccess()` in `lib/hooks.ts`.
+Pro access is determined by Stripe subscription status (`active` or `trialing`) OR an active **30-Day Pass** via `useHasProAccess()` in `lib/hooks.ts`. The pass is a $9 one-time `mode: "payment"` checkout whose PaymentIntent carries `metadata.ff_pass`; entitlement is derived live in `api/customer-info.ts` via `api/_lib/_pass.ts` (created + 30 days, refunds/disputes invalidate). No webhooks, no DB. Pass holders authenticate to the AI endpoints with their PaymentIntent id (`useProAiToken()` in `lib/hooks.ts`).
 
 The sandbox warning modal (`SandboxWarning.tsx`) appears after 3 minutes of editing to encourage upgrade.
 
@@ -459,8 +459,9 @@ Run the full verification suite after making changes:
 pnpm -F api check                          # API types (~2s)
 pnpm -F app check                          # App types (~10s)
 
-# 2. Unit tests (8 suites, 32 tests, ~28s)
-pnpm -F app test -- --watchAll=false
+# 2. Unit tests
+pnpm -F api test                           # API unit tests (~1s, @swc/jest)
+pnpm -F app test -- --watchAll=false       # App unit tests (~30s)
 
 # 3. E2E tests (~37s, requires `pnpm start` running on port 3000)
 pnpm -F app e2e
@@ -472,8 +473,8 @@ pnpm -F app e2e
 
 **Command:** `pnpm -F app test -- --watchAll=false`
 **Framework:** Jest via react-scripts + React Testing Library
-**Status:** 8 suites, 32 passed, 5 todo, 0 failures
-**Duration:** ~28 seconds
+**Status:** 23 suites, 322 passed, 5 todo, 0 failures
+**Duration:** ~30 seconds
 
 Test files are in `app/src/` alongside source code (e.g., `Graph.test.tsx`, `AppContextProvider.test.tsx`, `toVisio.test.ts`).
 
@@ -485,10 +486,9 @@ Test utilities in `app/src/test-utils.tsx` wrap render with all providers (AppCo
 - `transformIgnorePatterns` excludes `react-use-localstorage`, `monaco-editor`, and `monaco-editor-core` from ignore (forces Babel transform for ESM compat)
 - If a new ESM-only dependency causes "Cannot use import statement outside a module" errors, add it to the negation pattern in transformIgnorePatterns
 
-### API Type Check
+### API Type Check + Unit Tests
 
-**Command:** `pnpm -F api check`
-**What it does:** `tsc --noEmit` — type checking only, no tests
+**Commands:** `pnpm -F api check` (`tsc --noEmit`) and `pnpm -F api test` (Jest via @swc/jest, config in `api/jest.config.js`). Test files sit next to source (e.g. `api/_lib/_pass.test.ts`, `api/prompt/_parseFlowchart.test.ts`).
 
 ### E2E Tests (Playwright)
 
@@ -549,6 +549,21 @@ pnpm -F app e2e:debug
 No test files exist in the `shared` package.
 
 > **Maintainer note:** E2E test coverage is between "bad and moderate" — roughly 50% of happy paths, with no edge case or error coverage. They've been problematic over the years. Unit tests are well-maintained and passing. If we ever migrate off CRA, E2E tests will become much more important and we'll need to write more.
+
+### Visual Regression (templates)
+
+Pixel-diffs all 13 templates' rendered graphs against committed golden images — the rendering half of the safety net (the logic half is the characterization tests in `app/src/lib/*.characterization.test.ts`). Runs via its own config (`app/playwright.visual.config.ts`), NOT the e2e config. See `app/e2e/visual/README.md`.
+
+> **⚠️ RUN THIS ON ANY VISUALLY SIGNIFICANT CHANGE.** It is currently a **local, manual gate — NOT wired to CI** (goldens are macOS-specific; Linux goldens via the Playwright Docker image is a follow-up). So CI will NOT catch a rendering regression for you. If you touch anything that can change how a chart renders — `toTheme.ts`, `graphUtilityClasses.ts`, `getSize.ts`, `preprocessStyle.ts`, the Cytoscape style/layout pipeline, `FFTheme`, or any template file — you must run it yourself.
+
+```bash
+# the app must be served; if :3000 is taken by another project, use another port:
+BROWSER=none PORT=3001 pnpm -F app dev
+E2E_START_URL=http://localhost:3001 pnpm -F app visual          # compare against goldens
+E2E_START_URL=http://localhost:3001 pnpm -F app visual:update   # regenerate after an INTENTIONAL change
+```
+
+After an intentional visual change: regenerate goldens, **eyeball the diff**, then commit the updated `*.png` goldens. The 3 force-directed mindmap templates use frozen-position fixtures (`pnpm -F app visual:fixtures`); regenerate those only if their content/theme changes.
 
 ## CI/CD
 
