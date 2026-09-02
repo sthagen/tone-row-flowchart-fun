@@ -25,7 +25,7 @@ type GraphForAI = {
 };
 
 const title = t`Edit with AI`;
-const content = t`With Flowchart Fun's Pro version, you can use natural language comamnds to quickly flesh out your flowchart details, ideal for creating diagrams on the go. For $6/month, get the ease of accessible AI editing to enhance your flowcharting experience.`;
+const content = t`With Flowchart Fun's Pro version, you can use natural language comamnds to quickly flesh out your flowchart details, ideal for creating diagrams on the go. For $4/month, get the ease of accessible AI editing to enhance your flowcharting experience.`;
 
 export function EditWithAI() {
   const [message, setMessage] = useState<string | null>(null);
@@ -214,7 +214,7 @@ export function EditWithAI() {
               <div className="relative">
                 <textarea
                   placeholder={t`Write your prompt here or click to enable the microphone, then press and hold to record.`}
-                  className="text-xs w-full resize-none h-24 p-2 leading-normal dark:bg-neutral-200"
+                  className="text-base sm:text-sm w-full resize-none h-24 p-2 leading-normal dark:bg-neutral-200"
                   name="prompt"
                   required
                   value={txtPrompt}
